@@ -1,0 +1,59 @@
+body
+{
+  padding:0;
+  margin:0;
+  border:0;
+  color:#fff;
+  background:#000;
+  font-size: 12px;
+  font-family: sans-serif;
+}
+
+#stream
+{
+  width:300px;
+  height:300px;
+}
+
+h1
+{
+  margin:0;
+  text-align:center;
+  margin-top:5px;
+  font-size: 24px;
+}
+
+p#ecoute
+{
+  margin:0;
+  margin-top:10px;  
+  padding-left:5px;
+}
+
+p#streaminfo
+{
+  margin-top:5px;  
+  margin-bottom:10px;  
+  background:#808080;
+  padding:5px;
+  height:3em;
+  overflow:hidden;
+}
+
+p#players
+{
+  margin:0;
+  margin-top:15px;  
+  padding-left:5px;
+}
+
+a
+{
+  color:#fff;  
+  
+}
+
+object
+{
+  margin-left:25px;
+}

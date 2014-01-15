@@ -1,0 +1,284 @@
+/* Copyright 2006,2010
+ * - Julien Etelain <julien AT pmad POINT net>
+ * - Cyrille Platteau <6pour5 CHEZ gmail POINT com>
+ *
+ * Ce fichier fait partie du site de l'Association des étudiants de
+ * l'UTBM, http://ae.utbm.fr.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ */
+ 
+/*
+	Feuille de style pour les comptoirs
+
+*/
+.majorerror
+{
+	font-size: 600%;
+	color:red;
+	font-weight: bold;
+}
+
+.linfo
+{
+	font-size: 300%;
+}
+
+ul.inforech
+{
+	width:65%;
+	float:right;
+	list-style: none;
+}
+
+ul.inforech li
+{
+	font-size: 180%;
+}
+
+ul.inforech b
+{
+	font-size: 100%;
+}
+
+form#recharge
+{
+	display: block;
+	width:65%;
+	float:right;
+}
+
+form#recharge input
+{
+	font-size: 180%;
+}
+
+p.annule
+{
+	font-size: 180%;
+	display: block;
+	width:65%;
+	float:right;
+}
+
+
+form#vente
+{
+	display: block;
+	width:65%;
+	float:right;
+}
+
+ul.panier
+{
+	width:65%;
+	float:right;
+	list-style: none;
+}
+
+ul.panier li
+{
+	font-size: 180%;
+}
+
+ul.panier li.total
+{
+	font-size: 180%;
+	font-weight: bold;
+}
+
+table#panier
+{
+	width:65%;
+	float:right;
+}
+
+table#panier tr td
+{
+	font-size: 180%;
+}
+
+table#panier tr.total td
+{
+	font-size: 180%;
+	font-weight: bold;
+}
+
+div.userinfo
+{
+	width:30%;
+	float:left;
+}
+
+p.solde
+{
+	font-size: 120%;
+	font-weight: bold;
+}
+
+ul.top10
+{
+	list-style: none;
+	padding:0;
+	margin:0;
+	border:0;
+}
+
+.me a
+{
+	color:red;
+	font-weight:bold;
+}
+.me
+{
+	color:red;
+	font-weight:bold;
+	background: #eff7ff;
+}
+
+ul.top10 li.top
+{
+	font-weight:bold;
+	padding:0.2em;
+	padding-bottom:0.5em;
+	background: #d8e7f3;
+}
+
+table.products
+{
+/*
+	border-collapse:collapse;
+*/
+	width:100%;
+}
+
+table.products div.productinfo
+{
+	float:none;
+	width:auto;
+}
+
+table.products h3
+{
+	margin:5 5 10;
+	font-size:110%;
+}
+
+table.products td
+{
+	width:25%;
+	padding:5px;
+	border:1px solid #336699;
+}
+
+div.productinfo
+{
+	float:left;
+	width:17%;
+	margin:5px 0.5%;
+	padding:5px;
+	border:1px solid #336699;
+}
+
+div.productinfo p
+{
+	font-weight:bold;
+	text-align:center;
+}
+
+div.productinfo div.saleProduct
+{
+	text-align:center;
+}
+
+div.productinfo img.fiche_image
+{
+	width:50px;
+	height:50px;
+}
+
+div.productinfo h3
+{
+	margin:0;
+	height:2em;
+	text-align:center;
+	border:none;
+}
+
+ul#productsTabs {
+	position:relative;
+	width:100%;
+	font-weight:bold;
+	padding:0;
+	margin:0;
+}
+
+ul#productsTabs li {
+	float:left;
+	display:inline;
+	margin:0;
+	width:20%;
+	background-color:#F80;
+}
+
+ul#productsTabs li a {
+	display:block;
+	width:100%;
+	height:25px;
+	line-height:25px;
+	color:#fff;
+	text-align:center;
+	text-decoration:none;
+	font-weight:normal;
+}
+
+ul#productsTabs li a:hover {
+	background-color:#749;
+}
+
+ul#productsTabs li a.current {
+	background-color:#38C;
+}
+
+.submit_buttons form {
+	display:inline;
+	width:auto;
+	float:left;
+	margin-left:2em;
+	margin-bottom:1em;
+}
+
+.submit_buttons form input {
+	color:#fff;
+	font-weight: bold;
+}
+
+.submit_buttons input#venteanc {
+	background-color:#F00;
+}
+
+.submit_buttons input#rechargeenfait {
+	background-color:#F80;
+}
+
+.submit_buttons input#ventefin {
+	background-color:#0C0;
+}
+
+.hide
+{
+	display:none;
+}

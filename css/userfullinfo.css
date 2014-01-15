@@ -1,0 +1,302 @@
+/*
+ * (c) Copyright 2006 Julien Etelain. All rights reserved.
+ *
+ * Released under the terms on the GNU General Public License version 2.0.
+ * PROVIDED WITHOUT ANY WARRANTY
+ * See COPYING for all terms.
+ */
+div.userfullinfo
+{
+  position:relative;
+  width:700px;
+  height:300px;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:10px;
+}
+
+div.userfullinfo h2
+{
+  position:absolute;
+  top:5px;
+  left:0;
+  padding:0;
+  margin:0;
+  border:0;
+  font-size: 20px;
+  border-bottom:1px solid #c0c0c0;
+  width:340px;
+  height:25px;
+}
+
+div.userfullinfo h2 a
+{
+  color:black;
+}
+
+div.userfullinfo h2 .nomfamille {
+  text-transform: uppercase;
+  font-size: inherit;
+}
+
+div.userfullinfo div.photo
+{
+  position:absolute;
+  top:00px;
+  right:0px;
+  height:250px;
+  width:200px;
+  overflow:hidden;
+}
+
+div.userfullinfo div.photo img
+{
+  width:200px;
+}
+
+div.userfullinfo div.switchphoto
+{
+  display:inline;
+  position:absolute;
+  top:210px;
+  right:0px;
+  height:38px;
+  width:90px;
+  background:white;
+  border:1px solid #c0c0c0;
+  border-right:0;
+}
+
+div.userfullinfo div.switchphoto div
+{
+  position:absolute;
+  top:0;
+  width:29px;
+  height:38px;
+  overflow:hidden;
+  border-right:1px solid #c0c0c0;
+  background:white;
+}
+
+div.userfullinfo div.switchphoto div.photommt
+{
+  left:0px;
+}
+
+div.userfullinfo div.switchphoto div.photoid
+{
+  left:30px;
+}
+
+div.userfullinfo div.switchphoto div.photoblouse
+{
+  left:60px;
+}
+
+div.userfullinfo div.switchphoto div img
+{
+  width:30px;
+}
+
+div.userfullinfo div.switchphoto div img.switchnone
+{
+  margin-top:4px;
+}
+
+
+div.userfullinfo p.surnom
+{
+  position:absolute;
+  top:40px;
+  left:0px;
+  font-style: italic;
+  padding-left:10px;
+  margin:0;
+}
+
+div.userfullinfo p.naissance
+{
+  position:absolute;
+  top:40px;
+  left:170px;
+  margin:0;
+}
+
+div.userfullinfo p.promo
+{
+  position:absolute;
+  top:230px;
+  left:0px;
+  padding-left:50px;
+  padding-top:17px;
+  margin:0;
+}
+
+div.userfullinfo p.promo img
+{
+  position:absolute;
+  top:0px;
+  height:45px;
+  left:0px;
+}
+
+div.userfullinfo p.trombi
+{
+  position:absolute;
+  top:280px;
+  left:0px;
+  margin:0;
+}
+
+div.userfullinfo p.citation
+{
+  position:absolute;
+  top:260px;
+  right:0px;
+  width:200px;
+  text-align:center;
+  font-style: italic;
+  margin:0;
+}
+
+div.userfullinfo p.departement
+{
+  position:absolute;
+  top:65px;
+  left:0px;
+  font-weight:bold;
+  width:290px;
+  padding-left:50px;
+  padding-top:8px;
+  height:37px;
+  background : url("../images/mmt/utbm.jpg") top left no-repeat;
+  margin:0;
+
+}
+
+div.userfullinfo p.departement span.filiere
+{
+  display:block;
+  position:absolute;
+  top:23px;
+  left:50px;
+  width:200px;
+
+  font-weight:normal;
+}
+
+
+
+
+div.userfullinfo p.adresse
+{
+  position:absolute;
+  left:0px;
+  top: 120px;
+  padding-left:20px;
+  padding-top:3px;
+  padding-top:1px;
+  background : url("../images/icons/16/batiment.png") top left no-repeat;
+  width:140px;
+  margin:0;
+}
+
+div.userfullinfo p.telfixe
+{
+  position:absolute;
+  left:0px;
+  top: 175px;
+  padding-left:20px;
+  padding-top:3px;
+  background : url("../images/mmt/usr_fixe.png") top left no-repeat;
+  margin:0;
+
+}
+
+div.userfullinfo p.telportable
+{
+  position:absolute;
+  left:0px;
+  top: 195px;
+  padding-left:20px;
+  padding-top:3px;
+  background : url("../images/mmt/usr_mobile.png") top left no-repeat;
+  margin:0;
+}
+
+
+div.userfullinfo p.adresseparents
+{
+  position:absolute;
+  left:170px;
+  top: 120px;
+  padding-left:30px;
+  padding-top:3px;
+  padding-top:1px;
+  background : url("../images/icons/16/batiment.png") 10px 0px no-repeat;
+  width:140px;
+  border-left:1px solid #c0c0c0;
+  height:90px;
+  margin:0;
+}
+
+div.userfullinfo p.telparents
+{
+  position:absolute;
+  left:180px;
+  top: 175px;
+  padding-left:20px;
+  padding-top:3px;
+  background : url("../images/mmt/usr_fixe.png") top left no-repeat;
+  margin:0;
+}
+
+div.userfullinfo a.vcard
+{
+  display:block;
+  position:absolute;
+  right:215px;
+  top: 3px;
+}
+
+div.userfullinfo a.mailutbm
+{
+  display:block;
+  position:absolute;
+  right:243px;
+  top: 0px;
+}
+
+div.userfullinfo a.mailperso
+{
+  display:block;
+  position:absolute;
+  right:273px;
+  top: 0px;
+}
+
+div.userfullinfo a.jabber
+{
+  display:block;
+  position:absolute;
+  right:303px;
+  top: 0px;
+}
+
+div.userfullinfo a.edt
+{
+  display:block;
+  position:absolute;
+  right:305px;
+  top: 5px;
+}
+
+div.userfullinfo ul.useradmin
+{
+  position:absolute;
+  top:240px;
+  left:180px;
+  margin:0;
+  padding:0;
+  border:0;
+}

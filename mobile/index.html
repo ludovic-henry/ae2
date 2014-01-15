@@ -1,0 +1,596 @@
+<html>
+<!--
+  Created using jsbin.com
+  Source can be edited via http://jsbin.com/UboyeQA/30/edit
+-->
+<head>
+<meta charset="utf-8">
+<title>app ae web</title>
+<script src="../js/jquery-2.0.3.min.js"></script>
+<meta name="viewport" content="width=device-width, user-scalable=false">
+
+<style>
+.notif {
+    text-align: center;
+    min-height: 50px;
+    margin-left: 6px;
+    margin-right: 6px;
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+* {
+    font-family: verdana;
+}
+
+form>* {
+    display: block;
+    min-width: 271px;
+}
+
+body {
+    background: rgb(0, 0, 50);
+    background: radial-gradient(rgb(67, 66, 72), #05050F);
+
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+    display: none;
+
+}
+
+label {
+    padding-top: 18px;
+    user-select: none;
+}
+
+.horizontalFlexBox {
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    min-width: 271px;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    justify-content: space-around;
+    -webkit-justify-content: space-around;
+    -ms-justify-content: space-around;
+}
+.selected:after{
+    visibility: visible !important;
+    color: rgb(150, 150, 150) !important;
+    text-shadow: 0 0 10px blue;
+    font-weight: bold;
+
+}
+
+.closed {
+    border-top: 5px solid #CD0619;
+
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    background: rgba(222, 222, 231, 0.08);
+
+    color: white;
+}
+
+.checkboxfancy, .checkboxfancy>*{
+    cursor: pointer;
+
+}
+
+.checkboxfancy:after {
+    content: "✉";
+    padding-bottom: 15px;
+    color: rgb(0, 0, 0);
+    border-radius: 3px 3px 3px 3px;
+    height: 18px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80px;
+    margin-bottom: 15px;
+    font-size: 30px;
+}
+
+.open {
+
+    border-top: 5px solid green;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+
+    color: white;
+    background: rgba(222, 222, 231, 0.08);
+
+}
+
+.noActivity {
+    border-top: 5px solid orange;
+    background: rgba(222, 222, 231, 0.08);
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    color: white;
+}
+
+.horizontalFlexBox>.flexbox {
+    min-width: 90px;
+    width: 30%;
+}
+
+span>button {
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 90%;
+    max-width: 800px;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background: rgba(222, 222, 231, 0.02);
+    color: #4DCD06;
+}
+
+.flexbox {
+    display: -ms-flex;
+    display: -webkit-flex;
+    display: flex;
+    text-align: center;
+
+    position: relative;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    margin: 5px 5px 5px 5px;
+}
+.message>button{
+    min-width: 271px;
+    width: 90%; /*magic, don't touch*/
+}
+.flexbox>* {
+    margin-top: 4px;
+    margin-bottom: 10px;
+
+}
+
+.main>div>span {
+    text-align: center;
+}
+
+input {
+    background-color: #EBEBF9;
+    margin-left: 5px;
+    margin-right: 5px;
+
+    padding-left: 5px;
+    min-height: 50px;
+    border-top: 0px solid white;
+    border-left: 0px solid white;
+    border-right: 0px solid white;
+    border-bottom: 0px solid white;
+}
+
+input:focus {
+    box-shadow: 0px 0px 5px 5px rgba(50, 50, 250, 0.5);
+}
+
+img {
+    max-height: 558px;
+    max-width: 339px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.main {
+    max-height: 800px;
+    max-width: 800px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+}
+
+.login>button {
+    font-size: 15px;
+}.willRemember{
+    background: rgba(0,160,0,0.4);
+ }
+
+ .littleButton{
+     display:block;
+     min-width: 270px;
+     margin-left:auto;
+     margin-right:auto;
+ }
+button{
+    background: rgba(222, 222, 231, 0.15);
+    color: white;
+    margin-left: 5px;
+    margin-right: 5px;
+    min-height: 50px;
+    padding: 2px 2px 2px 2px;
+    border: 1px;
+}
+
+button[disabled] {
+    background: rgba(222, 222, 231, 0.02);
+    font-style: italic;
+    color: black;
+}
+
+.error {
+    display: block;
+    background: rgba(222, 222, 231, 0.02);
+    border: 2px solid rgba(250, 20, 20, 0.8);
+    text-align: center;
+    color: white;
+}
+
+.success{
+    display: block;
+    background: rgba(222, 222, 231, 0.02);
+    border: 2px solid rgba(20, 150, 20, 0.3);
+    text-align: center;
+    color: white;
+}
+
+.warn {
+    display: block;
+    background: rgba(222, 222, 231, 0.02);
+    border: 2px solid rgba(250, 187, 0, 0.3);
+    text-align: center;
+    color: white;
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(0px, 0px);
+    }
+    10% {
+        transform: translate(2px, 0px);
+    }
+    20% {
+        transform: translate(-2px, 0px);
+    }
+    30% {
+        transform: translate(2px, 0px);
+    }
+    40% {
+        transform: translate(-2px, 0px);
+    }
+    50% {
+        transform: translate(0px, 0px);
+    }
+    60% {
+        transform: translate(-10px, 0px);
+    }
+    70% {
+        transform: translate(10px, 0px);
+    }
+    80% {
+        transform: translate(-10px, 0px);
+    }
+
+}
+
+.shake {
+    animation-name: shake;
+    animation-duration: 0.5s;
+    transform-origin: 50% 50%;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.hidden {
+    display: none;
+}
+
+</style>
+</head>
+<body>
+<div class="main">
+    <div class="flexbox">
+        <img src="../images/ae-blanc.png" height=200px alt="logo joli ici"/>
+
+        <form class="login flexbox">
+            <input required id="inputCarteAe" type="text" autocomplete="off" name="carteae" placeholder="Carte AE" maxlength=5/>
+            <input required name="password" type="password" autocomplete="off" placeholder="mot de passe"/>
+        </form>
+        <button class="login error" name="remember" id="remember">Mémoriser</button>
+        <button class="login" onClick="logMe()">Connexion</button>
+    </div>
+    <div class="message hidden flexbox">
+        <form class="flexbox">
+            <input id="messageId" placeholder="Message" maxlength="200"/>
+            <button onClick="send()"> Envoyer</button>
+        </form>
+    </div>
+
+    <div class="horizontalFlexBox comptoirediv"></div>
+    <div class="horizontalFlexBox" id="accountValue"></div>
+    <div class="horizontalFlexBox hidden" id="decoDiv"><button class="littleButton" onclick="logout()">Déconnexion</button></div>
+    <div class="flexbox">
+        <div class="notif hidden">
+        </div>
+    </div>
+</div>
+<script>
+
+$(document).ready(function () {
+    switchToMessageScreen=function(){
+        updateAccount();
+        updateStatus();
+        $(".message").fadeIn(400);
+        $(".comptoirediv").fadeIn(400);
+        $("#decoDiv").fadeIn(400);
+        $(".login").fadeOut(300);
+        $("#messageId").focus();
+    }
+    $(document).keypress(function(event){
+        if(event.which==13){
+            if (!idUser || !serviceID) {
+                logMe();
+            }
+        }
+    });
+    clickOnCheckbox = function (element) {
+        if ($(element).hasClass("selected")) {
+            $(element).removeClass("selected");
+            if ($(".selected").length == 0) {
+                $(".message>form>button").prop('disabled', true);
+            }
+        }
+        else {
+            $(element).addClass("selected");
+            $(".message>form>button").prop('disabled', false);
+        }
+    }
+    initCheckBoxListener = function () {
+        $(".checkboxFancy").mouseup(function () {
+            clickOnCheckbox(this)
+        });
+        $(".checkboxFancy").bind("touchend", function () {
+            clickOnCheckbox(this)
+        });
+    };
+
+    logger = function (message, atype) {
+        $(".notif").empty();
+        $(".notif").removeClass("success");
+        $(".notif").removeClass("warn");
+        $(".notif").removeClass("error");
+        $(".notif").addClass(atype);
+        $(".notif").append("<pre>" + message + "</pre>");
+        if (atype == "error") {
+            i = 0;
+            $(".main").addClass("shake");
+            setTimeout(function () {
+                $('.main').removeClass("shake");
+            }, 500);
+
+        }
+        $(".notif").fadeIn(500);
+        setTimeout(function () {
+            $(".notif").fadeOut(500);
+            $(".notif").empty();
+        }, 5000);
+
+    };
+
+    $("form").submit(function (e) {
+        e.preventDefault();
+    });
+    $("#remember").mouseup(function(e){
+        e.preventDefault();
+        if($(this).hasClass("willRemember")){
+            $(this).toggleClass("willRemember error");
+        }
+        else{
+            $(this).toggleClass("error willRemember");
+        }
+    });
+
+    logMe = function () {
+        id = $("input[name='carteae']").val();
+        pwd = $("input[name='password']").val();
+        if (!id || !pwd) {
+            return -1;
+        }
+        $(".login>button:last-child").css("background", "rgba(95,95,95,0.4)");
+        $(".login>button:last-child").html("Connexion...");
+        $(".login>button:last-child").prop("disabled", true)
+        $.ajax({
+            url: "../gateway.php?module=appli-mobile&req=com&id=" + userID + "&serviceident=" + serviceID + "&mess=" + message,
+            error: function (info) {
+                logger("echec\n" + info.status, "error");
+                $(".login>button:last-child").last().prop("disabled", false)
+                $(".login>button:last-child").last().html("Connexion");
+                $(".login>button:last-child").last().css("background", "rgba(222,222,231,0.02)");
+
+
+            },
+            success: function (send, status, returnedValue) {
+                $(".login>button:last-child").prop("ds isabled", false)
+                $(".login>button:last-child").html("Connexion");
+                $(".login>button:last-child").css("background", "rgba(222,222,231,0.02)");
+                if (!returnedValue.responseText) {
+                    logger("serveur injoignable", "error");
+                    return;
+                }
+                if (returnedValue.responseText == "echec" || returnedValue.responseText == "erreur") {
+                    logger("mot de passe incorrect", "error");
+                    return;
+                }
+                logger("Bienvenue!", "success");
+                userID = returnedValue.responseText.split("\n")[0];
+                serviceID = returnedValue.responseText.split("\n")[1];
+                if($("#remember").hasClass("willRemember")){
+                    localStorage["aeserviceidkey"]=serviceID;
+                    localStorage["aeuseridkey"]=userID;
+                }
+
+//getting statue from places
+                switchToMessageScreen();
+            }
+
+        });
+    };
+    updateAccount = function () {
+        $.ajax({
+            url: "../gateway.php?module=appli-mobile&req=montant&id=" + userID + "+&serviceident=" + serviceID,
+            error: function (info) {
+                logger("Impossible de rafraichir le montant :" + info.status, "error");
+            },
+            success: function (send, status, returnedValue) {
+                $("#accountValue").removeClass("error");
+                $("#accountValue").removeClass("success");
+                if (returnedValue.responseText == "") {
+                    logger("Impossible de rafraichir le montant:" + info.status, "error");
+                    return;
+                }
+                if (returnedValue.responseText < 20) {
+                    $("#accountValue").addClass("error");
+                }
+                else {
+                    $("#accountValue").addClass("success");
+                }
+                $("#accountValue").fadeIn();
+                $("#accountValue").html(returnedValue.responseText / 100 + "€");
+            }
+        })
+    }
+
+    updateStatus = function () {
+        $.ajax({
+            url: "../gateway.php?module=appli-mobile&req=comptoir&id=" + userID + "+&serviceident=" + serviceID,
+            error: function (info) {
+                logger("impossilbe de rafraichir les comptoires :" + info.status, "error");
+            },
+            success: function (send, status, returnedValue) {
+
+                $(".comptoirediv").empty();
+                if (returnedValue.responseText == "") {
+                    logger("impossible de rafraichir les comptoires :" + info.status, "error");
+                    return;
+                }
+                comptoire = returnedValue.responseText.split('\n');
+                comptoire.pop();
+                for (var i = 0; i < comptoire.length; i++) {
+                    if (i != 0 && i % 3 == 0) {
+                        $(".comptoirediv").last().after('<div class="comptoirediv horizontalFlexBox"></div>');
+                    }
+                    //step one : set the status : open closed inactive
+                    var comptoireStat;
+                    switch (comptoire[i].split(':')[1]) {
+                        case "2":
+                            comptoireStat = 'open';
+                            break;
+                        case "1":
+                            comptoireStat = "noActivity";
+                            break;
+                        case "0":
+                            comptoireStat = "closed";
+                            break;
+                    }
+                    //step 2 getting a safe name
+                    var name = comptoire[i].split(':')[0].replace(" ", "");
+
+                    var elementToAdd = '<span id="' + name + 'Span " class="flexbox checkboxFancy ' + comptoireStat + '"> <input type=checkbox  id="' + name + 'Box"/><label for="' + name + 'Box">' + comptoire[i].split(':')[0] + '</label>';
+                    $(".comptoirediv").last().append(elementToAdd);
+                }
+                initCheckBoxListener();
+
+            }
+        });
+    };
+    send = function () {
+        message = $("#messageId").val();
+        if (!userID || !serviceID) {
+            logger("non connecté", "error");
+            $(".message").fadeOut();
+            $("#accountValue").fadeOut();
+            $("#accountValue").html("");
+
+            $(".login").fadeIn();
+            $(".comptoireDiv").fadeOut();
+            return;
+        }
+        $(".message>form>button").css("background", "rgba(95,95,95,0.4)");
+        $(".message>form>button").prop("disabled", true);
+        $(".message>form>button").html("Connexion...");
+
+        $.ajax({
+            url: "../gateway.php?module=appli-mobile&req=com&id=" + userID + "&serviceident=" + serviceID + "&mess=" + message,
+            error: function (info) {
+                logger("Echec :" + info.status, "error");
+                $(".message>form>button").css("background", "rgba(222,222,231,0.02)");
+
+            },
+            success: function (send, status, returnedValue) {
+                updateStatus();
+                updateAccount();
+                if (returnedValue.responseText == "Ok") {
+                    logger("Message envoyé", "success");
+                    $(".message>form>button").prop("disabled", false)
+                    $(".message>form>button").html("Envoyer!");
+                    $(".message>form>button").css("background", "rgba(222,222,231,0.02)");
+
+                }
+                else {
+                    logger("something wrong!\n" + returnedValue.responseText, "error");
+                    $(".message>form>button").prop("disabled", false)
+                    $(".message>form>button").html("Envoyer!");
+                    $(".message>form>button").css("background", "rgba(222,222,231,0.02)");
+
+                }
+            }
+        });
+    };
+    logout = function () {
+        localStorage.removeItem("aeserviceidkey");
+        localStorage.removeItem("aeuseridkey");
+        $("input").val("");
+        userID = "";
+        serviceID = "";
+        $(".message").fadeOut();
+        $(".comptoireDiv").fadeOut();
+        $("#accountValue").fadeOut();
+        $("#accountValue").html("");
+        $("#decoDiv").fadeOut();
+        $(".login").fadeIn();
+    }
+
+
+
+    idUser = "";
+    serviceID = "";
+    if(localStorage["aeserviceidkey"] && localStorage["aeuseridkey"]){
+        userID=localStorage["aeuseridkey"];
+        serviceID=localStorage["aeserviceidkey"];
+        switchToMessageScreen();
+
+    }
+    logger("version 1.0", "success");
+    $("#inputCarteAe").focus();
+});
+</script>
+</body>
+</html>
+
+
+
+

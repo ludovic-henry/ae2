@@ -1,0 +1,136 @@
+/**
+ * CSS document
+ */
+ 
+div.annonce_table
+{
+	padding: 0px;
+	margin: 20px;
+	background-color: #FFFFFF;
+	border: 1px #000066 solid;
+	overflow: hidden;
+}
+
+div.annonce_table div.header
+{
+	position: relative;
+	padding: 0px;
+	margin: 0px;
+	height: 22px;
+	background-color: #D8E7F3;
+	overflow:hidden;
+	
+	cursor: pointer;
+}
+
+div.annonce_table div.num
+{
+	padding: 3px;
+	padding-right: 15px;
+	margin: 0px;
+	background-color: #D8E7F3;
+}
+
+div.annonce_table div.title
+{
+	position: absolute;
+	left: 40px;
+	top: 0px;
+	padding: 3px;
+	height: 22px;
+	font-weight: bold;
+	border-left: 1px #000066 solid;
+}
+
+div.annonce_table div.icons
+{
+	position: absolute;
+	padding: 3px;
+	margin: 0px;
+	right: 2px;
+	top : 0px;
+	background-color: #D8E7F3;
+	border-left: 1px #000066 solid;
+}
+
+div.annonce_table div.content
+{
+	position: relative;
+	padding: 3px;
+
+	border-top: 1px #000066 solid;
+}
+
+div.apply_table
+{
+	margin-top: 5px;
+	padding: 2px;
+	background-color: #FFFFFF;
+	border: 1px #D8E7F3 solid;
+}
+
+div.apply_table div.apply_title
+{
+	background-color: #FFF1C5; 
+	background-image: url(http://ae.utbm.fr/images/icons/16/auteur.png);
+	background-repeat: no-repeat;
+	cursor: pointer;
+	text-indent: 25px;
+	font-weight: bold;
+	line-height: 120%;
+}
+
+div.apply_table div.apply_content
+{
+	display: none;
+	position: relative;
+}
+
+div.apply_form
+{
+	border-top: 1px #000066 dashed;
+	margin-top: 10px;
+	padding-top: 10px;
+}
+
+div.desc_row
+{
+	margin: 0px;
+	padding: 0;
+	border: 0;
+ 	position: relative; 
+}
+
+div.desc_label
+{
+	margin: 0;
+	padding: 3px;
+	border: 0;
+	position: absolute; 
+	width: 150px;
+	overflow: hidden;
+	vertical-align: top;
+	border-right: 1px solid #D8E7F3;
+}
+
+div.desc_content
+{
+	margin: 0;
+	margin-left: 15px;
+	padding: 3px;
+	padding-left: 160px;
+}
+
+div.desc_user_photo
+{
+	position: absolute;
+	right: 15px;
+	top: 10px;
+	width: 80px;
+	height: 100px;
+	overflow: hidden;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	border-top: 1px solid #D8E7F3;
+	border-bottom: 1px solid #D8E7F3;
+}

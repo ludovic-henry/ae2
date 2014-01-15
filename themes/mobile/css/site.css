@@ -1,0 +1,177 @@
+/* Copyright 2011
+ * - Antoine Tenart < antoine dot tenart at gmail dot com >
+ *
+ * Ce fichier fait partie du site de l'Association des étudiants de
+ * l'UTBM, http://ae.utbm.fr.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ */
+
+/**
+ * CSS for the mobile version
+ *
+ * Should not include images !! Mobile version should be light.
+ */
+
+
+/**
+ * General stuff
+ */
+
+* {
+  font-size: 110%;
+  font-family: arial, sans-serif;
+}
+
+body {
+  background: #cccccc;
+  margin: 0;
+  padding: 0;
+}
+
+/**
+ * Header
+ */
+
+div#header {
+  text-align: center;
+  z-index: 90;
+  height: 8em;
+}
+
+div#logo {
+  position:absolute;
+  width: 50%;
+  left: 50%;
+  margin-left: -25%;
+}
+
+div#logo img {
+  height: 5em;
+  margin-top: 1.8em;
+}
+
+/**
+ * Menu bar
+ */
+
+div#headermenu {
+position: relative;
+  background-color: #555;
+  font-weight: bold;
+  z-index: 110;
+  height: 1.5em;
+}
+
+div#headermenu a {
+  color: white;
+  text-decoration: none;
+}
+
+div#headermenu #deco {
+  float: right;
+  margin-right: 0.5em;
+  height: 1em;
+}
+
+div#head_comptoirs  {
+  float: left;
+  margin-left: 1em;
+}
+
+div#head_comptoirs .green { color: green; }
+div#head_comptoirs .yellow { color: yellow; }
+div#head_comptoirs .red { color: red; }
+
+div#menuContent {
+  width: 70%;
+  background-color: #38c;
+  text-align: center;
+  position: absolute;
+  font-weight: bold;
+  margin-top: 20%;
+  z-index: 100;
+  left: 15%;
+  border: 5px solid #555;
+}
+
+div#menuContent a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  font-size: 2.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-bottom: 5px dashed #555;
+  margin-bottom: -5px;  /* little hack */
+}
+
+div#menuContent p {
+  color: white;
+         background-color: #555;
+  display: block;
+  font-size: 2em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-bottom: 5px dashed #555;
+  margin-bottom: -5px;  /* little hack */
+  margin-top: -5px;
+}
+
+#overlay {
+  background-image: url("../images/overlay.png");
+  position: absolute;
+  top: 0px; 
+  left: 0px; 
+  z-index: 90;
+  width: 100%;
+  height: 100%;
+}
+
+/**
+ * Article
+ */
+
+div.article {
+  background-color: white;
+  text-align: justify;
+  padding: 0 1% 0 1%;
+}
+
+div.article .mob_title {
+  background-color: #749;
+  font-size: 1.5em;
+  text-align: center; /* hack */
+  margin-left: -1%;
+  margin-right: -1%;
+  margin-bottom: -0.5em;
+}
+
+div.article h1 {
+  background-color: #F80;
+  color: white;
+  text-align: center;
+  margin-left: -1%;
+  margin-right: -1%;
+}
+
+/**
+ * Stuff
+ */
+
+form {
+  text-align: center;
+}

@@ -1,0 +1,16 @@
+.wikipath
+{
+  font-size:14px;
+  font-weight:bold;
+}
+
+.path_bar
+{
+  font-size:14px;
+  font-weight:bold;
+  width:100%;
+  border:1px solid #8cacbb;
+  background:#dee7ec;
+  padding:0.1em 0.15em;
+  clear:both;
+}

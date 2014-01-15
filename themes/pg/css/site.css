@@ -1,0 +1,103 @@
+
+div.pgcatlist
+{
+  
+}
+
+div.pgcatlist ul
+{
+  margin-top:0;
+  margin-bottom:0;
+  list-style:none;
+}
+
+div.pgcatlist ul a
+{
+  color:black;
+}
+
+
+div.pgcatminilist
+{
+  margin:5px;
+  padding:5px;
+}
+
+div.pgcatminilist h3
+{
+  margin:0;
+  padding:0;
+  border:0;
+  margin-bottom:5px;
+  font-size:16px;
+  padding-left:5px;
+}
+
+div.pgcatminilist h3 a
+{
+  color:black;
+}
+
+div.pgcatminilist div
+{
+  padding-left:15px;
+  color:black;
+}
+
+div.pgcatminilist div a
+{
+  color:black;
+}
+
+
+div.article div.tabs.pgtabs
+{
+  height:21px;
+  overflow:visible;
+  margin-bottom:20px;
+}
+
+div.article div.tabs.pgtabs span a
+{
+  border-left:1px solid #ffffff;
+  border-right:1px solid #ffffff;
+  color:black;
+  font-size:13px;
+  line-height:13px;
+}
+
+div.article div.tabs.pgtabs span.selected a, div.article div.tabs.pgtabs span a:hover
+{
+  padding-top:10px;
+  padding-bottom:10px;
+  border-left:1px solid #ffffff;
+  border-right:1px solid #ffffff;
+  color:black;
+}
+
+div.article a.renvoi
+{
+  vertical-align: super;
+  font-size: 8px;  
+  color:#808080;
+  font-weight:normal;
+}
+
+div.article ul.minilegals
+{
+  font-size: 10px; 
+  list-style:none;
+  color:#808080;
+}
+
+div.article ul.minilegals li
+{
+  font-size: 10px;
+  color:#808080;    
+}
+
+div.article ul.minilegals li a
+{
+  font-size: 10px;  
+  color:#808080;  
+}

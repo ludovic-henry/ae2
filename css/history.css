@@ -1,0 +1,121 @@
+
+
+.article
+{
+  overflow:hidden;
+}
+
+.history
+{
+  width:840px;
+  margin-right:auto;
+  margin-left:auto;
+  position:relative;
+}
+
+
+.history .clearlast
+{
+  clear:both;
+  height:60px;
+}
+
+.date
+{
+  width:428px;
+  position:relative;
+  margin-bottom:-60px;
+}
+
+.side0
+{
+  width:429px;
+  float:left;
+  background: url("../images/history/bar.jpg") top right repeat-y;
+}
+
+.side1
+{
+  float:right;
+  background: url("../images/history/bar.jpg") top left repeat-y;
+}
+
+.date .timebar
+{
+  position:absolute;
+  top:75px;
+  width:100%;
+  
+  height:19px;
+  left:0;
+  background:url("../images/history/date-left.jpg") right top;
+
+}
+
+.side1 .timebar
+{
+  background:url("../images/history/date-right.jpg") left top;
+}
+
+.date .dcts
+{
+  position:relative;
+  float:left;
+  border:1px solid #FF9900;
+  background:white;
+  max-width:360px;
+}
+
+.side1 .dcts
+{
+  float:right;
+}
+
+.date .dcts h2
+{
+  margin:3px;
+  border-bottom:0;
+  padding:0;
+  font-weight:normal;
+}
+
+.date .elements
+{
+}
+
+.date .element
+{
+  float:left;
+  width:176px;
+  height:156px;
+  background:url("../images/misc/photo.png");
+  border:0;
+  margin:2px;
+  margin-top:0px;
+  padding:0;
+  text-align:center;
+  background-repeat: no-repeat;
+  background-position: left top;
+  position:relative;  
+  
+}
+
+.date .element div.data
+{
+  position:absolute;
+  top:13px;
+  left:15px;
+  width:140px;
+  height:105px;
+  overflow:hidden;
+  text-align:center;
+}
+
+.date .element div.info
+{
+  text-align:center;
+  position:absolute;
+  left:7px;
+  top:120px;
+  width:157px;
+}

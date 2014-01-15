@@ -1,0 +1,474 @@
+
+
+div.forumsection, div.forumsujetsliste
+{
+  /*border:1px solid #FFF1C5; */
+  /*border:1px solid #ffcc2a;*/
+  margin-bottom:10px;
+  width:100%;
+  position:relative;
+  background:white;
+}
+
+div.forumsection h2
+{
+  /*background:#FFF1C5;*/
+  background:#3388cc;
+  border:0px;
+  color: white;
+  text-transform: uppercase;
+  font-size:12px;
+  margin:0px;
+  padding:5px;
+
+}
+
+div.forumsection div.forumitem, div.forumsujetsliste div.forumsujet
+{
+  /*border:1px solid #d8e7f3;*/
+  padding:5px;
+  position:relative;
+  overflow:hidden;
+  margin:3px;
+}
+
+div.forumsujetsliste div.forumsujet {
+  border:1px solid #d8e7f3;
+}
+
+div.forumsection h2, div.forumsection p.description
+{
+  padding-right:240px;
+  margin:0px;
+}
+
+div.forumsujetsliste div.forumhead, div.forumlist div.forumhead
+{
+  height:21px;
+  position:relative;
+  margin:2px;
+  border:1px solid white;
+  padding-left:5px;
+}
+
+
+
+div.forumsujetsliste div.forumsujet h2, div.forumsujetsliste div.forumsujet p.soustitre, div.forumsujetsliste div.forumhead h2
+{
+  padding-right:350px;
+  padding-left:32px;
+  margin:0px;
+  border:0px;
+}
+
+div.forumsujetsliste div.forumsujet.nonlu, div.forumsection div.forumitem.nonlu
+{
+  background:#d8e7f3;
+}
+
+div.forumsection div.forumitem h3
+{
+  margin:0px;
+  font-size:13px;
+  border:0px;
+}
+
+
+
+
+div.forumsujetsliste div.forumsujet h2, div.forumsujetsliste div.forumhead h2
+{
+  margin:0px;
+  font-size:12px;
+  border:0px;
+}
+
+div.forumsection div.forumitem p.description, div.forumsujetsliste div.forumsujet p.soustitre
+{
+  margin:0px;
+  font-size:11px;
+}
+
+div.forumsujetsliste div.forumsujet p.sujeticon
+{
+  position:absolute;
+  top:10px;
+  left:5px;
+  margin:0px;
+}
+
+div.forumsujetsliste div.forumsujet p.auteur, div.forumsujetsliste div.forumhead p.auteur
+{
+  position:absolute;
+  width:100px;
+  right:233px;
+  top:1px;
+  padding:5px;
+  background:#d8e7f3;
+  font-size:11px;
+  text-align:center;
+  margin:0px;
+}
+
+div.forumsection div.forumitem p.nbsujets, div.forumsujetsliste div.forumsujet p.nbmessages, div.forumsujetsliste div.forumhead p.nbmessages, div.forumlist div.forumhead p.nbsujets
+{
+  position:absolute;
+  width:50px;
+  right:172px;
+  top:1px;
+  padding:5px;
+  background:#d8e7f3;
+  font-size:11px;
+  text-align:center;
+  margin:0px;
+}
+
+div.forumsection div.forumitem p.dernier, div.forumsujetsliste div.forumsujet p.dernier, div.forumsujetsliste div.forumhead p.dernier, div.forumlist div.forumhead p.dernier
+{
+  position:absolute;
+  width:160px;
+  right:1px;
+  top:1px;
+  padding:5px;
+  background:#d8e7f3;
+  font-size:11px;
+  text-align:center;
+  margin:0px;
+}
+
+
+div.forumsection div.forumitem p.actions, div.forumsujetsliste div.forumsujet p.actions
+{
+  position:absolute;
+  width:auto;
+  right:344px;
+  top:1px;
+  padding:5px;
+  font-size:11px;
+  margin:0px;
+}
+
+
+div.forumsujetsliste div.forumsujet.nonlu p.dernier, div.forumsujetsliste div.forumsujet.nonlu p.auteur, div.forumsujetsliste div.forumsujet.nonlu p.nbmessages
+{
+  border-left:1px solid #ffffff;
+  margin:0px;
+}
+
+div.forumsection div.forumitem.nonlu p.dernier, div.forumsection div.forumitem.nonlu p.nbsujets
+{
+  border-left:1px solid #ffffff;
+  margin:0px;
+}
+
+
+div.forumsujetsliste div.forumhead p.dernier, div.forumlist div.forumhead p.dernier, div.forumsujetsliste div.forumhead p.nbmessages, div.forumlist div.forumhead p.nbsujets, div.forumsujetsliste div.forumhead p.auteur
+{
+  background:#ffffff;
+  margin:0px;
+}
+
+div.fmsgsliste
+{
+  overflow:hidden;
+  position:relative;
+}
+
+div.fmsgentry
+{
+  border:1px solid #d8e7f3;
+  /*padding:5px;*/
+  /*padding-left:160px;*/
+  position:relative;
+  margin-bottom:5px;
+  overflow:hidden;
+  padding:0;
+    height:auto;
+}
+
+div.fmsgentry.nonlu
+{
+  background:#d8e7f3;
+}
+
+div.fmsgentry.pair
+{
+  background:#eff7ff;
+}
+
+div.fmsgentry.deleted
+{
+  background:#ffefef;
+}
+
+div.fmsgentry div.modereinfo
+{
+  background:#ffffbf;
+  border-color:#eccc20;
+}
+
+div.fmsgentry div.modereinfo_auto
+{
+  background:#bfffbf;
+  border-color:#60cc20;
+}
+
+div.fmsgentry div.modereinfo, div.fmsgentry div.modereinfo_auto
+{
+  padding:0.2em 0.5em;
+  margin:0.3em;
+  border-width: 1px;
+  border-style: dotted;
+  font-size: 0.8em;
+}
+
+div.fmsgentry div.auteur
+{
+  background:#d8e7f3;
+  /*position:absolute;
+  left:1px;
+  top:1px;*/
+  float:left;
+  width:150px;
+  padding:0;
+  margin:0;
+  padding-top:5px;
+  padding-bottom:5px;
+  position:relative;
+  overflow:hidden;
+}
+
+div.fmsgentry.deleted div.auteur
+{
+  background:#ffcfcf;
+}
+
+div.fmsgentry div.auteur p
+{
+  margin-left:5px;
+  margin-right:5px;
+  margin:0px;
+}
+
+div.fmsgentry div.auteur p.funame
+{
+  margin:0px;
+}
+
+div.fmsgentry div.auteur p.funame a
+{
+  color:#000000;
+}
+
+
+div.fmsgentry div.auteur p.fuimg
+{
+  text-align:center;
+  margin:0px;
+}
+
+div.fmsgentry div.auteur p.fuimg img
+{
+  width:100px;
+
+}
+/*
+div.fmsgentry.nonlu div.auteur
+{
+  background:#ffffff;
+}
+*/
+
+div.fmsgentry h2.frmt
+{
+  font-size:12px;
+
+  margin:0px;
+
+  border:0;
+
+  padding-top:5px;
+  padding-left:280px;
+}
+
+div.fmsgentry p.date
+{
+  position:absolute;
+  top:5px;
+  left:160px;
+  margin:0px;
+}
+
+div.fmsgentry p.actions
+{
+  position:absolute;
+  top:5px;
+  right:5px;
+  margin:0px;
+}
+
+div.fmsgentry div.fmsg
+{
+  border-top:1px solid #C0C0C0;
+  margin-left:160px;
+  padding-top:5px;
+  margin-top:3px;
+  padding-bottom:5px;
+  padding-right:5px;
+}
+
+div.fmsgentry div.signature
+{
+  margin-top:10px;
+  border-top:1px solid #C0C0C0;
+  padding-top:5px;
+  max-height:3em;
+  padding-bottom:5px;
+  color: #C0C0C0;
+}
+
+div.fmsgentry div.signature *
+{
+  color: #C0C0C0;
+}
+
+
+div.fmsgentry.nonlu div.fmsg
+{
+  border-top:1px solid #FFFFFF;
+}
+
+div.fmsgentry.nonlu div.signature
+{
+  border-top:1px solid #FFFFFF;
+  /*color:#FFFFFF;*/
+}
+/*
+div.fmsgentry.nonlu div.signature *
+{
+  color:#FFFFFF;
+}
+*/
+div.sujetcontext
+{
+  margin-left:150px;
+  margin-right:150px;
+  margin-bottom:20px;
+  border:1px solid #d8e7f3;
+  padding:5px;
+}
+
+.tabs_bottom
+{
+  position:relative;
+
+}
+
+div.article p.frmgeneral
+{
+  /*text-align:right;  */
+}
+
+/* table class doku */
+table.doku{
+  margin:1em 0;
+}
+table.doku{
+  background-color:#fff;
+  border-spacing:0px;
+  border-collapse:collapse;
+}
+table.doku th{
+  padding:3px;
+  border:1px solid #8cacbb;
+  background-color:#dee7ec;
+}
+table.doku td{
+  padding:3px;
+  border:1px solid #8cacbb;
+}
+
+p.frmtools a
+{
+  border:1px solid #d8e7f3;
+  padding:10px;
+  color:black;
+}
+
+p.frmtools a:hover
+{
+  background:#d8e7f3;
+  text-decoration:none;
+  color:black;
+}
+
+div.article p.frmtools
+{
+  margin:20px;
+  margin-left:10px;
+
+}
+
+div.article p.frmtools img
+{
+  padding-right:10px;
+}
+
+ul.frmsujetres ul
+{
+  margin-top:5px;
+  margin-bottom:15px;
+}
+
+ul.frmsujetres ul li
+{
+  margin-bottom:5px;
+}
+
+ul.frmsujetres ul li a
+{
+  color:black;
+}
+
+ul.frmsujetres ul li span
+{
+  color:#c0c0c0;
+}
+
+
+div.liner
+{
+  margin-bottom:4px;
+}
+
+div.liner p.center
+{
+  padding:0;
+  margin:0;
+  font-size:90%;
+  color:#808080;
+}
+
+div.liner p.center a
+{
+  font-size:100%;
+  color:#808080;
+}
+
+div.cita
+{
+  margin: 10px 4px 10px 30px;
+  padding: 4px;
+}
+
+div.cita div.cits
+{
+  border: 1px #374a70 solid;
+  margin-top:2px;
+  padding: 4px;
+  text-align: justify;
+  background-color: #ecf4fe;
+}
+
+
+

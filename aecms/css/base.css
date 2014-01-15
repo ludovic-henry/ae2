@@ -1,0 +1,45 @@
+@import url("/themes/default3/css/site3.css");
+/* TODO */
+
+p.footer
+{
+  margin-top:2em;
+  padding-bottom:2em;
+  font-size:10px;
+  color:#c0c0c0;
+  text-align:center;
+  clear:both;
+}
+
+p.footer a
+{
+  font-size:10px;
+  color:#a0a0a0;
+}
+
+div#logo
+{
+  height:60px;
+  padding:0;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:left;
+  position:relative;
+}
+
+div#logo a
+{
+  position:absolute;
+  font-size:40px;
+  color:#FFFFFF;
+  top:10px;
+  left:40px;
+    text-transform: lowercase;
+  background:none;
+  width:auto;
+  height:auto;
+}
+div#logo a:hover
+{
+  text-decoration:none;
+}

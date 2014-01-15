@@ -1,0 +1,29 @@
+body
+{
+  background: #CEDBEA;
+  margin: 0;
+  padding: 0;
+}
+
+#sbox_bdf
+{
+  background: url("../themes/default/images/box-bdf-core.png");
+}
+
+#sbox_bdf div.body
+{
+	background-image: url("../themes/default/images/box-bdf-bottom.png");
+	background-repeat: no-repeat;
+	background-position: bottom;
+}
+
+#sbox_bdf p
+{
+  margin-bottom:3px; 
+  margin-left:10px;
+}
+
+#sbox_bdf p a
+{
+  color:#ffffff;
+}

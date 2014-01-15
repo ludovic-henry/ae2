@@ -1,0 +1,190 @@
+.galitem
+{
+  float:left;
+  width:244px;
+  height:110px;
+  position:relative;
+  border:1px solid #f0f0f0;
+}
+
+.galitem .galitemdata
+{
+  width:224px;
+  height:100px;
+  position:absolute;  
+  top:5px;
+  left:10px;
+}
+
+.galitem .ebv
+{
+  position:relative;  
+}
+
+.galitem .ebv h2
+{
+  height:18px;
+  overflow:hidden;
+  margin:0;
+  padding:0;
+  border:0;
+  border-bottom:1px solid #c0c0c0;
+}
+
+.galitem .ebv p.image
+{
+  position:absolute;
+  top:24px;
+  left:0px;  
+  height:60px;
+  width:80px;
+  overflow:hidden;
+  margin:0;
+}
+
+.galitem .ebv p.image img
+{
+  width:80px; 
+}
+
+.galitem .ebv p.description
+{
+  position:absolute;
+  top:24px;
+  left:89px; 
+  width:135px; 
+  height:62px;
+  overflow:hidden;
+  margin:0;
+}
+
+.galitem .ebv p.details
+{
+  position:absolute;
+  top:87px;
+  left:89px; 
+  width:135px; 
+  height:13px;
+  text-align:center;
+  margin:0;
+}
+
+.galitem .ebv p.prixunit
+{
+  position:absolute;
+  top:87px;
+  left:0px; 
+  width:80px; 
+  height:13px;
+  text-align:center;
+  font-weight:bold;
+  font-height:120%;
+  margin:0;
+}
+
+.ebficheprod
+{
+  position:relative;  
+  margin-bottom:150px; 
+}
+
+.article .ebficheprod h2
+{
+  font-size:200%; 
+  border-bottom:1px solid #c0c0c0; 
+  margin:0;
+  margin-bottom:20px;
+}
+
+.ebficheprod .description
+{
+  margin-left:270px;  
+}
+
+.ebficheprod .retrait
+{
+  margin-left:270px; 
+  margin-top:20px;
+}
+
+.ebficheprod .achat
+{
+  margin-left:270px;  
+  margin-top:20px;
+}
+
+.ebficheprod .image
+{
+  width:250px;
+  position:absolute;  
+  top:40px;
+  left:0px;
+  overflow:hidden;
+}
+
+.ebficheprod .image img
+{
+  max-width:250px;
+}
+
+.ebficheprod .prix
+{
+  /*position:absolute;*/
+  font-size:400%;
+  /*top:0px;
+  right:0px;*/
+  background:white;
+  text-align:right;
+  border:1px solid #c0c0c0;
+  padding:0px;
+  padding-left:10px;
+  padding-right:10px;
+  padding-top:5px;
+  float:right;
+  margin:0;
+}
+
+.prix_box {
+  text-align:right;
+  float:right;
+  font-style:italic;
+}
+
+/*
+#sbox_e-boutic .items
+{
+  margin-top:0.5em;
+
+}
+
+#sbox_e-boutic .intro
+{
+  font-weight:bold;
+  margin-top:0.1em;
+  padding-top:0.5em;
+  padding-left:0.2em;
+
+}
+
+#sbox_e-boutic .total
+{
+  margin-top:0.2em;
+  margin-bottom:1em;
+  text-align:right;
+  font-weight:bold;
+  border-top:1px solid #ffffff;
+
+  border-bottom:1px solid #ffffff;
+  padding-top:0.3em;
+  padding-bottom:0.3em;
+  padding-right:0.5em;
+}
+
+#sbox_e-boutic
+{
+  background: url("../themes/default/images/box-top-eboutic.png");  
+}
+
+*/
+
+

@@ -1,0 +1,302 @@
+div.pg_guide
+{
+
+}
+
+div.pg_guide div.panel
+{
+	margin-bottom:5px;
+	width:48%;
+	margin-left:1%;
+}
+
+div.pg_guide div.panel div.list
+{
+	height:10em;
+	margin-bottom:5px;
+	padding:5px;
+}
+
+div.pg_guide div.panel div.item
+{
+	margin-bottom:5px;
+	margin-top:5px;
+}
+
+div.pg_guide h2 a
+{
+	font-size: 120%;
+	font-weight: bold;
+	color: #000000;
+}
+
+div.pg_guide h2
+{
+	border-bottom:0;
+	margin-top:10px;
+	margin-bottom:5px;
+	padding-left:10px;
+}
+
+div.pg_guide div.panel div.item a
+{
+	font-size: 100%;
+	font-weight: normal;
+	color: #000000;
+}
+
+div.pg_1 /*loisirs*/
+{
+	background-color: #ffc0c0;
+	position:relative;	
+}
+div.pg_2 /*quotidien*/
+{
+	background-color: #b9f9bb;
+	position:relative;	
+}
+div.pg_3 /*shopping*/
+{
+	background-color: #f7caff;
+	position:relative;	
+}
+div.pg_4 /*accueil*/
+{
+	background-color: #b2d9f9;
+	position:relative;	
+}
+div.pg_5 /*Pratique*/
+{
+	background-color: #fff5a9;
+	position:relative;	
+}
+
+
+div.pg_1 div.list /*loisirs*/
+{
+	background-color: #ffeded;
+}
+div.pg_2 div.list/*quotidien*/
+{
+	background-color: #eaf9eb;
+}
+div.pg_3 div.list/*shopping*/
+{
+	background-color: #fdf2ff;
+}
+div.pg_4 div.list/*accueil*/
+{
+	background-color: #e5f0f9;
+}
+div.pg_5 div.list/*Pratique*/
+{
+	background-color: #fffce3;
+}
+
+
+
+
+div.pg_cat1
+{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	list-style: none;
+}
+
+div.pg_cat1 div.item
+{
+	padding: 1em;
+	margin:0.5em;
+}
+
+div.pg_cat1 div.item a
+{
+	font-size: 120%;
+	font-weight: bold;
+	color: #000000;
+}
+
+div.pg_cat1 div.item div.item a
+{
+	font-size: 100%;
+	font-weight: normal;
+	color: #000000;
+}
+
+div.pg_cat1 div.item div.list
+{
+	padding:0.5em;
+	padding-left:2em;
+	margin-top:0.5em;
+	list-style: none;
+}
+
+div.pg_cat1 div.item div.list div.item
+{
+	padding: 0.2em;
+	margin:0;
+}
+
+/* IMPORT --- IMPORT --- IMPORT */
+
+h4 {
+	margin: 0;
+	margin-top: 0.2em;
+	margin-bottom: 0.2em;
+	padding: 0.1em;
+}
+
+/***** Fiches ***********************/
+
+div.fiches
+{
+	/*background-color: #e2f3f7;*/
+}
+
+
+div.fiche {
+	padding: 5px;
+	margin-top: 0.4em;
+	margin-bottom: 0.4em;
+	border-top: 1px solid black;
+}
+
+div.fiche div.tel {
+	float: right;
+}
+
+div.fiche div.fax {
+	float: right;
+}
+
+div.fiche div.lienfixe {
+	float: right;
+}
+
+div.fiche div.montrer_details span {
+	font-size: 0.8em;
+	cursor: pointer;
+}
+
+div.fiche div.details {
+	display: none;
+	width: 500px;
+	padding: 5px;
+}
+
+div.fiche div.description {
+	font-size: 1em;
+	font-style: italic;
+}
+
+div.fiche div.horaire {
+	font-size: 0.8em;
+}
+
+div.fiche div.reduc_petitgeni{
+	padding-left: 35px;
+	height: 18px;
+	background: url(/petitgeni/styles/defaut/lampe.png) no-repeat;
+}
+
+/***** Images ***********************/
+
+img {
+	border: 0;
+}
+
+div.section img {
+	max-width: 400px;
+}
+
+/***** Couleurs des gdes catÃ©gories */
+
+.quotidien_fort {
+	background-color: #b9f9bb;
+}
+
+.accueil_fort {
+	background-color: #b2d9f9;
+}
+
+.shopping_fort {
+	background-color: #f7caff;
+}
+
+.loisirs_fort {
+	background-color: #ffc0c0;
+}
+
+.pratique_fort {
+	background-color: #fff5a9;
+}
+
+.quotidien_faible {
+	background-color: #eaf9eb;
+}
+
+.accueil_faible {
+	background-color: #e5f0f9;
+}
+
+.shopping_faible {
+	background-color: #fdf2ff;
+}
+
+.loisirs_faible {
+	background-color: #ffeded;
+}
+
+.pratique_faible {
+	background-color: #fffce3;
+}
+
+.quotidien_texte {
+	color: #00d547;
+	font-style: italic;
+}
+
+.accueil_texte {
+	color: #1d75dd;
+	font-style: italic;
+}
+
+.shopping_texte {
+	color: #d95cea;
+	font-style: italic;
+}
+
+.loisirs_texte {
+	color: #ff4343;
+	font-style: italic;
+}
+
+.pratique_texte {
+	color: #ffda00;
+	font-style: italic;
+}
+
+tr.gde_cat{
+	height: 60px;
+}
+
+td.quotidien {
+	background: url(/petitgeni/styles/defaut/quotidien.png) no-repeat;
+}
+
+td.accueil {
+	background: url(/petitgeni/styles/defaut/accueil.png) no-repeat;
+}
+
+td.shopping {
+	background: url(/petitgeni/styles/defaut/shopping.png) no-repeat;
+}
+
+td.loisirs {
+	background: url(/petitgeni/styles/defaut/loisirs.png) no-repeat;
+}
+
+td.pratique {
+	background: url(/petitgeni/styles/defaut/pratique.png) no-repeat;
+}

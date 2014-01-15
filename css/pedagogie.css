@@ -1,0 +1,144 @@
+/* Copyright 2007
+ * - Pierre Mauduit <pierre POINT mauduit CHEZ utbm POINT fr>
+ * - Manuel Vonthron <manuel DOT vonthron AT acadis DOT org>
+ *
+ * Ce fichier fait partie du site de l'Association des Étudiants de
+ * l'UTBM, http://ae.utbm.fr.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Sofware
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ */
+
+/**
+ * UV Comment
+ */
+div.uvcomment
+{
+  padding: 10px;
+  border: 1px solid #d8e7f3;
+  margin: 10px;
+}
+span.uvcdate
+{
+  margin-right: 10px;
+}
+
+div.uvcomment.pair
+{
+  background:#eff7ff;
+}
+div.uvcomment.abuse
+{
+  background:#ffc9c9;
+}
+
+span.uvcoptions
+{
+  font-weight: bold;
+}
+span.uvcriteria
+{
+  width: 100%;
+  margin-bottom: 10px;
+
+}
+
+span.uvcauthor
+{
+  text-align: right;
+  display: block;
+  float: right;
+  top : 0;
+}
+
+div.uvcheader
+{
+	border-bottom: 1px solid #EEAC00;
+}
+
+
+span.uvcnote
+{
+  display: block;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+div.uvccontent
+{
+   padding-top: 10px;
+   padding-bottom: 10px;
+   padding-left: 40px;
+   position: absolute;
+   width: 100%;
+ }
+ 
+
+div.uvleftbloc
+{
+	position: relative;
+	margin-right: 10px;
+	float: left;
+}
+
+div.uvrightbloc
+{
+	position: relative;
+}
+
+div.uvclear
+{
+	clear: both;
+}
+
+table.uvtable
+{
+	border-right: 1px solid #D8E7F3;
+}
+
+table.uvtable td
+{
+	border-bottom: 1px solid #D8E7F3;
+	height: 18px;
+}
+
+/**
+ *
+ */
+table.uvlist
+{
+	border: 1px solid #D8E7F3;
+	width: 100%;
+	font-weight: bolder;
+	text-align: center;
+	background: #EFF7FF;
+}
+
+table.uvlist a:hover
+{
+	text-decoration: none;
+}
+
+div#popup
+{
+  margin: 12px;
+	background: #EFF7FF;
+}
+
+div#popup div.subforminline
+{
+  margin: 0 0 0 10%;
+}

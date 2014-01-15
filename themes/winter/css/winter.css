@@ -1,0 +1,106 @@
+
+
+#logo
+{
+	padding:0;
+	background:url("../images/bandeau.jpg");
+	background-color: #000000;
+	height:80px;
+}
+
+#logo img
+{
+	display: none;
+}
+
+#logo a
+{
+	width:230px;
+	height:75px;
+	display: block;
+}
+
+#left
+{
+  top: 10.5em;
+}
+
+#right
+{
+  top: 10.5em;
+}
+
+div.tabsv2
+{
+	background-image:url("../images/tabs-fond.jpg");
+}
+
+div.tabsv2 span 
+{
+	background-image:url("../images/tabs-norm-st.jpg");
+}
+
+div.tabsv2 span a
+{	
+	background-image:url("../images/tabs-norm.jpg");
+}
+
+div.tabsv2 span:hover
+{
+	background-image:url("../images/tabs-cur-st.jpg");
+}
+
+div.tabsv2 span:hover a
+{
+	background-image:url("../images/tabs-cur.jpg");
+}
+
+div.tabsv2 span.selected
+{
+	background-image:url("../images/tabs-cur-st.jpg");
+}
+
+div.tabsv2 span.selected a
+{
+	background-image:url("../images/tabs-cur.jpg");
+}
+
+#important
+{
+  position:absolute;
+  left:255px;
+  top:25px;
+  padding:0;
+  margin:0;
+  border:0;
+  width:290px;
+}
+
+
+#important div.body
+{
+  color:white;
+  background:none;
+  border:0;
+  padding:0;
+  margin:0;
+  -moz-border-radius:0;
+  text-align:center;
+}
+
+#important div.body a
+{
+  color:white;
+
+}
+
+#fsearchbox
+{
+  background:none;
+  top:15px;
+}
+
+#fsearchres
+{
+  top: 4em;
+}

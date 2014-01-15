@@ -1,0 +1,28 @@
+table.poles
+{
+	position:relative;
+}
+
+
+table.poles td
+{
+	width:45%;
+	text-align:justify;
+	position:relative;
+}
+
+table.poles td[colspan="2"]
+{
+	width:90%;
+	padding-right:20%;
+	padding-left:20%;
+	position:relative;
+}
+
+div.article
+{
+	background-image:url(../images/misc/frame-right.jpg);
+	background-repeat: repeat-y;
+	background-position: right top;
+
+}

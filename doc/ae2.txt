@@ -1,0 +1,48 @@
+AE2 : version 1.5 du site de l'AE
+---------------------------------
+
+
+1. Le pourquoi du comment
+
+	- Mise à plat de la base de donnée
+	- Intégration des nouveaux besoins
+	- Modules cohérents et communiquants
+
+2. Choix techniques
+
+	- UTF-8
+	- MySQL
+	- PHP
+	- Orienté objet
+	- Séparation logique/interface
+	- GNU gettext (http://fr.php.net/manual/fr/function.gettext.php)
+
+3. Documents techniques
+
+	3.1 MCD/MLD : définition de la base de données
+	
+	3.2 UML : défintion des principaux objets
+
+4. Coding style et directives
+
+	4.1 Coding style
+	
+	4.2 Organisation des fichiers
+
+Les sections et leurs modules sont placés dans des sous-dossiers :
+/ae				Adhesions, gestion des cotisants et utilisateurs
+/asso			Outils à destination des clubs et associations
+/compta			Comptabilité AE
+/comptoirs		Système de vente par carte AE
+/e-boutic		Boutique en ligne
+/forum			Forum de discussion
+/matmatronch	Matmatronch (visualisation, inscription, génération...)
+/sas			Photothèque
+/				Nouvelles, articles, paramètres utilisateur
+
+Organisation des sections et modules
+*.php				Interface (front-end)
+include/*.inc.php	Logique et modules(core)
+
+Les modules à usage de l'ensemble des sections se placent dans /include
+

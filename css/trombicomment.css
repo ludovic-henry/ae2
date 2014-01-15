@@ -1,0 +1,93 @@
+div.trombicomment
+{
+  border:1px solid #d8e7f3; 
+  /*padding:5px;*/
+  /*padding-left:160px;*/
+  position:relative;
+  margin-bottom:5px;
+  overflow:hidden;
+  padding:0;
+    height:auto;
+}
+
+div.trombicomment.mycomment
+{
+  background:#d8e7f3;
+}
+
+div.trombicomment.pair
+{
+  background:#eff7ff;
+}
+
+div.trombicomment div.author
+{
+  background:#d8e7f3;
+  /*position:absolute;
+  left:1px;
+  top:1px;*/
+  float:left;
+  width:150px;
+  padding:0;
+  margin:0;
+  padding-top:5px;
+  padding-bottom:5px;
+  position:relative;
+  overflow:hidden;
+}
+
+div.trombicomment div.author p
+{
+  margin-left:5px;
+  margin-right:5px;
+  margin:0px;
+}
+
+div.trombicomment div.author p.tuname
+{
+  margin:0px;
+}
+
+div.trombicomment div.author p.tuname a
+{
+  color:#000000;
+}
+
+
+div.trombicomment div.author p.tuimg
+{
+  text-align:center;
+  margin:0px;
+}
+
+div.trombicomment div.author p.tuimg img
+{
+  width:70px;
+  
+}
+
+div.trombicomment p.date
+{
+  position:absolute;
+  top:5px;
+  left:160px;
+  margin:0px;
+}
+
+div.trombicomment p.actions
+{
+  position:absolute;
+  top:5px;
+  right:5px;
+  margin:0px;
+}
+
+div.trombicomment div.commentcontent
+{
+  border-top:1px solid #C0C0C0;
+  margin-left:160px;
+  padding-top:5px;
+  margin-top:20px;
+  padding-bottom:5px;
+  padding-right:5px;
+}

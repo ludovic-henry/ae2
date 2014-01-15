@@ -1,0 +1,227 @@
+/* embedded images */
+@import 'planning2.css';
+
+img.media
+{
+  margin: 3px;
+}
+
+img.medialeft
+{
+  border: 0;
+  float: left;
+  margin: 0 1.5em 0 0;
+}
+
+img.mediaright
+{
+  border: 0;
+  float: right;
+  margin: 0 0 0 1.5em;
+}
+
+img.mediacenter
+{
+  border: 0;
+  display: block;
+  margin: 0 auto;
+}
+
+/* unordered lists */
+ul {
+  line-height: 1.5em;
+  margin: 0 0 0.5em 1.5em;
+  /*color: #638c9c;*/
+}
+
+/* ordered lists */
+ol {
+  line-height: 1.5em;
+  margin: 0 0 0.5em 1.5em;
+  color: #638c9c;
+  font-weight: bold;
+}
+
+/* the list items overriding the ul/ol definition */
+.li {
+  color: #000;
+  font-weight: normal;
+}
+
+ol {list-style-type: decimal}
+ol ol {list-style-type: upper-roman}
+ol ol ol {list-style-type: lower-alpha}
+ol ol ol ol {list-style-type: lower-greek}
+
+li.open {
+    /*list-style-type: circle;*/
+}
+
+li.closed {
+    /*list-style-type: disc;*/
+}
+
+blockquote {
+  border-left: 2px solid #8cacbb;
+  padding-left: 3px;
+}
+
+pre {
+  font-size: 120%;
+  font-family: monospace;
+  padding: 0.5em;
+  border: 1px dashed #8cacbb;
+  color: #000;
+  overflow: auto;
+}
+
+/* table class doku */
+table.doku{
+  margin:1em 0;
+  width:100%;
+}
+table.doku{
+  background-color:#fff;
+  border-spacing:0px;
+  border-collapse:collapse;
+}
+table.doku th{
+  padding:3px;
+  border:1px solid #8cacbb;
+  background-color:#dee7ec;
+}
+table.doku td{
+  padding:3px;
+  border:1px solid #8cacbb;
+}
+
+/* inline tables */
+table.inline {
+  font-size:100%;
+  background-color: #fff;
+  border-spacing: 0px;
+  border-collapse: collapse;
+}
+
+table.inline th {
+  padding: 3px;
+  border: 1px solid #8cacbb;
+  background-color: #dee7ec;
+}
+
+table.inline td {
+  padding: 3px;
+  border: 1px solid #8cacbb;
+}
+
+/* --------------------- footnotes -------------------------------- */
+
+div.footnotes {
+  clear: both;
+  border-top: 1px solid #8cacbb;
+  padding-left: 1em;
+  margin-top: 1em;
+}
+
+div.fn {
+  font-size: 90%;
+}
+
+a.fn_top {
+  vertical-align: super;
+  font-size: 80%;
+}
+
+a.fn_bot {
+  vertical-align: super;
+  font-size: 80%;
+  font-weight: bold;
+}
+
+/* insitu-footnotes */
+div.insitu-footnote {
+  font-size: 80%;
+  line-height: 1.2em;
+  border: 1px solid #8cacbb;
+  background-color: #f7f9fa;
+  text-align: left;
+  padding: 4px;
+  max-width: 40%;    /* IE's width is handled in javascript */
+}
+
+code {
+  font-family: monospace;
+}
+
+.wlog {
+  font-style: italic;
+}
+
+div.toc
+{
+  margin:7em 0 0 2em;
+  width:200px;
+  float:right;
+  font-size:80%;
+  clear:both;
+}
+div.tocheader
+{
+  border:1px solid #8cacbb;
+  background-color:#dee7ec;
+  text-align:left;
+  font-weight:bold;
+  padding:3px;
+  margin-bottom:2px;
+}
+div.tocheader img
+{
+  width:0.8em;
+  height:0.8em;
+  float:right;
+  margin:0.3em 3px 0 0;
+  cursor:pointer;
+}
+#toc_contents
+{
+  border:1px solid #8cacbb;
+  background-color:#fff;
+  text-align:left;
+  padding:0.5em 0 0.7em 0;
+}
+ul.toc
+{
+  list-style-type:none;
+  list-style-image:none;
+  line-height:1.2em;
+  padding-left:1em;
+  margin:0;
+}
+ul.toc li
+{
+  padding-left:0.4em;
+}
+ul.toc li li
+{
+  font-size:100% !important;
+  padding:0 0 0 1.0em;
+}
+ul.toc li.clear
+{
+  background-image:none;
+  padding-left:0.4em;
+}
+a.toc:link,a.toc:visited
+{
+  color:#436976;
+}
+a.toc:hover,a.toc:active
+{
+  color:#000;
+}
+
+a.fn_top
+{
+  vertical-align:super;
+  font-size:0.8em;
+}

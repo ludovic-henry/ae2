@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<!--
+  Created using jsbin.com
+  Source can be edited via http://jsbin.com/AsAcATA/21/edit
+-->
+<head>
+    <meta charset="utf-8">
+    <script src="../js/jquery-2.0.3.min.js"></script>
+    <title></title>
+
+    <style id="jsbin-css">
+        .hidden{
+            display:none;
+        }
+        #slideDiv {
+            display:flex;
+            flex-direction:"column";
+            z-index: 1;
+            min-height:100%;
+            background:rgb(0,0,50);
+            background: radial-gradient( rgb(67, 66, 72), #05050F);
+            vertical-align:middle;
+            margin-top:auto;
+            margin-bottom:auto;
+            margin-left: auto;
+            margin-right:auto;
+            text-align:center;
+        }
+        .logmessage{
+        }
+        .notif{
+        flex-direction:row;
+        position: absolute;
+        font-size: 12pt;
+        font-family:verdana;
+        width: 100%;
+        bottom: 0;
+        margin: 0 auto;
+        z-index: 2;
+        background:white;
+        box-shadow: 0 -15px 10px darkred;
+        padding-left:15px;
+        color:black;
+            }
+        body{
+            overflow:hidden;
+            height:100%;
+            background: radial-gradient( rgb(67, 66, 72), #05050F);
+            margin: 0 0 0 0 ;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-content:stretch;
+        }
+        figure{
+            display: flex;
+            flex-direction:row;
+            margin:0 0 0 0 ;
+
+        }
+        .flexImg{
+            background: radial-gradient( rgb(67, 66, 72), #05050F);
+
+            vertical-align:middle;
+            margin-top:auto;
+            margin-bottom:auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .smallImg>figure>img{
+            min-height:80%;
+            max-height:80%;
+        }
+        .fullImg>figure>img{
+            min-height: 100%;
+            max-height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="slideDiv" class="flexbox fullImg">
+</div>
+<div class="notif"></div>
+<script>
+    version="1.0";
+    incomingMessage=[];
+    affiches=[];
+    pathToimg="http://ae.utbm.fr/data/files/";
+    timeRefresh=9000 // in miliss
+    msgRefresh=4000
+    globalRefreshTime=60000
+    isRefreshed=0;
+    maxLog=5;
+    logCounter=0;
+    logDiv=$("#logDiv");
+
+
+
+    refreshAffiche=function(){
+        var xmlFile=$.get("../affiches.php?page=xml");
+        slideDiv.empty();
+        xmlFile.error(function(self,errorCode,error){
+            logger("unable to connect to ae.utbm.fr err: "+errorCode,"error");
+            return;
+        });
+        xmlFile.success(function(r){
+            try{
+	        isRefreshed++;
+                for(var i=0;i<affiches.length;i++){
+		  affiches[i].next = null;
+		  affiches[i] = null;
+		}
+                affiches=[];
+                var xml=$(r);
+                var presentation=$(xml.find("presentation"));
+                for(var i=0;i<presentation.children().length;i++){
+                    affiche=$(presentation.find("affiche")[i]);
+                    path=pathToimg+$(affiche.find("fichier")).text();
+                    newAffiche={
+                        html:"<figure><img class='flexImg' src='"+path+"' alt='image missing'/></figure>",
+                        next:""
+                    };
+                    if(i!==0){
+                        affiches[i-1].next=newAffiche;
+                    }
+                    affiches.push(newAffiche);
+                }
+                if(presentation.children().length>1){
+                    affiches[affiches.length-1].next=affiches[0];
+                }
+                if(presentation.children().length==1){
+                    affiche[0].next=affiches[0]
+                }
+            }
+            catch(Exception){
+                alert(Exception.message);
+            }
+            console.log(affiches.length);
+            launchslideShow()
+        });
+    };
+
+    launchMessageService=function(){
+        setTimeout(function(){
+            messageCheck();
+            launchMessageService();
+        },msgRefresh);
+    }
+    launchslideShow=function(){
+        if(affiches.length>0){
+            show(affiches[0],isRefreshed);
+            setTimeout(function(){
+                refreshAffiche()
+            },globalRefreshTime);
+        }
+    }
+    messageCheck=function(){
+        if($(".logmessage").length>0){
+            $($(".logmessage")[0]).fadeOut(msgRefresh);
+            setTimeout(function(){
+                $($(".logmessage")[0]).remove();
+                if($(".logmessage").length==0){
+                    $(".notif").fadeOut("slow");
+                        $("#slideDiv").removeClass("smallImg");
+                        $("#slideDiv").addClass("fullImg");
+
+
+                }},msgRefresh);
+        }else{
+                $("#slideDiv").removeClass("smallImg");
+                $("#slideDiv").addClass("fullImg");
+
+
+        }
+        $.ajax({
+            url:"../gateway.php?module=ecrancom&secret=messageForTheLulz",
+            error:function(self,errorcode,error){
+                logCounter++;
+                if(logCounter<maxLog){
+                    logger("unable to retrieve message status is :"+errorcode,"error");
+                }
+            },
+            success:function(response){
+                logCounter=0;
+                if(!response){
+                    return;
+                }
+
+                message=response.split('\n').slice(2,response.split('\n').length).join();
+
+                logger("<div>"+response.split('\n')[0]+":</div><div>"+message+"</div>","");
+            }
+        });
+    }
+    show=function(affiche,refreshedTime){
+        //if comment were print, you will see me a lot!
+        current=affiche;
+	if(refreshedTime < isRefreshed)
+	{
+		return;
+	}
+        setTimeout(function(){
+            $("#slideDiv").html(current.html);
+            setTimeout(function(){
+                show(current.next,refreshedTime);
+            },20);
+        },timeRefresh-500);
+    }
+    logger = function (message, type) {
+        if($(".logmessage").length==0){
+            $(".notif").fadeIn(600);
+        }
+        toAppend="<pre class='logmessage' style='display:none;'>"+message+"</pre>";
+        $(".notif").append(toAppend);
+
+        $("#slideDiv").removeClass("fullImg");
+        $("#slideDiv").addClass("smallImg");
+        $(".logmessage").fadeIn(800);
+
+        //audio.play(); Tim asked for this comment
+    };
+    $(document).ready(function(){
+        slideDiv=$("#slider");
+        refreshAffiche();
+        launchslideShow();
+        launchMessageService()
+    });
+</script>
+</body>
+</html>

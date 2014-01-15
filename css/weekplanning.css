@@ -1,0 +1,59 @@
+/**
+ * CSS Document
+ */
+ 
+ 
+table.weekplanning{
+	border-collapse: collapse;
+	border: 1px solid #e8eef7;
+}	
+ 
+tr.head{
+	background: #e8eef7;
+}
+
+.head_title{
+	width: 82%;
+	text-align: center;
+	font-weight: bold;
+}
+
+td.head_larrow, td.head_rarrow{
+	width: 9%;
+	text-align: center;
+}
+
+td.head_larrow:hover, td.head_rarrow:hover{
+	background: #eeac00;
+	text-decoration: none;
+}
+.dayhead{
+	background: #E8EEF7;
+	font-weight: bold;
+	text-align: center;
+	height:20px;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+div.dayitem{
+	border: 1px solid #eeac00;
+	background: #ffffcc;
+	padding: 1px;
+	overflow: auto;
+}
+
+div.daycount{
+	background: #E8EEF7;
+	font-weight: bold;
+	text-align: right;
+	border-bottom: none;
+	border-color: #ffffff;
+
+}
+
+span.itemhour{
+	font-bold: bold;
+	font-size: 80%;
+	font-color: #eeeeee;
+}

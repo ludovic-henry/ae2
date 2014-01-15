@@ -1,0 +1,157 @@
+
+#spaces
+{
+  width:28%;
+  height:30px;
+  position:absolute;
+  top:5px;
+  left:0.5%;
+  background: #afc7e0;
+}
+
+
+#chspace  div.form
+{
+	margin:2px;
+	margin-left:5px;
+}
+
+
+#chspace  div.formfield
+{
+	display:inline;
+	width:auto;
+	margin-left:0px;
+}
+
+#chspace  div.formlabel
+{
+	display:inline;
+	width: auto;
+	position:static;
+}
+
+#chspace select
+{
+  margin-left:3px;  
+}
+
+
+#chspace  div.formrow
+{
+	display: inline;
+	width: auto;
+	float:none;
+	clear: none;
+}
+
+
+#folders
+{
+  
+  width:28%;
+  position:absolute;
+  top:37px;
+  left:0.5%;
+  background: #afc7e0;
+  padding-top:5px;
+  padding-bottom:10px;
+}
+
+
+#foldercontents
+{
+  width:70%;
+  position:absolute;
+  top:5px;
+  left:30%;  
+  padding-top:5px;  
+}
+
+
+div.article ul
+{
+  margin:0;
+  padding:0;
+  padding-left:20px;
+  /*list-style-image: url("../images/icons/16/folder.png");*/
+  list-style-type: none;
+  list-style-position: outside;
+}
+
+div.article li
+{
+  margin:0;
+  padding:3px;
+}
+
+div.article li a
+{
+  color:black;  
+  
+}
+
+h2
+{
+  clear:both;  
+}
+
+div.gallery
+{
+	position:relative;
+}
+
+div.gallery div.galitem
+{
+	float:left;
+	width:20em;
+	height:4em;
+	margin-right:1em;
+	margin-bottom:0.5em;
+	overflow:hidden;
+	border:1px solid #c0c0c0;
+	position:relative;
+}
+
+div.gallery div.galitemdata
+{
+	width:3em;
+	height:3em;
+	float:left;
+	margin:0.5em;
+	margin-right:1em;
+	
+}
+
+div.gallery div.galitemdata img
+{
+	width:3em;
+	height:3em;
+	
+}
+
+div.gallery div.galiteminfo
+{
+	margin:0.5em;
+	height:3em;
+	position:relative;
+}
+
+div.gallery div.galiteminfo .itmttl
+{
+	font-weight:bold;
+}
+
+div.gallery div.galiteminfo .itmdsc
+{
+	font-size:80%;
+}
+
+div.gallery div.galitem div.tooldep
+{
+	position:absolute;
+	bottom:2px;
+	right:0;
+	text-align:right;
+	width:150px;
+}

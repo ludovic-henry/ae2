@@ -1,0 +1,98 @@
+
+/* Copyright 2008
+ *
+ * - Simon Lopez < simon dot lopez at ayolo dot org >
+ *
+ * "Portaetif"
+ *
+ * Ce fichier fait partie du site de l'Association des étudiants
+ * de l'UTBM, http://ae.utbm.fr.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ */
+
+body, .article, .contents, .page, .article, #cts1, #site, .clearfix, #n
+{
+  background-color:#000000;
+  border:0;
+  color:#ffffff;
+}
+.tabsv2, #logo, #fsearchbox, #site, #fsearchres, #fend, #emptysectionlinks, .emptysectionlinks, h2, .text-footer
+{
+  display:none;
+}
+
+.isubmit{
+  color: #000000;
+}
+
+.contents {
+  margin: 0px auto !important;
+  margin-top: 20px;
+  width: 800px;  
+}
+div.page
+{
+  margin-top: 20px;
+}
+.button {
+  color: #666666;
+  font-size:80%;
+}
+
+ul, li {
+  background-color: #ffffff !important;
+  color: #000000;
+}
+#welcomeuh
+{
+  width:100%;
+  font-size:70px;
+  text-align:center;
+}
+
+.formrow
+{
+  margin-bottom:10px;
+}
+
+input[type=text]
+{
+  background-color:#cccccc;
+  color:#ffffff;
+}
+div#id_utilisateur_static
+{
+  border: 1px #364970 solid;
+  padding: 1px;
+  margin-left: 2px;
+  margin-right: 2px;
+  margin-bottom: 3px;
+  background-color:#cccccc;
+  color:#ffffff;
+}
+div.button, div#id_utilisateur_button
+{
+  margin-top:2px;
+  margin-right:4px;
+  background-color:#cccccc;
+  color:#ffffff;
+}
+
+div.article h1
+{
+  font-size:28px;
+}

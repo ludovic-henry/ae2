@@ -1,0 +1,92 @@
+/* Copyright 2006
+ * - Julien Etelain <julien AT pmad POINT net>
+ *
+ * Ce fichier fait partie du site de l'Association des étudiants de
+ * l'UTBM, http://ae.utbm.fr.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ */
+ 
+div.gallery
+{
+	position:relative;
+}
+
+div.gallery div.galitem
+{
+	float:left;
+	width:25em;
+	height:4em;
+	margin-right:1em;
+	margin-bottom:0.5em;
+	overflow:hidden;
+	border:1px solid #c0c0c0;
+	position:relative;
+}
+
+div.gallery div.galitemdata
+{
+	width:3em;
+	height:3em;
+	float:left;
+	margin:0.5em;
+	margin-right:1em;
+	
+}
+
+div.gallery div.galitemdata img
+{
+	width:3em;
+	height:3em;
+	
+}
+
+div.gallery div.galiteminfo
+{
+	margin:0.5em;
+	height:3em;
+	position:relative;
+}
+
+div.gallery div.galiteminfo .itmttl
+{
+	font-weight:bold;
+}
+
+div.gallery div.galiteminfo .itmdsc
+{
+	font-size:80%;
+}
+
+div.gallery div.galitem div.tooldep
+{
+	position:absolute;
+	bottom:2px;
+	right:0;
+	text-align:right;
+	width:150px;
+}
+
+.alertunmod
+{
+	color: red;
+	text-align: center;
+	font-size: 140%;
+	font-weight: bold;
+}
+
+
+

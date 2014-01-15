@@ -1,0 +1,1673 @@
+/* Copyright 2009
+ * - Simon Lopez <simon POINT lopez AT ayolo POINT org>
+ *
+ * Ce fichier fait partie du site de l'Association des étudiants de
+ * l'UTBM, http://ae.utbm.fr.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ */
+
+/*
+ * Généralités
+ */
+*
+{
+  font-size: 12px;
+  line-height:110%;
+  font-family: arial, sans-serif;
+}
+
+body
+{
+  background: #ffffff; /* url(../images/global-top.png) top repeat-x; */
+  margin: 0;
+  padding: 0;
+;
+}
+html,body
+{
+  height:100%
+}
+div#site
+{
+  text-align:center;
+  position:relative;
+  width:100%;
+  padding:0;
+  margin:0;
+  min-height:100%;
+}
+
+div#header
+{
+  z-index:59;
+  position:relative;
+  width:980px;
+  margin:auto;
+  height:85px;
+}
+div#logo
+{
+  float:left;
+  margin-top:30px;
+  display:block-inline;
+}
+div#headermenu
+{
+  display:none;
+}
+#login
+{
+  display:inline-block;
+  margin:10px 0 0 0;
+  padding:0;
+  height:30px;
+  max-height:30px;
+  #height:20px;
+  padding:0;
+  text-align:center;
+  font-weight: bold;
+  color:#ffffff;
+  width:155px;
+  cursor: pointer;
+}
+#login:hover
+{
+  color:#6d6d6d;
+}
+#login a
+{
+  text-decoration:none;
+  color:#ffffff;
+}
+#login a:hover
+{
+  color:#6d6d6d;
+}
+#overlay
+{
+  background-image: url("../images/overlay.png");
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 90;
+  width: 100%;
+  height: 100%;
+}
+* html #overlay
+{
+  background-color: #333;
+  background-color: transparent;
+}
+#passwordbox
+{
+  width:300px;
+  background:#ffffff;
+  padding:10px;
+  border:2px solid #000000;
+  z-index: 100;
+}
+#close
+{
+  position:absolute;
+  top:-5px;
+  right:-5px;
+  cursor:pointer;
+}
+a
+{
+  text-decoration: none;
+  color: #006;
+}
+
+a:hover
+{
+  text-decoration: underline;
+}
+tt
+{
+  font-family: monospace;
+}
+img
+{
+  border: 0;
+}
+form
+{
+  margin: 0;
+  padding: 0;
+}
+input
+{
+  border: 1px #364970 solid;
+  background: white;
+  padding: 1px;
+  margin-left: 2px;
+  margin-right: 2px;
+  margin-bottom: 3px;
+}
+input.radiobox
+{
+  border: 0;
+  background: none;
+  padding: 1px;
+  margin-left: 2px;
+  margin-right: 2px;
+  margin-bottom: 3px;
+}
+input.chkbox
+{
+  border: 0;
+  background: none;
+  padding: 1px;
+  margin-left: 2px;
+  margin-right: 2px;
+  margin-bottom: 3px;
+}
+textarea
+{
+  border: 1px #364970 solid;
+  background: white;
+  padding: 1px;
+  margin-left: 2px;
+  margin-right: 2px;
+  margin-bottom: 3px;
+}
+input.connect
+{
+  width: 95%;
+}
+p.error
+{
+  color: red;
+  font-weight: bold;
+}
+.clearboth
+{
+  clear: both;
+}
+#endsite
+{
+  position:absolute;
+  left:0;
+  bottom:0;
+  clear: both;
+  width:100%;
+  background :#bababa;
+  border-top: 1px solid #111111;
+  height:50px;
+  font-size:10px;
+  margin:0;
+  padding:0;
+  color:#ffffff;
+}
+#endsitelinks
+{
+  width:98%;
+  padding: 0px;
+  text-align:left;
+  margin:10px auto 0 auto;
+  background-image: url("../images/footer.png");
+  background-repeat: no-repeat;
+  background-position:100% 0;
+  height:35px;
+}
+#endsitelinks .endlinksblock
+{
+  float: left;
+}
+#endsitelinks .endlogoblock
+{
+  float: right;
+}
+#endsitelinks a
+{
+  margin-left:10px;
+  text-decoration:none;
+  font-size:10px;
+  color:#ffffff;
+}
+#endsitelinks a:hover
+{
+  text-decoration:underline;
+}
+
+div.important p
+{
+  margin: 0;
+  padding: 0.5em;
+}
+/**
+ * Listes non ordonnées
+ * TODO: Verifier le rendu sous IE et FF dans les boites et les articles
+ */
+ul
+{
+  list-style-position: outside;
+  margin: 0 0 0 13px;
+  padding: 0;
+  padding-left:0.5em;
+}
+
+ul li.ok
+{
+  list-style-image: url("../images/list-arrow_ok.png");
+  margin-bottom:0;
+}
+
+ul li.ko
+{
+  list-style-image: url("../images/list-arrow_ko.png");
+  margin-bottom:0;
+}
+
+ul li.info
+{
+  list-style-image: url("../images/list-arrow_info.png");
+  margin-bottom:0;
+}
+
+/*
+ * Onglets principaux (header)
+ */
+
+div.tabsv2
+{
+  width:956px;
+  margin:auto;
+  background: #0082c6;
+  height:36px;
+  padding-left:0;
+  margin-bottom:0;
+}
+
+div.tabsv2 span
+{
+  float:left;
+}
+
+div.tabsv2 span a
+{
+  float:left;
+  color:#ffffff;
+  font-size:12px;
+  padding-top: 10px;
+  text-align:center;
+  font-weight:bold;
+  line-height:12px;
+  width:95px;
+  height:32px;
+  margin:0;
+}
+
+div.tabsv2 span.selected a, div.tabsv2 span a:hover
+{
+  color:#eeac00;
+  background: transparent url("../images/arrow-up.png") no-repeat center bottom;
+  text-decoration:none;
+  width:95px;
+  height:32px;
+  margin:0;
+}
+
+
+/*
+ * Liens rapide sous les onglets principaux
+ */
+div.sectionlinks
+{
+  width:980px;
+  margin: 0 auto 0 auto;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+  text-align: center;
+  border-bottom: 1px solid #EEAC00;
+  background-color:#ffffff;
+}
+
+div.sectionlinks a
+{
+  padding-right: 1em;
+  padding-left: 1em;
+  color: #000;
+}
+
+/*
+ * Substitution en cas d'absence de liens rapide sous les onglets principaux
+ */
+div.emptysectionlinks
+{
+}
+
+/*
+ * Boite conteneur
+ * TODO: Verifier l'interet
+ */
+div.contents
+{
+  text-align:left;
+  width:980px;
+  position:relative;
+  margin:auto;
+  margin-top:0;
+  margin-bottom:50px;
+  border:0;
+  padding: 0 0 0 0;
+  background-color:#ffffff;
+  display:block;
+}
+div.contents:after
+{
+  font-size:100px;
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility:hidden;
+}
+/**
+ * Colones de boites
+ */
+#left
+{
+  margin-top:5px;
+  float:left;
+  margin-left:5px;
+  width: 270px;
+  padding-bottom:10px;
+}
+
+#right
+{
+  margin-top:7px;
+  float:right;
+  width: 270px;
+  margin-right:15px;
+  padding-bottom:10px;
+}
+
+/**
+ * Partie centrale
+ */
+div.page
+{
+  margin: 0;
+  padding: 0;
+  width: auto;
+}
+
+div.page#lr
+{
+  margin: 0;
+  width:380px;
+}
+
+div.page#r
+{
+  margin:0 0 0 10px;
+  width:680px;
+  float:left;
+  padding-top: 12px;
+}
+
+div.page#l
+{
+  margin:10px 10px 0 10px;
+  width:680px;
+  float:right;
+}
+
+div.page#n
+{
+  margin: 0 1em;
+}
+
+/**
+ * Articles (corps de page)
+ */
+div.article
+{
+  border: 1px solid #999999;
+  background: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  clear: both;
+  position:relative;
+}
+
+div.article a
+{
+  font-size: 100%;
+}
+
+div.article h1
+{
+  margin-top: 0;
+  margin-bottom: 1em;
+  padding-bottom: 0.3em;
+  font-size: 150%;
+  border-bottom: 1px black solid;
+}
+
+div.article h2
+{
+  font-size: 130%;
+  padding-bottom: 0.2em;
+  border-bottom: 1px #c0c0c0 solid;
+  margin-bottom: 1em;
+  margin-top: 2em;
+}
+
+div.article div.level2
+{
+  margin-left:0.2em;
+}
+
+div.article h3
+{
+  font-size: 110%;
+  border-bottom: 1px #c0c0c0 solid;
+  margin-bottom: 1em;
+  margin-top: 2em;
+  margin-left:1em;
+}
+
+div.article div.level3
+{
+  margin-left:1.2em;
+}
+
+div.article img
+{
+  vertical-align: middle;
+  border:0px;
+}
+
+div.article img.imgleft
+{
+  float: left;
+  margin: 5px;
+  margin-right: 10px;
+  position:relative;
+}
+
+div.article img.imgright
+{
+  float: right;
+  margin: 5px;
+  margin-left: 10px;
+  position:relative;
+}
+
+div.article p
+{
+  text-align: justify;
+  margin: 0;
+  padding: 0;
+
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+div.article ol, div.article ul
+{
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+div.article li
+{
+  margin-bottom: 0.3em;
+  margin-top: 0.2em;
+}
+
+div.article p.center
+{
+  text-align: center;
+}
+
+.center
+{
+  text-align: center;
+}
+
+.justify
+{
+  text-align: justify;
+}
+
+.justify:first-letter
+{
+  font-weight: bold;
+  color: #006;
+  font-size: 3em;
+  float: left;
+  padding-right: 1px;
+  font-style: oblique;
+}
+
+div.article ul
+{
+  list-style-position: inside;
+
+}
+
+/* Gestion des tableaux dans les articles pour generer des listes
+   d'elements */
+div.article table.liste
+{
+  width: 95%;
+  border: 1px #364970 solid;
+  border-collapse: collapse;
+  margin: 1em auto;
+}
+
+div.article table.liste td
+{
+  border: 1px #364970 solid;
+  border-spacing: 0px;
+  margin: 0px;
+  padding: 1px;
+}
+
+div.article table.liste th
+{
+  font-weight: bold;
+}
+
+div.article table.liste tr.error
+{
+  color: red;
+  font-weight: bold;
+}
+
+div.article table.liste td.info
+{
+  color: blue;
+}
+
+div.article table.liste tr.credit
+{
+  color: blue;
+}
+
+div.article table.liste tr.debit
+{
+  color: green;
+}
+
+div.article table.liste tr.header
+{
+  font-weight: bold;
+}
+
+div.article p.huge
+{
+  font-weight: bold;
+  font-size: 300%;
+}
+
+/*
+ * Calendrier
+ */
+p.ical
+{
+  position:absolute;
+  width:15px;
+  height:15px;
+  right:20px;
+}
+
+div.calendarhead
+{
+  text-align: center;
+  margin-bottom: 0.5em;
+  width:184px;
+}
+
+div.tinycalhead
+{
+width:150px;
+}
+
+div.calendarhead td.month
+{
+  text-align: center;
+  border-bottom: 1px #364970 solid;
+  font-weight: bold;
+  padding: 2px;
+}
+
+div.calendarhead td.weekday
+{
+  padding: 1px;
+  width: 14%;
+  text-align: center;
+  font-size: 80%;
+}
+
+div.calendar
+{
+  background: #ffffff;
+  text-align: center;
+  padding: 1px;
+  width:184px;
+}
+
+div.tinycal
+{
+width: 150px;
+background: none;
+}
+
+div.calendar td
+{
+  margin: 2px;
+  width: 14%;
+  padding: 3px;
+  text-align:center;
+}
+
+div.calendar td a
+{
+  color: #c0c0c0;
+}
+
+div.calendar td.event1 a, div.calendar td.event2 a, div.calendar td.event3 a
+{
+  color:black;
+}
+
+div.calendar td.active
+{
+  border: 2px #364970 solid;
+  font-weight: bold;
+}
+
+div.calendar td.event1
+{
+  background: #eeac00;
+}
+
+div.calendar td.event2
+{
+  background: #f5c753;
+}
+
+div.calendar td.event3
+{
+  background: #ffe7ab;
+}
+
+div.tinycal_box
+{
+position: absolute;
+border: 1px solid #D2D2D9;
+background:#cccccc;
+/*border: none;*/
+display: none;
+}
+
+div.tinycal_endbox
+{
+width: 150px;
+height: 10px;
+background: url(../images/box-bottom-small.png) no-repeat;
+}
+
+td.tinycal_day
+{
+cursor: pointer;
+}
+
+td.tinycal_day:hover
+{
+background: #eeeeee;
+}
+
+div.tinycalhead div.closecal
+{
+position: absolute;
+background: url(../images/close.png) no-repeat;
+right: -10px;
+height: 12px;
+width: 12px;
+cursor: pointer;
+}
+table.caddie
+{
+  border: 1px #364970 solid;
+  background: #eff7ff;
+  margin: auto;
+  width: 95%;
+  padding: 0px;
+  border-collapse: collapse;
+}
+
+table.caddie td
+{
+  padding: 0.1em;
+  border: 1px #364970 solid;
+}
+
+table#sa-items
+{
+  vertical-align: top;
+}
+
+table#sa-items td
+{
+  border: 1px #364970 solid;
+  background: #eff7ff;
+  padding: 0.5em;
+  vertical-align: top;
+}
+
+table#sa-items td h5
+{
+  border-bottom: 1px black solid;
+  margin: 0;
+  margin-bottom: 1em;
+}
+
+/*
+ * Formulaires au sein d'un article (cadre au centre)
+ */
+div.article div.form
+{
+  margin:0;
+  padding:0;
+  border:0;
+  clear: both;
+}
+
+div.article div.formrow
+{
+  margin:0;
+  padding:1px;
+  border:0;
+  position:relative;
+}
+
+div.article div.formfield
+{
+  margin:0;
+  padding:0;
+  border:0;
+  margin-left:25%;
+}
+
+div.article div.formlabel
+{
+  margin:0;
+  padding:0;
+  border:0;
+  position:absolute;
+  top:2px;
+  height:1em;
+  width:25%;
+  overflow:hidden;
+}
+
+div.article div.fullrow
+{
+  margin:0;
+  padding:1px;
+  border:0;
+}
+
+div.article div.formlabel.missing
+{
+  color: red;
+}
+
+div.article div.formrow input
+{
+  vertical-align: middle;
+}
+
+div.article div.formrow img
+{
+  vertical-align: middle;
+}
+div.form div.filesselect
+{
+  padding:2px;
+}
+
+div.form div.filesselect div.slsitem
+{
+  margin:2px;
+}
+
+div.form div.filesselectbutton
+{
+  margin:4px;
+}
+
+/*
+ * Sous-formulaires
+ */
+div.subform
+{
+  padding-left:2em;
+  margin:2px;
+}
+
+div.fullrow div.subformlabel
+{
+  margin:0;
+  padding:1px;
+  border:0;
+  font-weight:bold;
+  margin-bottom:4px;
+}
+
+div.linedrow div.subformlabel
+{
+  margin:0;
+  padding:1px;
+  border:0;
+  width: auto;
+  font-weight:normal;
+  display:inline;
+}
+
+div.subforminline
+{
+  display:inline;
+}
+
+div.subforminline div.linedrow
+{
+  display:inline;
+}
+
+
+div.subforminline div.formfield
+{
+  display:inline;
+  width:auto;
+  margin-left:0px;
+}
+
+div.subforminline div.formlabel
+{
+  display:inline;
+  width: auto;
+  position:static;
+}
+
+div.subforminline div.formrow
+{
+  display: inline;
+  width: auto;
+  float:none;
+  clear: none;
+}
+
+
+
+/*
+ * Formulaires particuliers
+ */
+form#setgroups div.formlabel
+{
+  width: 0;
+
+}
+
+/*
+ * Mise en forme des formulaires
+ */
+div.formfield :focus
+{
+  border-color:#ffcc2a;
+}
+
+p.formerror
+{
+  color: red;
+  font-weight: bold;
+}
+
+/*
+ * Image d'une fiche
+ */
+img.fiche_image
+{
+  float: left;
+  width: 80px;
+  margin-right: 0.5em;
+  margin-bottom:0.5em;
+  margin-top:0.2em;
+  position:relative;
+}
+
+/*
+ * Toolbox (boite d'outils associé à un stdcontents)
+ * (défini entre le titre et le contenu)
+ */
+div.toolbox
+{
+  float: right;
+  position:relative;
+  top:1px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 10px;
+  background: #afc7e0;
+  border:1px solid white;
+}
+
+div.toolbox a
+{
+  font-size: 10px;
+  color:black;
+  padding: 5px 10px;
+  border-left:1px solid white;
+  margin-left:-1px;
+}
+div.toolbox a:hover
+{
+  background:white;
+  text-decoration:none;
+}
+/*
+ * Onglets au sein d'un article
+ */
+div.article div.tabs
+{
+  background:#006699;
+  height:20px;
+  overflow:hidden;
+  padding-left:15px;
+  margin-bottom:0px;
+}
+
+div.article
+{
+  margin-bottom:7px;
+}
+
+div.article div.tabs span a
+{
+  float:left;
+  color:#ffffff;
+  font-size:12px;
+  border-left:1px solid #ffffff;
+  border-right:1px solid #ffffff;
+  margin-right:-1px;
+  padding-top:4px;
+  padding-bottom:4px;
+  padding-left:8px;
+  padding-right:8px;
+  font-weight:normal;
+  line-height:12px;
+}
+
+div.article div.tabs span.selected a, div.article div.tabs span a:hover
+{
+  background:#ffffff;
+  color:#000000;
+  text-decoration:none;
+
+  border-left:1px solid #EEAC00;
+  border-right:1px solid #EEAC00;
+}
+
+
+/*
+ * Affichage plan comptable (dans la compta)
+ */
+table.plct
+{
+  border-collapse:collapse;
+}
+
+tr.plct1 td
+{
+  font-size: 150%;
+  border-bottom: 1px #364970 solid;
+  padding-top:1em;
+}
+
+tr.plct2 td
+{
+  font-size: 120%;
+  border-bottom: 1px #364970 dashed;
+  padding-top:0.5em;
+}
+
+tr.plct3 td
+{
+  padding-top:0.3em;
+}
+
+tr.plct4 td
+{
+  padding-top:0.3em;
+}
+
+img.icon
+{
+  vertical-align: middle;
+  border:0px;
+}
+
+/*
+ * Affichage des donnés SQL
+ */
+table.sqltable
+{
+  border-collapse:collapse;
+  border-right: 1px #d8e7f3 solid;
+  border-top: 1px #d8e7f3 solid;
+  border-bottom: 1px #d8e7f3 solid;
+}
+
+tr.head
+{
+  background: #d8e7f3;
+}
+
+table.sqltable th
+{
+  background: #d8e7f3;
+}
+
+tr.ln0
+{
+  background: #eff7ff;
+}
+
+table.sqltable td
+{
+  border-left: 1px #d8e7f3 solid;
+  padding: 2px;
+}
+
+/*
+ * Tables de type standard
+ */
+table.ctstable
+{
+  border-collapse:collapse;
+  border-right: 1px #d8e7f3 solid;
+  border-top: 1px #d8e7f3 solid;
+  border-bottom: 1px #d8e7f3 solid;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*
+ * Onglets légés, utilisé nottament dans le carnet d'adresse
+ */
+div.article div.tabs_lg
+{
+  clear:both;
+  background:#EEAC00;
+  padding-left:10px;
+  margin-top:7px;
+  margin-bottom:7px;
+  border-bottom:1px solid white;
+}
+
+div.article div.tabs_lg a
+{
+  float:left;
+  color:#ffffff;
+  font-size:12px;
+  border-left:1px solid #ffffff;
+  border-right:1px solid #ffffff;
+  margin-right:-1px;
+  padding-top:4px;
+  padding-bottom:4px;
+  padding-left:4px;
+  padding-right:4px;
+  font-weight:normal;
+  line-height:12px;
+  border-bottom:1px solid #ffffff;
+  margin-bottom:-1px;
+}
+
+div.article div.tabs_lg a.selected, div.article div.tabs_lg a:hover
+{
+  background:#ffffff;
+  color:#000000;
+  text-decoration:none;
+}
+
+/*
+ * Onglets au sein d'un article (cadre au centre)
+ */
+
+div.article div.tabs_top, div.article div.tabs_bottom
+{
+  clear:both;
+  background:#EEAC00;
+  padding-left:10px;
+  margin-top:7px;
+  margin-bottom:7px;
+  border-bottom:1px solid white;
+  position:relative;
+}
+
+
+div.article div.tabs_top a, div.article div.tabs_bottom a
+{
+  float:left;
+  color:#ffffff;
+  font-size:12px;
+  border-left:1px solid #ffffff;
+  border-right:1px solid #ffffff;
+  margin-right:-1px;
+  padding-top:4px;
+  padding-bottom:4px;
+  padding-left:8px;
+  padding-right:8px;
+  font-weight:normal;
+  line-height:12px;
+  border-bottom:1px solid #ffffff;
+  margin-bottom:-1px;
+  position:relative;
+}
+
+div.article div.tabs_top a.selected, div.article div.tabs_top a:hover, div.article div.tabs_bottom a.selected, div.article div.tabs_bottom a:hover
+{
+  background:#ffffff;
+  color:#000000;
+  text-decoration:none;
+
+  /*border-left:1px solid #EEAC00;
+  border-right:1px solid #EEAC00;*/
+}
+
+div.navbox
+{
+  float:right;
+  position:relative;
+  top: -5px;
+}
+
+/*
+ * Affichage des sondages
+ */
+div.activebar
+{
+  float:left;
+  background:#336699;
+  height:1em;
+  margin-bottom: 0.4em;
+  position:relative;
+}
+
+div.inactivebar
+{
+  float:left;
+  background: #eff7ff;
+  height:1em;
+  margin-bottom: 0.4em;
+  position:relative;
+}
+
+div.percentbar
+{
+  float:left;
+  width: 40px;
+  height:1em;
+  text-align: right;
+  margin-bottom: 0.4em;
+  position:relative;
+}
+input.img_submit
+{
+  border: none;
+  background: #BABBBC;
+}
+
+/*
+ * Onglets particuliers : Liens en dessous des onglets
+ */
+div.article div.subtab
+{
+  padding:0;
+  margin:0;
+  padding-bottom:4px;
+  margin-bottom:4px;
+  text-align: center;
+  border-bottom: 1px solid #EEAC00;
+  font-size: 11px;
+}
+
+div.article div.subtab a
+{
+  padding-right: 1em;
+  padding-left: 1em;
+  color: #000;
+  font-size: 11px;
+}
+
+/*
+ * Footer : Liens en bas (legals, equipeinfo, everaldo.com)
+ */
+p.text-footer
+{
+  display:none;
+}
+
+#systooltip
+{
+  background:white;
+  border:1px solid black;
+  padding:5px;
+}
+
+#systooltip p.stdinfo
+{
+  margin:0;
+  padding:0;
+}
+
+#systooltip p.stdpreview
+{
+  float:left;
+  margin:0;
+  padding:0;
+  margin-right:5px;
+}
+
+#systooltip p.stdpreview img
+{
+  width:48px;
+}
+
+div.board
+{
+   width:100%;
+   position:relative;
+}
+
+div.board div.panel
+{
+  width:49%;
+  float:left;
+  position:relative;
+  margin:0;
+  padding:0;
+  border:0;
+}
+
+div.board div.panel h2
+{
+  margin-left:5px;
+  margin-right:5px;
+}
+
+div.board div.panel div.panelcts
+{
+  margin-left:5px;
+  margin-right:5px;
+  padding-bottom:5px;
+}
+
+
+div.partialclose
+{
+  text-align:center;
+  margin-top:40px;
+  margin-bottom:70px;
+
+}
+
+div.comment
+{
+  border:1px solid #C0C0C0;
+  background:#eff7ff;
+  margin-left:20px;
+  padding:5px;
+  padding-left:20px;
+  margin-top:3px;
+}
+
+
+.toolbutton
+{
+  background:#D8E7F3 none repeat scroll 0%;
+  border:1px solid #364970;
+  width: 19px;
+  height: 19px;
+  font-size:80%;
+  cursor: pointer;
+}
+
+#hugealert
+{
+  background:#000000;
+  color:#ffffff;
+  position:absolute;
+  top:0px;
+  width:100%;
+  padding:0;
+}
+
+#hugealert p
+{
+  font-size: 24px;
+  color:#ffffff;
+  text-align:center;
+  padding:15px;
+  border:5px solid red;
+  margin:0;
+}
+
+#hugealert p a
+{
+  font-size: 24px;
+  color:#ffffff;
+  text-decoration:underline;
+}
+
+#topalert
+{
+  position:absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  width:auto;
+  padding: 5px;
+  background: #ffd;
+  border-bottom: 1px solid #777;
+  font-size: 11px;
+}
+
+#topalert img
+{
+  float: left;
+  margin-right: 5px;
+}
+
+ul.diff
+{
+  list-style-type:none;
+}
+ul.diff li
+{
+}
+
+.clearfix:after
+{
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.clearfix
+{
+  display: block;
+}
+
+div._right_opts
+{
+  margin-top:2px;
+  padding-top:2px;
+  border-top:1px solid #f0f0f0;
+}
+
+div.calbox
+{
+  margin:auto;
+}
+
+div.slidebox_pause
+{
+  text-align:center;
+  color:#9F111B;
+  margin-bottom:10px;
+}
+div.slidebox_pause a
+{
+  color:#9F111B;
+  font-weight:bold;
+  font-size:11px;
+}
+
+div.calbox td.month
+{
+  color:#2F3238;
+}
+div.calbox td.weekday
+{
+  color:#2F3238;
+}
+
+/* progress bar */
+.progressbar
+{
+  width:200px;
+  height:20px;
+  position:relative;
+  border:1px solid #054CE6;
+  background-color:#709DFF;
+}
+.progressbar_prog
+{
+  position:absolute;
+  left:0;
+  top:0;
+  height:20px;
+  background-color:#054CE6;
+}
+.progressbar_value
+{
+  position:absolute;
+  margin:auto;
+  width:100%;
+  text-align:center;
+  color:#ffffff;
+  font-weight:bold;
+}
+.boxlist h2 img
+{
+  display:none;
+}
+/* vignetes et compagnie */
+.galitem
+{
+  float:left;
+  width:244px;
+  height:110px;
+  position:relative;
+  border:1px solid #f0f0f0;
+}
+
+.galitem .galitemdata
+{
+  width:224px;
+  height:100px;
+  position:absolute;
+  top:5px;
+  left:10px;
+}
+
+.galitem .ebv
+{
+  position:relative;
+}
+
+.galitem .ebv h2
+{
+  height:18px;
+  overflow:hidden;
+  margin:0;
+  padding:0;
+  border:0;
+  border-bottom:1px solid #c0c0c0;
+}
+
+.galitem .ebv p.image
+{
+  position:absolute;
+  top:24px;
+  left:0px;
+  height:60px;
+  width:80px;
+  overflow:hidden;
+  margin:0;
+}
+
+.galitem .ebv p.image img
+{
+  width:80px;
+  border:0;
+}
+
+.galitem .ebv p.description
+{
+  position:absolute;
+  top:24px;
+  left:89px;
+  width:135px;
+  height:62px;
+  overflow:hidden;
+  margin:0;
+}
+
+.galitem .ebv p.details
+{
+  position:absolute;
+  top:87px;
+  left:89px;
+  width:135px;
+  height:13px;
+  text-align:center;
+  margin:0;
+}
+
+.galitem .ebv p.prixunit
+{
+  position:absolute;
+  top:87px;
+  left:0px;
+  width:80px;
+  height:13px;
+  text-align:center;
+  font-weight:bold;
+  font-height:120%;
+  margin:0;
+}
+
+.ebficheprod
+{
+  position:relative;
+  margin-bottom:150px;
+}
+
+.article .ebficheprod h2
+{
+  font-size:200%;
+  border-bottom:1px solid #c0c0c0;
+  margin:0;
+  margin-bottom:20px;
+}
+
+.ebficheprod .description
+{
+  margin-left:270px;
+}
+
+.ebficheprod .retrait
+{
+  margin-left:270px;
+  margin-top:20px;
+}
+
+.ebficheprod .achat
+{
+  margin-left:270px;
+  margin-top:20px;
+}
+
+.ebficheprod .image
+{
+  width:250px;
+  position:absolute;
+  top:40px;
+  left:0px;
+  overflow:hidden;
+}
+
+.ebficheprod .image img
+{
+  max-width:250px;
+  border:0;
+}
+
+.ebficheprod .prix
+{
+  /*position:absolute;*/
+  font-size:400%;
+  /*top:0px;
+  right:0px;*/
+  background:white;
+  text-align:right;
+  border:1px solid #c0c0c0;
+  padding:0px;
+  padding-left:10px;
+  padding-right:10px;
+  padding-top:5px;
+  float:right;
+  margin:0;
+}
+
+
+table.bilancomptable
+{
+  border:1px solid #000000;
+  width:100%;
+}
+table.bilancomptable td
+{
+  border:0;
+}
+table.bilancomptable tr.headbilan td
+{
+  font-size:14px;
+  font-weight:bold;
+  border:0;
+  border-bottom:1px double #000000;
+}
+table.bilancomptable tr.totalfactbilan td
+{
+  font-weight:bold;
+  border-bottom:1px solid #000000;
+}
+table.bilancomptable tr.modefactbilan td
+{
+  font-weight:bold;
+  border-top:1px solid #000000;
+}
+table.bilancomptable tr.totalbilan
+{
+  font-weight:bold;
+}
+table.bilancomptable tr.totalmodebilan
+{
+  font-style:italic;
+}
+

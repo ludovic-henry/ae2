@@ -1,0 +1,283 @@
+/* Copyright 2006
+ * - Julien Etelain <julien AT pmad POINT net>
+ *
+ * Ce fichier fait partie du site de l'Association des étudiants de
+ * l'UTBM, http://ae.utbm.fr.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ */
+
+div.formrow
+{
+  clear:both;
+}
+
+#mmtleft_row
+{
+	width:49%;
+	float:left;
+	clear:none;
+	position:relative;
+}
+
+#mmtright_row
+{
+	width:49%;
+	float:right;
+	clear:none;
+	position:relative;
+}
+
+#mmtsearch div.subform
+{
+	padding-left:0;
+}
+
+
+
+#search_row div.subformlabel
+{
+	margin-top:1em;
+	margin-bottom:0.5em;
+	border-bottom: 1px black dashed;
+}
+
+#order_row div.subformlabel
+{
+	margin-top:1em;
+	margin-bottom:0.5em;
+	border-bottom: 1px black dashed;
+}
+
+#order_row div.fullrow
+{
+	margin-bottom:0.5em;
+	padding-bottom:1em;
+	border-bottom: 1px black dashed;
+}
+
+div.userinfo
+{
+	width:219px;
+	height:179px;
+	margin:1px;
+	padding:5px;
+	overflow:hidden;
+	background:#f1f1f1;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Sous-formulaires
+ */
+
+
+div.gallery
+{
+	/*position:relative;*/
+
+}
+
+div.gallery div.galitem
+{
+	float:left;
+	position:relative;
+	width:231px;
+	height:191px;
+	background:url("../images/misc/mmt-fiche.jpg");
+	padding-left:6px;
+	padding-right:10px;
+	padding-top:6px;
+	padding-bottom:10px;
+	border:0;
+	margin:0;
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+
+/* Fiches v2 */
+
+.userinfov2
+{
+  position:absolute;
+	width:231px;
+	height:191px;
+	top:6px;
+	left:6px;
+	overflow:hidden;
+}
+
+.userinfov2 h2.nom
+{
+  margin:0;
+  border:0;
+  padding:0;
+  position:absolute;
+  top:10px;
+  left:10px;
+  height:20px;
+  width:400px;
+  overflow:hidden;
+}
+
+.userinfov2 h2.nom a
+{
+  text-decoration:none;
+  font-size:100%;
+  color:black;
+}
+.userinfov2 div.photo
+{
+  overflow:hidden;
+  position:absolute;
+  width:80px;
+  height:100px;
+  top: 30px;
+  right:10px;
+}
+
+.userinfov2 div.photo img
+{
+  width:80px;
+}
+
+.userinfov2 div.photo img.noimg
+{
+  margin-top:10px;
+}
+
+.userinfov2 p.naissance
+{
+  position:absolute;
+  left:10px;
+  top: 70px;
+  margin:0;
+}
+
+.userinfov2 p.promo
+{
+  position:absolute;
+  width:80px;
+  right:10px;
+  top: 140px;
+  text-align:center;
+  margin:0;
+}
+
+.userinfov2 p.adresse
+{
+  position:absolute;
+  left:10px;
+  top: 90px;
+  padding-left:20px;
+  padding-top:3px;
+  padding-top:1px;
+  background : url("../images/icons/16/batiment.png") top left no-repeat;
+  width:105px;
+  margin:0;
+}
+
+.userinfov2 p.departement
+{
+  position:absolute;
+  left:10px;
+  top: 50px;
+  font-weight:bold;
+  margin:0;
+}
+
+.userinfov2 p.departement span.filiere
+{
+  font-style: italic;
+  font-weight:normal;
+}
+
+.userinfov2 p.surnom
+{
+  position:absolute;
+  left:10px;
+  top: 30px;
+  font-style: italic;
+  margin:0;
+}
+
+
+.userinfov2 p.telfixe
+{
+  position:absolute;
+  left:10px;
+  top: 145px;
+  padding-left:20px;
+  padding-top:3px;
+  background : url("../images/mmt/usr_fixe.png") top left no-repeat;
+  margin:0;
+}
+
+.userinfov2 p.telportable
+{
+  position:absolute;
+  left:10px;
+  top: 165px;
+  padding-left:20px;
+  padding-top:3px;
+  background : url("../images/mmt/usr_mobile.png") top left no-repeat;
+  margin:0;
+}
+
+.userinfov2 a.vcard
+{
+  display:block;
+  position:absolute;
+  right:10px;
+  top: 160px;
+}
+
+.userinfov2 a.mailutbm
+{
+  display:block;
+  position:absolute;
+  right:37px;
+  top: 158px;
+}
+
+.userinfov2 a.mailperso
+{
+  display:block;
+  position:absolute;
+  right:67px;
+  top: 158px;
+}
+
+.userinfov2 a.jabber
+{
+  display:none;
+}
+
+.userinfov2 a.fiche
+{
+  display:block;
+  position:absolute;
+  right:10px;
+  top: 10px;
+}
+
+.userinfov2 a.edt
+{
+  display:block;
+  position:absolute;
+  right:30px;
+  top: 10px;
+}
+

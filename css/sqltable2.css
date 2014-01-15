@@ -1,0 +1,124 @@
+/* Copyright 2006,2008
+ * - Julien Etelain < julien at pmad dot net >
+ *
+ * Ce fichier fait partie du site de l'Association des Étudiants de
+ * l'UTBM, http://ae.utbm.fr.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ */
+
+
+div.sqltable2 div.filter
+{
+  position:absolute;
+  background:#d8e7f3;
+  border:5px solid white;
+  text-align:left;
+  font-weight:normal;
+  padding:1px;
+}
+
+div.sqltable2 div.filter h4
+{
+  background:#d8e7f3;
+  margin:0;
+  padding:5px;
+  font-weight:normal;
+  font-size:90%;
+}
+
+div.sqltable2 div.filter li
+{
+  border-top:1px solid #d8e7f3;
+  padding:5px;
+}
+div.sqltable2 div.filter li.sel
+{
+  background: #d8e7f3;
+}
+div.sqltable2 div.filter div.fcts
+{
+  padding:5px;
+  background:white;
+}
+div.sqltable2 div.filter input.val
+{
+  vertical-align:center;
+  visibility:hidden;
+  width:100px;
+}
+div.sqltable2 div.filter div.fcts div
+{
+  padding-bottom:5px;
+}
+
+div.sqltable2 div.filter ul
+{
+  list-style: none;
+  padding:0;
+  margin:0;
+  border:0;
+  background:white;
+}
+
+div.sqltable2 table
+{
+  border-collapse:collapse;
+  border-right: 1px #d8e7f3 solid;
+  border-top: 1px #d8e7f3 solid;
+  border-bottom: 1px #d8e7f3 solid;
+}
+
+div.sqltable2 tr.head
+{
+  background: #d8e7f3;
+}
+
+div.sqltable2 th
+{
+  background: #d8e7f3;
+  padding-left:5px;
+}
+
+div.sqltable2 th.filtree
+{
+  background: #eff7ff;
+  padding-left:5px;
+}
+
+div.sqltable2 tr.ln0
+{
+  background: #eff7ff;
+}
+
+div.sqltable2 td
+{
+  border-left: 1px #d8e7f3 solid;
+  padding: 2px;
+  text-align:left;
+}
+
+div.sqltable2 td.price
+{
+  text-align:right;
+}
+
+div.sqltable2 tr.ov, div.sqltable2 tr.ck
+{
+  background: #d8e7f3;
+}
+
+

@@ -1,0 +1,55 @@
+/* diff */
+span.diffdel
+{
+  background-color:#D84E34;
+}
+span.diffins
+{
+  background-color:#8FBE00;
+}
+
+table.diff
+{
+  background-color:#fff;
+  width: 100%;
+}
+
+td.diff-blockheader
+{
+  font-weight:bold;
+}
+
+table.diff th
+{
+  border-bottom:1px solid #8cacbb;
+  font-size:120%;
+  width:50%;
+  font-weight:normal;
+  text-align:left;
+}
+
+table.diff td
+{
+  font-family:monospace;
+  font-size:100%;
+}
+
+td.diff-addedline
+{
+  background-color:#dfd;
+}
+
+td.diff-deletedline
+{
+  background-color:#ffb;
+}
+
+td.diff-context{
+  background-color:#f5f5f5;
+}
+
+span.diffchange
+{
+  color:red;
+}
+
