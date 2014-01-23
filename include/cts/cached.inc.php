@@ -9,33 +9,33 @@
  * Dans notre cas, toutes les données cachées sont stockés dans la base 1
  */
 
-require_once ($topdir.'include/redis.inc.php');
+require_once ($topdir.'include/cache.inc.php');
 
 class cachedcontents extends stdcontents
 {
     protected $uid;
-    private $redis;
+    private $cache;
 
 
     public function cachedcontents ( $uid )
     {
         $this->uid = strval($uid);
-        $this->redis = $this->get_redis_instance ();
+        $this->cache = cache::getInstance();
     }
 
     public function expire ( )
     {
-        $this->redis->del ($this->uid);
+        $this->cache->del ($this->uid);
     }
 
     public function is_cached()
     {
-        return $this->redis->exists($this->uid) && !isset($_GET["__nocache"]);
+        return $this->cache->exists($this->uid) && !isset($_GET["__nocache"]);
     }
 
     public function get_cache()
     {
-        $data = $this->redis->get ($this->uid);
+        $data = $this->cache->get ($this->uid);
 
         if ($data == null || $data == '')
             return null;
@@ -56,14 +56,14 @@ class cachedcontents extends stdcontents
         $this->buffer = "<!-- C".date ("d/m/Y H:i:s")." -->".$contents->html_render();
 
 	if($contents->is_cachable())
-        	$this->redis->set ($this->uid, $this->title."\n".$this->buffer);
+        	$this->cache->set ($this->uid, $this->title."\n".$this->buffer);
         return $this;
     }
 
     public function set_contents_timeout ( &$contents, $timestamp )
     {
         $this->set_contents ($contents);
-        $this->redis->expireAt ($this->uid, $timestamp);
+        $this->cache->expireAt ($this->uid, $timestamp);
 
         return $this;
     }
@@ -71,16 +71,9 @@ class cachedcontents extends stdcontents
     public function set_contents_until ( &$contents, $seconds )
     {
         $this->set_contents ($contents);
-        $this->redis->expire ($this->uid, $seconds);
+        $this->cache->expire ($this->uid, $seconds);
 
         return $this;
-    }
-
-    private function get_redis_instance ()
-    {
-        $redis = redis_open_connection ();
-        $redis->select (1);
-        return $redis;
     }
 
     /**
