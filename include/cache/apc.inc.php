@@ -26,10 +26,10 @@ require_once $topdir . 'include/cache.inc.php';
 class apccache extends cache
 {
 
-  function get($key) {
-    $value = apc_fetch($key);
+  function get($key, &$success = true) {
+    $value = apc_fetch($key, $success);
 
-    if ($value === false) {
+    if (!$success) {
       return null;
     }
 
@@ -49,14 +49,14 @@ class apccache extends cache
   }
   
   function exists($key) {
-    return (bool)apc_fetch($key);
+    return (bool)apc_fetch($key, $success) && $success;
   }
   
   function expireAt($key, $timestamp) {
-    $value = $this->get($key);
+    $value = apc_fetch($key, $success);
 
-    if ($value !== null) {
-      $this->setex($key, $value, $timestamp);
+    if ($success) {
+      $this->setex($key, $timestamp - time(), $value);
     }
    }
   
