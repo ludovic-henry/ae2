@@ -157,7 +157,7 @@ class fsearch extends stdcontents
         }
         $this->buffer .= "</ul>";
         if ( $nbutils > 3 )
-          $this->buffer .= "<p class=\"more\"><a href=\"".$wwwtopdir."matmatronch/?action=simplesearch&amp;pattern=".urlencode($_REQUEST["pattern"])."\">".($nbutils-3)." autre(s) resultat(s)</a></p>";
+          $this->buffer .= "<p class=\"more\"><a href=\"/matmatronch/index.php/recherche-simple?pattern=".urlencode($_REQUEST["pattern"])."\">".($nbutils-3)." autre(s) resultat(s)</a></p>";
       }
     }
 

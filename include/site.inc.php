@@ -214,8 +214,6 @@ class site extends interfaceweb
       setcookie ("AE2_SESS_ID", $sid, time() + 31536000, "/", $http_host);
     }
 
-    die();
-
     $this->user->visite();
 
     return $sid;

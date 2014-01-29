@@ -209,7 +209,7 @@ function openMatmatronch(topdir, id, width, height) {
     if (height == "")
     height = 390;
 
-    path = topdir + "matmatronch/show_img.php?id=" + id;
+    path = "/matmatronch/index.php/image/" + id;
 
 
     window.open(path,

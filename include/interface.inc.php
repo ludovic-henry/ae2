@@ -344,9 +344,9 @@ class interfaceweb
                 $_SESSION['session_redirect'] = $_SERVER["REQUEST_URI"];
 
                 $this->buffer .= '<div id="passwordbox" style="display:none">';
-                $this->buffer .= '<img id="close" src="' . $topdir . 'images/actions/delete.png" onclick="hideConnexionBox()" alt="Fermer" ';
+                $this->buffer .= '<img id="close" src="/images/actions/delete.png" onclick="hideConnexionBox()" alt="Fermer" ';
                 $this->buffer .= 'title="Fermer" />';
-                $frm = new form("connect", $topdir . "connect.php", true, "POST", "Connexion");
+                $frm = new form("connect", "/connect.php", true, "POST", "Connexion");
                 $jsoch = "javascript:switchSelConnection(this);";
                 $frm->add_select_field("domain",
                     "Connexion",
@@ -425,20 +425,20 @@ class interfaceweb
             if (!$this->user->is_valid()) {
                 $this->buffer .= "<script type=\"text/javascript\">\n";
                 $this->buffer .= "var menu_utilisateur=new Array();";
-                $this->buffer .= "menu_utilisateur[0]='<a class=\"firstdropdown\" href=\"" . $topdir . "connect.php\" onclick=\"return showConnexionBox()\">Connexion</a>';";
-                $this->buffer .= "menu_utilisateur[1]='<a href=\"" . $topdir . "password.php\">Mot de passe perdu</a>';";
-                $this->buffer .= "menu_utilisateur[2]='<a href=\"" . $topdir . "newaccount.php\">Créer un compte</a>';";
+                $this->buffer .= "menu_utilisateur[0]='<a class=\"firstdropdown\" href=\"/connect.php\" onclick=\"return showConnexionBox()\">Connexion</a>';";
+                $this->buffer .= "menu_utilisateur[1]='<a href=\"/password.php\">Mot de passe perdu</a>';";
+                $this->buffer .= "menu_utilisateur[2]='<a href=\"/newaccount.php\">Créer un compte</a>';";
                 $this->buffer .= "</script>";
                 $this->buffer .= "<div id='login' onmouseover=\"dropdownmenu(this, event, menu_utilisateur)\" onmouseout=\"delayhidemenu()\">\n";
-                $this->buffer .= "<a href='" . $topdir . "connect.php'>Identification</a>\n";
+                $this->buffer .= "<a href='/connect.php'>Identification</a>\n";
             } elseif ($this->user->type == "srv") {
                 $this->buffer .= "<script type=\"text/javascript\">\n";
                 $this->buffer .= "var menu_utilisateur=new Array();";
                 $i = 0;
-                $this->buffer .= "menu_utilisateur[$i]='<a href=\"" . $topdir . "disconnect.php\">Déconnexion</a>';";
+                $this->buffer .= "menu_utilisateur[$i]='<a href=\"/disconnect.php\">Déconnexion</a>';";
                 $this->buffer .= "</script>";
                 $this->buffer .= "<div id='login' onmouseover=\"dropdownmenu(this, event, menu_utilisateur)\" onmouseout=\"delayhidemenu()\">\n";
-                $this->buffer .= "<a href=\"" . $topdir . "boutique-utbm/suivi.php\">Suivi commandes</a>\n";
+                $this->buffer .= "<a href=\"/boutique-utbm/suivi.php\">Suivi commandes</a>\n";
             } else {
                 if (!defined('NOTAE') && $this->user->ae) {
                     $this->buffer .= $this->get_comptoir();
@@ -447,14 +447,14 @@ class interfaceweb
                 $this->buffer .= "var menu_utilisateur=new Array();";
                 $i = 0;
                 if (!defined('NOTAE')) {
-                    $this->buffer .= "menu_utilisateur[$i]='<a class=\"firstdropdown\" href=\"" . $topdir . "user.php?id_utilisateur=" . $this->user->id . "\">Mes informations</a>';";
+                    $this->buffer .= "menu_utilisateur[$i]='<a class=\"firstdropdown\" href=\"/user.php?id_utilisateur=" . $this->user->id . "\">Mes informations</a>';";
                     $i++;
                     if ($this->user->ae) {
-                        $this->buffer .= "menu_utilisateur[$i]='<a href=\"" . $topdir . "user/compteae.php\">Compte AE : " . (sprintf("%.2f", $this->user->montant_compte / 100)) . " €</a>';";
+                        $this->buffer .= "menu_utilisateur[$i]='<a href=\"/user/compteae.php\">Compte AE : " . (sprintf("%.2f", $this->user->montant_compte / 100)) . " €</a>';";
                         $i++;
                     }
                     $i++;
-                    $this->buffer .= "menu_utilisateur[$i]='<a href=\"" . $topdir . "user/outils.php\">Mes outils</a>';";
+                    $this->buffer .= "menu_utilisateur[$i]='<a href=\"/user/outils.php\">Mes outils</a>';";
                     if ($this->user->is_in_group("root")) {
                         $i++;
                         $req = new requete ($this->db,
@@ -466,37 +466,36 @@ class interfaceweb
                             $row = $req->get_row();
 
                             if (isset($row['tot']) && $row['tot'] > 0)
-                                $this->buffer .= "menu_utilisateur[$i]='<a href=\"" . $topdir . "ae/infotodo.php\">Tâches équipe info (" .
+                                $this->buffer .= "menu_utilisateur[$i]='<a href=\"/ae/infotodo.php\">Tâches équipe info (" .
                                     $row['tot'] . ")</a>';";
                             else
-                                $this->buffer .= "menu_utilisateur[$i]='<a href=\"" . $topdir . "ae/infotodo.php\">Tâches équipe info</a>';";
+                                $this->buffer .= "menu_utilisateur[$i]='<a href=\"/ae/infotodo.php\">Tâches équipe info</a>';";
                         } else {
-                            $this->buffer .= "menu_utilisateur[$i]='<a href=\"" . $topdir . "ae/infotodo.php\">Tâches équipe info</a>';";
+                            $this->buffer .= "menu_utilisateur[$i]='<a href=\"/ae/infotodo.php\">Tâches équipe info</a>';";
                         }
                         $i++;
                         $this->buffer .= "menu_utilisateur[$i]='<a href=\"/taiste/\">/taiste</a>';";
                     }
                     $i++;
                     if ($this->user->utbm) {
-                        $this->buffer .= "menu_utilisateur[$i]='<a href=\"" . $topdir . "trombi/index.php\">Trombinoscope</a>';";
+                        $this->buffer .= "menu_utilisateur[$i]='<a href=\"/trombi/index.php\">Trombinoscope</a>';";
                         $i++;
                     }
                     if ($this->user->is_in_group("jobetu_etu")) {
                         $jobuser = new jobuser_etu($this->db);
                         $jobuser->load_by_id($this->user->id);
                         $jobuser->load_annonces();
-                        $this->buffer .= "menu_utilisateur[$i]='<a href=\"" .
-                            $topdir . "jobetu/board_etu.php\">Mon compte JobEtu (" . count($jobuser->annonces) . ")</a>';";
+                        $this->buffer .= "menu_utilisateur[$i]='<a href=\"/jobetu/board_etu.php\">Mon compte JobEtu (" . count($jobuser->annonces) . ")</a>';";
                         unset($jobuser);
                     } elseif ($this->user->is_in_group("jobetu_client"))
-                        $this->buffer .= "menu_utilisateur[$i]='<a href=\"" . $topdir . "jobetu/board_client.php\">AE JobEtu</a>';"; else
-                        $this->buffer .= "menu_utilisateur[$i]='<a href=\"" . $topdir . "jobetu/index.php\">AE JobEtu</a>';";
+                        $this->buffer .= "menu_utilisateur[$i]='<a href=\"/jobetu/board_client.php\">AE JobEtu</a>';"; else
+                        $this->buffer .= "menu_utilisateur[$i]='<a href=\"/jobetu/index.php\">AE JobEtu</a>';";
                     $i++;
                 }
-                $this->buffer .= "menu_utilisateur[$i]='<a href=\"" . $topdir . "disconnect.php\">Déconnexion</a>';";
+                $this->buffer .= "menu_utilisateur[$i]='<a href=\"/disconnect.php\">Déconnexion</a>';";
                 $this->buffer .= "</script>";
                 $this->buffer .= "<div id='login' onmouseover=\"dropdownmenu(this, event, menu_utilisateur)\" onmouseout=\"delayhidemenu()\">\n";
-                $this->buffer .= "<a href=\"" . $topdir . "user.php?id_utilisateur=" . $this->user->id . "\">" . $this->user->prenom . " " . $this->user->nom . "</a>";
+                $this->buffer .= "<a href=\"/user.php?id_utilisateur=" . $this->user->id . "\">" . $this->user->prenom . " " . $this->user->nom . "</a>";
             }
         } else { /* ifndef MOBILE */
             if ($this->user->is_valid()) {
@@ -540,46 +539,46 @@ class interfaceweb
 
                     /* Droits spécifiques */
                     if ($this->user->is_in_group("root")) {
-                        $this->buffer .= "menu_assos[" . $i . "]='<a $class href=\"" . $topdir . "rootplace/index.php\">Équipe informatique</a>';";
+                        $this->buffer .= "menu_assos[" . $i . "]='<a $class href=\"/rootplace/index.php\">Équipe informatique</a>';";
                         $i++;
                         $class = "";
                     }
                     if ($this->user->is_in_group("moderateur_site")) {
-                        $this->buffer .= "menu_assos[" . $i . "]='<a $class href=\"" . $topdir . "ae/com.php\">Équipe com</a>';";
+                        $this->buffer .= "menu_assos[" . $i . "]='<a $class href=\"/ae/com.php\">Équipe com</a>';";
                         $i++;
                         $class = "";
                     }
                     if ($this->user->is_in_group("compta_admin")) {
-                        $this->buffer .= "menu_assos[" . $i . "]='<a $class href=\"" . $topdir . "ae/compta.php\">Équipe trésorerie</a>';";
+                        $this->buffer .= "menu_assos[" . $i . "]='<a $class href=\"/ae/compta.php\">Équipe trésorerie</a>';";
                         $i++;
                         $class = "";
                     }
                     if ($this->user->is_in_group("gestion_ae")) {
-                        $this->buffer .= "menu_assos[" . $i . "]='<a $class href=\"" . $topdir . "ae/\">Équipe AE</a>';";
+                        $this->buffer .= "menu_assos[" . $i . "]='<a $class href=\"/ae/\">Équipe AE</a>';";
                         $i++;
                         $class = "";
                     }
                     if ($this->user->is_in_group("gestion_syscarteae")) {
-                        $this->buffer .= "menu_assos[" . $i . "]='<a $class href=\"" . $topdir . "ae/syscarteae.php\">Carte AE</a>';";
+                        $this->buffer .= "menu_assos[" . $i . "]='<a $class href=\"/ae/syscarteae.php\">Carte AE</a>';";
                         $i++;
                         $class = "";
                     }
 
                     /* Gestion assos */
                     while (list($id, $nom) = $req->get_row()) {
-                        $this->buffer .= "menu_assos[" . $i . "]='<a $class href=\"" . $topdir . "asso/index.php?id_asso=$id\">" . str_replace("'", "\'", $nom) . "</a>';";
+                        $this->buffer .= "menu_assos[" . $i . "]='<a $class href=\"/asso/index.php?id_asso=$id\">" . str_replace("'", "\'", $nom) . "</a>';";
                         $i++;
                         $class = "";
                     }
 
                     /* Admins comptoirs */
                     if ($req2->lines > 4) {
-                        $this->buffer .= "menu_assos[" . $i . "]='<a $class href=\"" . $topdir . "comptoir/admin.php\">Admin : comptoirs</a>';";
+                        $this->buffer .= "menu_assos[" . $i . "]='<a $class href=\"/comptoir/admin.php\">Admin : comptoirs</a>';";
                         $i++;
                         $class = "";
                     } else {
                         while (list($id, $nom) = $req2->get_row()) {
-                            $this->buffer .= "menu_assos[" . $i . "]='<a $class href=\"" . $topdir . "comptoir/admin.php?id_comptoir=$id\">Admin : " . str_replace("'", "\'", $nom) . "</a>';";
+                            $this->buffer .= "menu_assos[" . $i . "]='<a $class href=\"/comptoir/admin.php?id_comptoir=$id\">Admin : " . str_replace("'", "\'", $nom) . "</a>';";
                             $i++;
                             $class = "";
                         }

@@ -65,8 +65,7 @@ $site->add_contents(new treects ( "Famille UTBM", $req, $user->id, "id_utilisate
 
 $site->add_contents(new contents ("Arbre g&eacute;n&eacute;alogique",
           "<p>Un arbre g&eacute;n&eacute;alogique peut &ecirc;tre g&eacute;n&eacute;r&eacute; ".
-          "en <a href=./matmatronch/family_graph.php?".
-          "id=".$user->id.">cliquant ici</a></p>"));
+          "en <a href=/matmatronch/index.php/famille/".$user->id.">cliquant ici</a></p>"));
 
 $site->end_page();
 

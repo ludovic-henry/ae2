@@ -6,6 +6,6 @@
 <UpdateInterval>7</UpdateInterval>
 <IconUpdateUrl>http://ae.utbm.fr/favicon.ico</IconUpdateUrl>
 <SearchForm>http://ae.utbm.fr/matmatronch/</SearchForm>
-<os:Url type="text/html" method="GET" template="http://ae.utbm.fr/matmatronch/index.php?action=simplesearch&amp;pattern={searchTerms}">
+<os:Url type="text/html" method="GET" template="http://ae.utbm.fr/matmatronch/index.php/recherche-simple?pattern={searchTerms}">
 </os:Url>
 </SearchPlugin>

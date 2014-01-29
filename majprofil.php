@@ -254,7 +254,7 @@ if ( $_REQUEST["action"] == "majprofil" && ( ( !isset($_REQUEST["setpassword"]) 
 
   $cts->add_paragraph("Nous attirons votre attention sur les &eacute;l&eacute;ments suivants :");
 
-  if ( $user->utbm && !$user->ancien_etudiant && !file_exists("/data/matmatronch/" . $user->id .".identity.jpg") )
+  if ( $user->utbm && !$user->ancien_etudiant && !file_exists($topdir . "data/matmatronch/" . $user->id .".identity.jpg") )
   {
     $cts->add_title(2,"Vous n'avez pas de photo d'identité");
 

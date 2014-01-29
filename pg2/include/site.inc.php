@@ -51,7 +51,7 @@ class pgsite extends site
     if ( !$this->user->is_valid() )
     {
       $cts = new contents("Connexion");
-      $frm = new form("connect",$topdir."connect.php",true,"POST","Connexion");
+      $frm = new form("connect","/connect.php",true,"POST","Connexion");
       $frm->add_select_field("domain","Connexion",array("utbm"=>"UTBM / Assidu", "id"=>"ID", "autre"=>"E-mail", "alias"=>"Alias"),"autre");
       $frm->add_text_field("username","Utilisateur","prenom.nom","",20,true);
       $frm->add_password_field("password","Mot de passe","","",20);
@@ -68,23 +68,23 @@ class pgsite extends site
     $cts->add_paragraph("Bonjour <b>".$this->user->prenom." ".$this->user->nom."</b>");
 
     $sublist = new itemlist("Mon Compte","boxlist");
-    $sublist->add("<a href=\"".$topdir."user.php?id_utilisateur=".$this->user->id."\">Informations personnelles</a> (Site AE)");
+    $sublist->add("<a href=\"/user.php?id_utilisateur=".$this->user->id."\">Informations personnelles</a> (Site AE)");
     /*if( $this->user->is_in_group("jobetu_etu") )
     {
       $jobuser = new jobuser_etu($this->db);
       $jobuser->load_by_id($this->user->id);
       $jobuser->load_annonces();
-      $sublist->add("<a href=\"".$topdir."jobetu/board_etu.php\">Mon compte JobEtu (".count($jobuser->annonces).")</a>");
+      $sublist->add("<a href=\"/jobetu/board_etu.php\">Mon compte JobEtu (".count($jobuser->annonces).")</a>");
     }
     else if( $this->user->is_in_group("jobetu_client") )
-      $sublist->add("<a href=\"".$topdir."jobetu/board_client.php\">AE JobEtu</a>");
+      $sublist->add("<a href=\"/jobetu/board_client.php\">AE JobEtu</a>");
     else
-      $sublist->add("<a href=\"".$topdir."jobetu/index.php\">AE JobEtu</a>");
+      $sublist->add("<a href=\"/jobetu/index.php\">AE JobEtu</a>");
 */
     $cts->add($sublist,true, true, "accountbox", "boxlist", true, true);
 
     /* Bouton de Deconnexion */
-    $frm = new form("disconnect",$topdir."disconnect.php",false,"POST","Deconnexion");
+    $frm = new form("disconnect","/disconnect.php",false,"POST","Deconnexion");
     $frm->add_submit("disconnect","Se déconnecter");
     $cts->add($frm);
 
