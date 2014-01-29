@@ -277,7 +277,7 @@ $app->get('/famille/{user_id}', function(Request $request, $user_id) use ($app) 
       )
     )
   );
-});
+})->convert('user_id', function($user_id) { return intval($user_id); });
 
 $app->get('/image/{user_id}', function(Request $request, $user_id) use ($app) {
   $citation = $app['db']->createQueryBuilder()
@@ -299,7 +299,7 @@ $app->get('/image/{user_id}', function(Request $request, $user_id) use ($app) {
       )
     )
   );
-});
+})->convert('user_id', function($user_id) { return intval($user_id); });
 
 $app->get('/vcf/{user_id}', function(Request $request, $user_id) use ($app) {
   $site = $request->attributes->get('site');
@@ -330,6 +330,7 @@ $app->get('/vcf/{user_id}', function(Request $request, $user_id) use ($app) {
 
   return $response;
 })->before('check_user_is_valid')
-  ->before('check_user_is_ae_or_utbm');
+  ->before('check_user_is_ae_or_utbm')
+  ->convert('user_id', function($user_id) { return intval($user_id); });
 
 $app->run();
