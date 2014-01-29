@@ -201,9 +201,20 @@ class site extends interfaceweb
               "derniere_visite"  => date("Y-m-d H:i:s"),
               "expire_sess" => $expire
               ));
-    $domain = ($_SERVER['HTTP_HOST'] != 'localhost' && $_SERVER['HTTP_HOST'] != '127.0.0.1') ? $_SERVER['HTTP_HOST'] : false;
 
-    setcookie ("AE2_SESS_ID", $sid, time() + 31536000, "/", $domain);
+    if (($pos = strpos($_SERVER['HTTP_HOST'], ':')) > 0) {
+      $http_host = substr($_SERVER['HTTP_HOST'], 0, $pos);
+    } else {
+      $http_host = $_SERVER['HTTP_HOST'];
+    }
+
+    if ($http_host == 'localhost' || $http_host == '127.0.0.1') {
+      setcookie ("AE2_SESS_ID", $sid, time() + 31536000, "/");
+    } else {
+      setcookie ("AE2_SESS_ID", $sid, time() + 31536000, "/", $http_host);
+    }
+
+    die();
 
     $this->user->visite();
 
