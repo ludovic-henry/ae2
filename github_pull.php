@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__.'/vendor/silex/autoload.php';
+require_once __DIR__.'/vendor/silexautoload.php';
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
