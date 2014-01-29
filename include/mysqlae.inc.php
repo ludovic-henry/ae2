@@ -53,13 +53,23 @@ else
     paramètre "rw", on obtient une base en lecture écriture pour tout
     autre paramètre, la base est en lecture seule. */
   class mysqlae extends mysql {
+
+    public static $host = 'host';
+    public static $database = 'database';
+
+    public static $login_read_write = 'login_read_write';
+    public static $mdp_read_write = 'mdp_read_write';
+
+    public static $login_read_only = 'login_read_only';
+    public static $mdp_read_only = 'mdp_read_only';
+
     function mysqlae ($type = "ro") {
       if ($type == "rw") {
-        if ( ! $this->mysql('login_read_write', 'mdp_read_write', 'host', 'base')) {
+        if ( ! $this->mysql(self::$login_read_write, self::$mdp_read_write, self::$host, self::$database)) {
           return FALSE;
         }
       } else {
-        if ( ! $this->mysql('login_read_only', 'mdp_read_only', 'host', 'base')) {
+        if ( ! $this->mysql(self::$login_read_only, self::$mdp_read_only, self::$host, self::$database)) {
           return FALSE;
         }
       }
@@ -71,7 +81,7 @@ else
     function mysqlforum ()
     {
       // Tschuut on a rien vu ...
-      if ( ! $this->mysql('importforum', 'importequoi', 'host', 'UTBM'))
+      if ( ! self::$mysql('importforum', 'importequoi', 'host', 'UTBM'))
         return FALSE;
     }
   }
