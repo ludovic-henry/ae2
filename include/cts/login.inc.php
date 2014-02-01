@@ -48,7 +48,7 @@ class loginerror extends board
 
     $this->board("Veuillez vous identifier","loginerror");
 
-    $frm = new form("connect2",$wwwtopdir."connect.php",true,"POST","Vous avez déjà un compte");
+    $frm = new form("connect2",$wwwtopdir."connexion.php",true,"POST","Vous avez déjà un compte");
     $frm->add_select_field(
         "domain",
         "Connexion",
