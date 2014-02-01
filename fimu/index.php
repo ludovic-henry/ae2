@@ -53,7 +53,7 @@ function check_user_is_valid(Request $request) {
 function check_user_is_gestion_ae_or_gestion_fimu(Request $request) {
   $site = $request->attributes->get('site');
 
-  if (!$site->user->is_in_group("gestion_ae") || !$site->user->is_in_group("gestion_fimu")) {
+  if (!$site->user->is_in_group("gestion_ae") && !$site->user->is_in_group("gestion_fimu")) {
     return new RedirectResponse('/403.php');
   }
 }
