@@ -51,7 +51,7 @@ class pgsite extends site
     if ( !$this->user->is_valid() )
     {
       $cts = new contents("Connexion");
-      $frm = new form("connect","/connect.php",true,"POST","Connexion");
+      $frm = new form("connect","/connexion.php",true,"POST","Connexion");
       $frm->add_select_field("domain","Connexion",array("utbm"=>"UTBM / Assidu", "id"=>"ID", "autre"=>"E-mail", "alias"=>"Alias"),"autre");
       $frm->add_text_field("username","Utilisateur","prenom.nom","",20,true);
       $frm->add_password_field("password","Mot de passe","","",20);
@@ -84,7 +84,7 @@ class pgsite extends site
     $cts->add($sublist,true, true, "accountbox", "boxlist", true, true);
 
     /* Bouton de Deconnexion */
-    $frm = new form("disconnect","/disconnect.php",false,"POST","Deconnexion");
+    $frm = new form("disconnect","/deconnexion.php",false,"GET","Deconnexion");
     $frm->add_submit("disconnect","Se déconnecter");
     $cts->add($frm);
 

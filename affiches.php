@@ -235,7 +235,7 @@ if ( $affiche->id > 0 )
 
 if ( !$site->user->is_valid() )
 {
-  header("Location: 403.php?reason=session");
+  header("Location: /connexion.php?redirect_to=" . urlencode($_SERVER['REQUEST_URI']));
   exit();
 }
 

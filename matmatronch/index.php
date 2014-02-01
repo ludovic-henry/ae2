@@ -46,8 +46,7 @@ function check_user_is_valid(Request $request) {
   $site = $request->attributes->get('site');
 
   if (!$site->user->is_valid()) {
-    $_SESSION['session_redirect'] = $request->getUri();
-    return new RedirectResponse('/403.php');
+    return new RedirectResponse('/connexion.php?redirect_to=' . urlencode($request->getUri()));
   }
 }
 
@@ -55,16 +54,7 @@ function check_user_is_ae_or_utbm(Request $request) {
   $site = $request->attributes->get('site');
 
   if (!$site->user->ae || !$site->user->utbm) {
-    return new Response(
-      $app['renderer']->render(
-        __DIR__ . '/views/access-limite.php',
-        array(
-          'request' => $request,
-          'site'    => $site,
-        )
-      ),
-      403
-    );
+    return new RedirectResponse('/403.php');
   }
 }
 

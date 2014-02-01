@@ -169,9 +169,9 @@ class interfaceweb
         /* Check if user is connected */
         if (!$this->user->is_valid()) {
             if ($GLOBALS["taiste"])
-                $frm = new form("connect", "/taiste/connect.php", true, "POST", "Connexion");
+                $frm = new form("connect", "/taiste/connexion.php", true, "POST", "Connexion");
             else
-                $frm = new form("connect", "/connect.php", true, "POST", "Connexion");
+                $frm = new form("connect", "/connexion.php", true, "POST", "Connexion");
             $frm->add_select_field("domain",
                 "Connexion",
                 array("utbm" => "UTBM / Assidu",
@@ -346,7 +346,7 @@ class interfaceweb
                 $this->buffer .= '<div id="passwordbox" style="display:none">';
                 $this->buffer .= '<img id="close" src="/images/actions/delete.png" onclick="hideConnexionBox()" alt="Fermer" ';
                 $this->buffer .= 'title="Fermer" />';
-                $frm = new form("connect", "/connect.php", true, "POST", "Connexion");
+                $frm = new form("connect", "/connexion.php", true, "POST", "Connexion");
                 $jsoch = "javascript:switchSelConnection(this);";
                 $frm->add_select_field("domain",
                     "Connexion",
@@ -425,17 +425,17 @@ class interfaceweb
             if (!$this->user->is_valid()) {
                 $this->buffer .= "<script type=\"text/javascript\">\n";
                 $this->buffer .= "var menu_utilisateur=new Array();";
-                $this->buffer .= "menu_utilisateur[0]='<a class=\"firstdropdown\" href=\"/connect.php\" onclick=\"return showConnexionBox()\">Connexion</a>';";
+                $this->buffer .= "menu_utilisateur[0]='<a class=\"firstdropdown\" href=\"/connexion.php\" onclick=\"return showConnexionBox()\">Connexion</a>';";
                 $this->buffer .= "menu_utilisateur[1]='<a href=\"/password.php\">Mot de passe perdu</a>';";
                 $this->buffer .= "menu_utilisateur[2]='<a href=\"/newaccount.php\">Créer un compte</a>';";
                 $this->buffer .= "</script>";
                 $this->buffer .= "<div id='login' onmouseover=\"dropdownmenu(this, event, menu_utilisateur)\" onmouseout=\"delayhidemenu()\">\n";
-                $this->buffer .= "<a href='/connect.php'>Identification</a>\n";
+                $this->buffer .= "<a href='/connexion.php'>Identification</a>\n";
             } elseif ($this->user->type == "srv") {
                 $this->buffer .= "<script type=\"text/javascript\">\n";
                 $this->buffer .= "var menu_utilisateur=new Array();";
                 $i = 0;
-                $this->buffer .= "menu_utilisateur[$i]='<a href=\"/disconnect.php\">Déconnexion</a>';";
+                $this->buffer .= "menu_utilisateur[$i]='<a href=\"/deconnexion.php\">Déconnexion</a>';";
                 $this->buffer .= "</script>";
                 $this->buffer .= "<div id='login' onmouseover=\"dropdownmenu(this, event, menu_utilisateur)\" onmouseout=\"delayhidemenu()\">\n";
                 $this->buffer .= "<a href=\"/boutique-utbm/suivi.php\">Suivi commandes</a>\n";
@@ -492,7 +492,7 @@ class interfaceweb
                         $this->buffer .= "menu_utilisateur[$i]='<a href=\"/jobetu/index.php\">AE JobEtu</a>';";
                     $i++;
                 }
-                $this->buffer .= "menu_utilisateur[$i]='<a href=\"/disconnect.php\">Déconnexion</a>';";
+                $this->buffer .= "menu_utilisateur[$i]='<a href=\"/deconnexion.php\">Déconnexion</a>';";
                 $this->buffer .= "</script>";
                 $this->buffer .= "<div id='login' onmouseover=\"dropdownmenu(this, event, menu_utilisateur)\" onmouseout=\"delayhidemenu()\">\n";
                 $this->buffer .= "<a href=\"/user.php?id_utilisateur=" . $this->user->id . "\">" . $this->user->prenom . " " . $this->user->nom . "</a>";
@@ -501,7 +501,7 @@ class interfaceweb
             if ($this->user->is_valid()) {
                 $this->buffer .= $this->get_comptoir();
                 $this->buffer .= "<a id=\"menu\" href=\"javascript:updateMenu();\">menu</a>";
-                $this->buffer .= "<a href=\"disconnect.php\"><img id=\"deco\" src=\"../images/actions/stop.png\" alt=\"Déconnexion\" /></a>";
+                $this->buffer .= "<a href=\"/deconnexion.php\"><img id=\"deco\" src=\"../images/actions/stop.png\" alt=\"Déconnexion\" /></a>";
             }
         } /* ifdef MOBILE */
         $this->buffer .= "</div>\n";

@@ -1,7 +1,6 @@
 <?php
-/* Copyright 2005,2006
+/* Copyright 2005
  * - Julien Etelain < julien at pmad dot net >
- * - Ludovic Henry < ludovichenry DOT utbm AT gmail DOT com >
  *
  * Ce fichier fait partie du site de l'Association des Étudiants de
  * l'UTBM, http://ae.utbm.fr.
@@ -21,10 +20,6 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
  * 02111-1307, USA.
  */
-/** @file
- *
- * @brief Page d'erreur HTTP 403
- */
 
 require_once __DIR__.'/vendor/silexautoload.php';
 
@@ -40,6 +35,7 @@ require_once __DIR__ . '/include/serviceprovider/PhpRendererServiceProvider.php'
 $topdir = __DIR__ . '/';
 
 require_once __DIR__ . '/include/site.inc.php';
+require_once __DIR__ . '/include/entities/page.inc.php';
 
 $app = new Silex\Application();
 $app['debug'] = true;
@@ -53,24 +49,13 @@ $app->before(function (Request $request) {
 $app->get('/', function (Request $request) use ($app) {
   $site = $request->attributes->get('site');
 
-  if (!$site->user->is_valid()) {
-    return new RedirectResponse('/connexion.php?' . http_build_query($request->query->all(), '', '&'));
-  }
+  $sqldelete = new delete($site->dbrw, "site_sessions", array("id_session" => $_COOKIE['AE2_SESS_ID']));
 
-  ob_start();
+  setcookie ("AE2_SESS_ID", "", time() - 3600, "/", "ae.utbm.fr", 0);
+  unset($_COOKIE['AE2_SESS_ID']);
+  unset($_SESSION['session_redirect']);
 
-  $site->start_page('none','Erreur 403');
-
-  /* TODO à traiter les reasons du 403 */
-  if ($request->query->get('reason') !== 'reserved' && $request->query->get('reason') != 'reservedutbm') {
-    $site->add_contents(new error('Accés refusé (403)', $request->query->get('reason')));
-  } else {
-    $site->add_contents(new error('Accés refusé (403)', 'Vous n\'avez pas les droits requis pour accéder à cette page.'));
-  }
-
-  $site->end_page();
-
-  return new Response(ob_get_clean());
+  return new RedirectResponse('/');
 });
 
 $app->run();
