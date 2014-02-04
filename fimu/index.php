@@ -33,7 +33,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-require_once __DIR__ . "/../include/serviceprovider/PhpRendererServiceProvider.php";
 require_once __DIR__ . "/forms.php";
 
 $topdir = __DIR__ . "/../";
@@ -41,6 +40,8 @@ $topdir = __DIR__ . "/../";
 require_once __DIR__ . "/../include/site.inc.php";
 require_once __DIR__ . "/../include/cts/sqltable.inc.php";
 require_once __DIR__ . "/../include/cts/user.inc.php";
+
+require_once __DIR__ . "/../include/lib/serviceprovider/PhpRendererServiceProvider.php";
 
 function check_user_is_valid(Request $request) {
   $site = $request->attributes->get('site');

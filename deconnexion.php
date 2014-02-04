@@ -30,12 +30,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-require_once __DIR__ . '/include/serviceprovider/PhpRendererServiceProvider.php';
-
 $topdir = __DIR__ . '/';
 
 require_once __DIR__ . '/include/site.inc.php';
 require_once __DIR__ . '/include/entities/page.inc.php';
+
+require_once __DIR__ . "/../include/lib/serviceprovider/PhpRendererServiceProvider.php";
 
 $app = new Silex\Application();
 $app['debug'] = true;
