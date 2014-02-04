@@ -26,7 +26,7 @@
  * @brief Page d'erreur HTTP 403
  */
 
-require_once __DIR__.'/vendor/silexautoload.php';
+require_once __DIR__.'/vendor/autoload.php';
 
 use Silex\Application;
 use Silex\Provider;

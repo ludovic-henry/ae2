@@ -23,7 +23,7 @@
  * 02111-1307, USA.
  */
 
-require_once __DIR__.'/vendor/silexautoload.php';
+require_once __DIR__.'/vendor/autoload.php';
 
 use Silex\Application;
 use Silex\Provider;
