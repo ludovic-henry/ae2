@@ -63,13 +63,22 @@ $app = new Silex\Application();
 $app['debug'] = true;
 
 $app->register(new Provider\DoctrineServiceProvider(), array(
-    'db.options' => array(
-        'driver'   => 'pdo_mysql',
-        'dbname'   => mysqlae::$database,
-        'host'     => mysqlae::$host,
-        'user'     => mysqlae::$login_read_only,
-        'password' => mysqlae::$mdp_read_only,
-    ),
+  'db.options' => array(
+    'driver'   => 'pdo_mysql',
+    'dbname'   => mysqlae::$database,
+    'host'     => mysqlae::$host,
+    'user'     => mysqlae::$login_read_only,
+    'password' => mysqlae::$mdp_read_only,
+  ),
+));
+
+$app->register(new Provider\ServiceControllerServiceProvider());
+$app->register(new Provider\TwigServiceProvider());
+$app->register(new Provider\UrlGeneratorServiceProvider());
+
+$app->register(new Provider\WebProfilerServiceProvider(), array(
+    'profiler.cache_dir' => '/tmp/profiler',
+    'profiler.mount_prefix' => '/_profiler', // this is the default
 ));
 
 $app->register(new Provider\PhpRendererServiceProvider());

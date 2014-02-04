@@ -8,6 +8,15 @@ use Symfony\Component\HttpFoundation\Response;
 $app = new Silex\Application();
 $app['debug'] = false;
 
+$app->register(new Provider\ServiceControllerServiceProvider());
+$app->register(new Provider\TwigServiceProvider());
+$app->register(new Provider\UrlGeneratorServiceProvider());
+
+$app->register(new Provider\WebProfilerServiceProvider(), array(
+    'profiler.cache_dir' => '/tmp/profiler',
+    'profiler.mount_prefix' => '/_profiler', // this is the default
+));
+
 $app->post('/', function (Request $request) use ($app) {
     $remoteip    = ip2long($_SERVER['REMOTE_ADDR']);
     $allowednet  = ip2long("192.30.252.0");

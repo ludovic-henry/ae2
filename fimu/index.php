@@ -72,6 +72,15 @@ $app->register(new Provider\DoctrineServiceProvider(), array(
     ),
 ));
 
+$app->register(new Provider\ServiceControllerServiceProvider());
+$app->register(new Provider\TwigServiceProvider());
+$app->register(new Provider\UrlGeneratorServiceProvider());
+
+$app->register(new Provider\WebProfilerServiceProvider(), array(
+    'profiler.cache_dir' => '/tmp/profiler',
+    'profiler.mount_prefix' => '/_profiler', // this is the default
+));
+
 $app->register(new Provider\PhpRendererServiceProvider());
 
 $app->before(function (Request $request) {
