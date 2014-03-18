@@ -271,8 +271,8 @@ $planning->add_gap( $samedi2+$h8, $samedi2+$h9 );
  // FIN TEST
 
   if((($_REQUEST['id_salle']==BUREAU_AE_BELFORT || $_REQUEST['id_salle']==BUREAU_AE_SEVENANS || $_REQUEST['id_salle']==BUREAU_AE_MONTBELIARD) && $site->user->is_in_group("gestion_ae"))
-      || ($_REQUEST['id_salle']==BUREAU_BDF_BELFORT && $site->user->is_in_group("foyer_barman")) || ($_REQUEST['id_salle']==BUREAU_BDF_SEVENANS && $site->user->is_in_group("foyer_barman"))
-      || ($_REQUEST['id_salle']==BUREAU_BDF_MONTBELIARD && $site->user->is_in_group("foyer_barman"))
+      || ($_REQUEST['id_salle']==BUREAU_BDF_BELFORT && $site->user->is_in_group("foyer_barman")) || ($_REQUEST['id_salle']==BUREAU_BDF_SEVENANS && $site->user->is_in_group("kfet_barman"))
+      || ($_REQUEST['id_salle']==BUREAU_BDF_MONTBELIARD && $site->user->is_in_group("la_gommette_barman"))
       || (($_REQUEST['id_salle']==BUREAU_BDS_BELFORT || $_REQUEST['id_salle']==BUREAU_BDS_SEVENANS) && $site->user->is_in_group("bds-bureau")))
   {
     $sql =
@@ -356,8 +356,8 @@ else if( $_REQUEST['action'] == "affich" )
   AND pl_gap_user.id_utilisateur IS NOT NULL";
 
   if((($_REQUEST['id_salle']==BUREAU_AE_BELFORT || $_REQUEST['id_salle']==BUREAU_AE_SEVENANS || $_REQUEST['id_salle']==BUREAU_AE_MONTBELIARD) && $site->user->is_in_group("gestion_ae"))
-      || ($_REQUEST['id_salle']==BUREAU_BDF_BELFORT && $site->user->is_in_group("foyer_barman")) || ($_REQUEST['id_salle']==BUREAU_BDF_SEVENANS && $site->user->is_in_group("foyer_barman"))
-      || ($_REQUEST['id_salle']==BUREAU_BDF_MONTBELIARD && $site->user->is_in_group("foyer_barman"))
+      || ($_REQUEST['id_salle']==BUREAU_BDF_BELFORT && $site->user->is_in_group("foyer_barman")) || ($_REQUEST['id_salle']==BUREAU_BDF_SEVENANS && $site->user->is_in_group("kfet_barman"))
+      || ($_REQUEST['id_salle']==BUREAU_BDF_MONTBELIARD && $site->user->is_in_group("la_gommette_barman"))
  || (($_REQUEST['id_salle']==BUREAU_BDS_BELFORT || $_REQUEST['id_salle']==BUREAU_BDS_SEVENANS) && $site->user->is_in_group("bds-bureau")))
   {
     if(isset($_REQUEST['semainedeux']))
@@ -567,7 +567,7 @@ if($site->user->is_in_group("gestion_ae"))
 
 $frm = new form("searchpl","index.php",false,"POST","Consulter un planning");
 
-if($site->user->is_in_group("gestion_ae") || $site->user->is_in_group("foyer_barman") || $site->user->is_in_group("bds-bureau"))
+if($site->user->is_in_group("gestion_ae") || $site->user->is_in_group("foyer_barman") || $site->user->is_in_group("kfet_barman") || $site->user->is_in_group("la_gommette_barman")|| $site->user->is_in_group("bds-bureau"))
   $frm->add_hidden("action","searchpl");
 else
   $frm->add_hidden("action","affich");
