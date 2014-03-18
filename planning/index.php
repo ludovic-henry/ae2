@@ -28,6 +28,7 @@ define("BUREAU_AE_MONTBELIARD", 165);
 define("BUREAU_AE_SEVENANS", 166);
 define("BUREAU_BDF_BELFORT", 167);
 define("BUREAU_BDF_SEVENANS", 168);
+define("BUREAU_BDF_MONTBELIARD",171);
 define("BUREAU_BDS_BELFORT", 169);
 define("BUREAU_BDS_SEVENANS", 170);
 //define("TEST", 191);
@@ -40,7 +41,7 @@ require_once($topdir. "include/cts/planning.inc.php");
 
 $site = new site ();
 
-$lieux = array(164=>"Bureau AE Belfort", 165 => "Bureau AE Montbéliard", 166=>"Bureau AE Sevenans", 167=>"Foyer", 168=>"KFet", 169=>"Bureau BDS Belfort", 170=>"Bureau BDS Sevenans"/*, 191=>"Test"*/);
+$lieux = array(164=>"Bureau AE Belfort", 165 => "Bureau AE Montbéliard", 166=>"Bureau AE Sevenans", 167=>"Foyer", 168=>"MDE", 169=>"Bureau BDS Belfort", 170=>"Bureau BDS Sevenans",171=>"La gommette"/*, 191=>"Test"*/);
 
 
 if ( $_REQUEST["action"] == "searchpl" )
@@ -270,8 +271,9 @@ $planning->add_gap( $samedi2+$h8, $samedi2+$h9 );
  // FIN TEST
 
   if((($_REQUEST['id_salle']==BUREAU_AE_BELFORT || $_REQUEST['id_salle']==BUREAU_AE_SEVENANS || $_REQUEST['id_salle']==BUREAU_AE_MONTBELIARD) && $site->user->is_in_group("gestion_ae"))
- || ($_REQUEST['id_salle']==BUREAU_BDF_BELFORT && $site->user->is_in_group("foyer_barman")) || ($_REQUEST['id_salle']==BUREAU_BDF_SEVENANS && $site->user->is_in_group("kfet_barman"))
- || (($_REQUEST['id_salle']==BUREAU_BDS_BELFORT || $_REQUEST['id_salle']==BUREAU_BDS_SEVENANS) && $site->user->is_in_group("bds-bureau")))
+      || ($_REQUEST['id_salle']==BUREAU_BDF_BELFORT && $site->user->is_in_group("foyer_barman")) || ($_REQUEST['id_salle']==BUREAU_BDF_SEVENANS && $site->user->is_in_group("foyer_barman"))
+      || ($_REQUEST['id_salle']==BUREAU_BDF_MONTBELIARD && $site->user->is_in_group("foyer_barman"))
+      || (($_REQUEST['id_salle']==BUREAU_BDS_BELFORT || $_REQUEST['id_salle']==BUREAU_BDS_SEVENANS) && $site->user->is_in_group("bds-bureau")))
   {
     $sql =
       "SELECT id_gap, start_gap, end_gap, pl_gap.id_planning,
@@ -354,7 +356,8 @@ else if( $_REQUEST['action'] == "affich" )
   AND pl_gap_user.id_utilisateur IS NOT NULL";
 
   if((($_REQUEST['id_salle']==BUREAU_AE_BELFORT || $_REQUEST['id_salle']==BUREAU_AE_SEVENANS || $_REQUEST['id_salle']==BUREAU_AE_MONTBELIARD) && $site->user->is_in_group("gestion_ae"))
- || ($_REQUEST['id_salle']==BUREAU_BDF_BELFORT && $site->user->is_in_group("foyer_barman")) || ($_REQUEST['id_salle']==BUREAU_BDF_SEVENANS && $site->user->is_in_group("kfet_barman"))
+      || ($_REQUEST['id_salle']==BUREAU_BDF_BELFORT && $site->user->is_in_group("foyer_barman")) || ($_REQUEST['id_salle']==BUREAU_BDF_SEVENANS && $site->user->is_in_group("foyer_barman"))
+      || ($_REQUEST['id_salle']==BUREAU_BDF_MONTBELIARD && $site->user->is_in_group("foyer_barman"))
  || (($_REQUEST['id_salle']==BUREAU_BDS_BELFORT || $_REQUEST['id_salle']==BUREAU_BDS_SEVENANS) && $site->user->is_in_group("bds-bureau")))
   {
     if(isset($_REQUEST['semainedeux']))
@@ -564,7 +567,7 @@ if($site->user->is_in_group("gestion_ae"))
 
 $frm = new form("searchpl","index.php",false,"POST","Consulter un planning");
 
-if($site->user->is_in_group("gestion_ae") || $site->user->is_in_group("foyer_barman") || $site->user->is_in_group("kfet_barman") || $site->user->is_in_group("bds-bureau"))
+if($site->user->is_in_group("gestion_ae") || $site->user->is_in_group("foyer_barman") || $site->user->is_in_group("bds-bureau"))
   $frm->add_hidden("action","searchpl");
 else
   $frm->add_hidden("action","affich");
