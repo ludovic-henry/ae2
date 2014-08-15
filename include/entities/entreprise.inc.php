@@ -74,13 +74,13 @@ class entreprise extends stdentity
 	{
 		if ( !$this->dbrw ) return; // Exits if "Read Only" mode
 
-		$this->nom = $nom;
-		$this->rue = $rue;
-		$this->id_ville = $id_ville;
-		$this->telephone = $telephone;
-		$this->email = $email;
-		$this->fax = $fax;
-		$this->siteweb = $siteweb;
+		$this->nom = htmlentities($nom);
+		$this->rue = htmlentities($rue);
+		$this->id_ville = htmlentities($id_ville);
+		$this->telephone = htmlentities($telephone);
+		$this->email = htmlentities($email);
+		$this->fax = htmlentities($fax);
+		$this->siteweb = htmlentities($siteweb);
 
 		$sql = new insert ($this->dbrw,
 			"entreprise",

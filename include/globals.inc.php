@@ -151,7 +151,7 @@ function GenerateSelectList($values, $current, $name, $size=1)
  *
  * @return La chaîne aléatoire
  */
-function genere_pass ($nameLength=12)
+function genere_pass ($nameLength=16)
 {
   $NameChars = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKMNLOP';
   $Vouel = 'aeiouAEIOU';

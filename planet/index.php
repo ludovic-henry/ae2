@@ -168,10 +168,10 @@ elseif(isset($_REQUEST["modere"]) && $site->user->is_in_group("moderateur_site")
   {
     if(isset($_REQUEST["id_tag"]))
       $req = new requete($site->dbrw, "UPDATE `planet_tags` SET `modere`='1' ".
-                                      "WHERE `id_tag` = '".$_REQUEST["id_tag"]."'");
+                                      "WHERE `id_tag` = '".mysql_real_escape_string($_REQUEST["id_tag"])."'");
     if(isset($_REQUEST["id_flux"]))
       $req = new requete($site->dbrw, "UPDATE `planet_flux` SET `modere`='1' ".
-                                      "WHERE `id_flux` = '".$_REQUEST["id_flux"]."'");
+                                      "WHERE `id_flux` = '".mysql_real_escape_string($_REQUEST["id_flux"])."'");
   }
   elseif($_REQUEST["action"]=="delete")
   {
@@ -198,7 +198,7 @@ elseif(isset($_REQUEST["modere"]) && $site->user->is_in_group("moderateur_site")
     {
       foreach($_REQUEST["id_tags"] AS $tag)
         $req = new requete($site->dbrw, "UPDATE `planet_tags` SET `modere`='1' ".
-                                        "WHERE `id_tag` = '".$tag."'");
+                                        "WHERE `id_tag` = '".mysql_real_escape_string($tag)."'");
     }
   }
   elseif($_REQUEST["action"]=="deleteflux")
@@ -219,7 +219,7 @@ elseif(isset($_REQUEST["modere"]) && $site->user->is_in_group("moderateur_site")
     {
       foreach($_REQUEST["id_fluxs"] AS $flux)
         $req = new requete($site->dbrw, "UPDATE `planet_flux` SET `modere`='1' ".
-                                        "WHERE `id_flux` = '".$flux."'");
+                                        "WHERE `id_flux` = '".mysql_real_escape_string($flux)."'");
     }
   }
 }
@@ -334,7 +334,7 @@ elseif($_REQUEST["view"]=="perso")
                                  "ON (`planet_user_flux`.`id_flux`=`planet_flux`.`id_flux` ".
                                  "AND `planet_user_flux`.`id_utilisateur` = '".$site->user->id."') ".
                                  "WHERE (`planet_flux`.`id_utilisateur`='".$site->user->id."' OR `planet_flux`.`modere`= '1')".
-                                 "AND `planet_flux_tags`.`id_tag`='".$_REQUEST["tagid"]."'");
+                                 "AND `planet_flux_tags`.`id_tag`='".mysql_real_escape_string($_REQUEST["tagid"])."'");
     $cts = new contents("Vos désabonnements dans le tag");
     if($req->lines>0)
     {

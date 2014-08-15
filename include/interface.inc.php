@@ -821,12 +821,12 @@ class interfaceweb
 
         $this->buffer .= "<link rel=\"SHORTCUT ICON\" href=\"" . $wwwtopdir . "favicon.ico\" />\n";
         $this->buffer .= "<script type=\"text/javascript\">var site_topdir='" . $wwwtopdir . "';</script>\n";
-        $this->buffer .= "<script type=\"text/javascript\" src=\"" . $wwwtopdir . "js/site.js\"></script>\n";
-        $this->buffer .= "<script type=\"text/javascript\" src=\"" . $wwwtopdir . "js/ajax.js\"></script>\n";
-        $this->buffer .= "<script type=\"text/javascript\" src=\"" . $wwwtopdir . "js/dnds.js\"></script>\n";
+        $this->buffer .= "<script type=\"text/javascript\" src=\"" . $wwwtopdir . "js/site.js\" async></script>\n";
+        $this->buffer .= "<script type=\"text/javascript\" src=\"" . $wwwtopdir . "js/ajax.js\" async></script>\n";
+        $this->buffer .= "<script type=\"text/javascript\" src=\"" . $wwwtopdir . "js/dnds.js\" async></script>\n";
 
         foreach ($this->extrajs as $url)
-            $this->buffer .= "<script type=\"text/javascript\" src=\"" . htmlentities($wwwtopdir . $url, ENT_QUOTES, "UTF-8") . "\"></script>\n";
+            $this->buffer .= "<script defer async type=\"text/javascript\" src=\"" . htmlentities($wwwtopdir . $url, ENT_QUOTES, "UTF-8") . "\"></script>\n";
 
         $this->buffer .= "</head>\n";
 

@@ -74,9 +74,10 @@ else
   $page .= "mode=full";
 }
 
+$photo->load_by_id($_REQUEST["id_photo"]);
+
 if ( $_REQUEST["action"] == "complete" )
 {
-  $photo->load_by_id($_REQUEST["id_photo"]);
 
 
   if ( $photo->is_right($site->user,DROIT_ECRITURE))
@@ -204,8 +205,8 @@ if ( $req->lines == 1 )
     $subcts->add($frm,true);
   }
 */
-  $frm = new form("peoples",$page,false,"POST","Compléter la photo");
-  $frm->add_hidden("id_photo",$photo->id);
+  $frm = new form("peoples",$page."&id_photo=$photo->id",false,"POST","Compléter la photo");
+  //$frm->add_hidden("id_photo",$photo->id);
   $frm->add_hidden("action","complete");
 
   $sfrm = new subform("people","Personnes sur la photo");

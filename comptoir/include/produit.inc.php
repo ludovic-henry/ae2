@@ -597,6 +597,25 @@ class produit extends stdentity
       return $val;
     }
 
+    // Les putains d'Ecocup
+    if($this->id == 1151)
+    {
+      $req = new requete($this->db,
+	"SELECT  SUM(cpt_produits.prix_vente_prod*cpt_vendu.quantite)/100 nb_consigne FROM cpt_vendu
+        INNER JOIN cpt_produits ON cpt_vendu.id_produit = cpt_produits.id_produit
+	INNER JOIN cpt_debitfacture ON cpt_debitfacture.id_facture = cpt_vendu.id_facture
+	WHERE cpt_debitfacture.id_utilisateur_client = '".intval($user->id)."' 
+	AND (cpt_produits.id_produit = 1152 OR cpt_produits.id_produit = 1151)");
+
+      $row = $req->get_row();
+
+      // Le nombre renvoyé doit être >= 0 !
+      $val = max(0, intval($row["nb_consigne"]));
+      return $val;
+
+
+    }
+
     return -1;
   }
 

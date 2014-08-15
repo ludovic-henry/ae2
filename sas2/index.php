@@ -746,9 +746,13 @@ function cats_produde_gallery ( $sqlct)
     if ( $scat->is_right($site->user,DROIT_ECRITURE) )
       $acts = array("delete","edit");
 
+    $short_sem = $scat->get_short_semestre();
+    if ($short_sem != '')
+        $short_sem = ' (' . $short_sem . ')';
+
     $gal->add_item(
         "<a href=\"./?id_catph=".$row['id_catph']."\"><img src=\"$img\" alt=\"".$row['nom_catph']."\" /></a>",
-        "<a href=\"./?id_catph=".$row['id_catph']."\">".$row['nom_catph']."</a> (".$scat->get_short_semestre().")",
+        "<a href=\"./?id_catph=".$row['id_catph']."\">".$row['nom_catph']."</a>" . $short_sem,
         $row['id_catph'],
         $acts);
   }

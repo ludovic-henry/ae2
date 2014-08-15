@@ -72,7 +72,7 @@ class uv extends stdentity
                                     `semestre`+0 as `semestre`, `state`, `tc_available`,
                                     `type`+0 as `type`, `guide_credits`
                                     FROM `pedag_uv`
-                                    WHERE `id_uv` = ".$id." LIMIT 1");
+                                    WHERE `id_uv` = ".intval($id)." LIMIT 1");
     if($sql->is_success()){
       $this->_load($sql->get_row());
       return $this->id;
@@ -111,7 +111,7 @@ class uv extends stdentity
                                     `semestre`, `state`, `tc_available`,
                                     `guide_credits`
                                     FROM `pedag_uv`
-                                    WHERE `code` = '".$code."' LIMIT 1");
+                                    WHERE `code` = '".mysql_real_escape_string($code)."' LIMIT 1");
     if($sql->is_success()){
       $this->_load($sql->get_row());
       return $this->id;
@@ -274,7 +274,7 @@ class uv extends stdentity
       throw new Exception("Wrong format \$code ".$code);
 
     /* vérification si l UV existe déjà dans la base */
-    $sql = new requete($this->db, "SELECT `id` FROM `pedag_uv` WHERE `code` = '".$code."'");
+    $sql = new requete($this->db, "SELECT `id` FROM `pedag_uv` WHERE `code` = '".mysql_real_escape_string($code)."'");
     if(!$sql->is_success())
       return false;
 
@@ -289,12 +289,12 @@ class uv extends stdentity
   }
 
   public function set_open($value){
-    $sql = new update($this->dbrw, "pedag_uv", array("semestre"=>$value), array("id_uv"=>$this->id));
+    $sql = new update($this->dbrw, "pedag_uv", array("semestre"=>mysql_real_escape_string($value)), array("id_uv"=>$this->id));
     return $sql->is_success();
   }
 
   public function set_valid($value=STATE_VALID){
-    $sql = new update($this->dbrw, "pedag_uv", array("state"=>$value), array("id_uv"=>$this->id));
+    $sql = new update($this->dbrw, "pedag_uv", array("state"=>mysql_real_escape_string($value)), array("id_uv"=>$this->id));
     return $sql->is_success();
   }
 
@@ -322,8 +322,8 @@ class uv extends stdentity
   public function set_alias_of($id_uv, $comment=null){
     $sql = new insert($this->dbrw, 'pedag_uv_alias',
                       array('id_uv_source' => $this->id,
-                            'id_uv_cible' => $id_uv,
-                            'commentaire' => $comment));
+                            'id_uv_cible' => mysql_real_escape_string($id_uv),
+                            'commentaire' => mysql_real_escape_string($comment)));
     $this->load_extra();
     return $sql->is_success();
   }
@@ -332,10 +332,7 @@ class uv extends stdentity
     if(!$this->extra_loaded)
       $this->load_extra();
 
-    if(empty($this->aliases))
-      return false;
-    else
-      return true;
+    return !(empty($this->aliases));
   }
 
   /**
@@ -361,9 +358,9 @@ class uv extends stdentity
   public function add_antecedent($id_uv, $comment=null, $obligatoire=true){
     $sql = new insert($this->dbrw, 'pedag_uv_antecedent',
                       array('id_uv_source' => $this->id,
-                            'id_uv_cible' => $id_uv,
-                            'commentaire' => $comment,
-                            'obligatoire' => $obligatoire),
+                            'id_uv_cible' => mysql_real_escape_string($id_uv),
+                            'commentaire' => mysql_real_escape_string($comment),
+                            'obligatoire' => mysql_real_escape_string($obligatoire)),
                       false);
     return $sql->is_success();
   }
@@ -377,7 +374,7 @@ class uv extends stdentity
                                     FROM `pedag_groupe_utl`
                                     NATURAL JOIN `pedag_groupe`
                                     WHERE `id_uv` = ".$this->id."
-                                    AND `semestre` = '".$semestre."'");
+                                    AND `semestre` = '".mysql_real_escape_string($semestre)."'");
     if($sql->is_success()){
       $row = $sql->get_row();
       return $row['nb'];
@@ -423,14 +420,14 @@ class uv extends stdentity
       throw new Exception("Wrong format \$semestre ".$semestre);
 
     $data = array("id_uv" => $this->id,
-                  "type" => $type,
-                  "num_groupe" => $num,
-                  "freq" => $freq,
-                  "semestre" => $semestre,
-                  "debut" => $debut,
-                  "fin" => $fin,
-                  "jour" => $jour,
-                  "salle" => $salle);
+                  "type" => mysql_real_escape_string($type),
+                  "num_groupe" => intval($num),
+                  "freq" => intval($freq),
+                  "semestre" => mysql_real_escape_string($semestre),
+                  "debut" => mysql_real_escape_string($debut),
+                  "fin" => mysql_real_escape_string($fin),
+                  "jour" => intval($jour),
+                  "salle" => mysql_real_escape_string($salle));
 
     $sql = new insert($this->dbrw, "pedag_groupe", $data);
 
@@ -473,16 +470,16 @@ class uv extends stdentity
     if ($id_utilisateur != null)
       $sql .= "LEFT JOIN `pedag_groupe_utl` USING (id_groupe)
             WHERE `id_uv` = ".$this->id."
-            AND `id_utilisateur` = ".$id_utilisateur;
+            AND `id_utilisateur` = ".intval($id_utilisateur);
     else
-      $sql .= "WHERE `id_uv` = ".$this->id;
+      $sql .= "WHERE `id_uv` = ".intval($this->id);
 
     if($semestre)
-      $sql .= "  AND `semestre` = '".$semestre."'";
+      $sql .= "  AND `semestre` = '".mysql_real_escape_string($semestre)."'";
     if($type)
-      $sql .= "  AND `type` = ".$type;
+      $sql .= "  AND `type` = ".intval($type);
     if($idgroup)
-      $sql .= "  AND `id_groupe` = ".$idgroup;
+      $sql .= "  AND `id_groupe` = ".intval($idgroup);
 
     $sql .= "  ORDER BY `semestre`, `type`";
 
@@ -518,9 +515,9 @@ class uv extends stdentity
   public function search_group($numgroup, $type, $semestre=SEMESTER_NOW){
     $sql = new requete($this->db, "SELECT `id_groupe` FROM `pedag_groupe`
                                     WHERE `id_uv` = '".$this->id."'
-                                    AND `num_groupe` = '".$numgroup."'
-                                    AND `type` = ".$type."
-                                    AND `semestre` = '".$semestre."'");
+                                    AND `num_groupe` = '".mysql_real_escape_string($numgroup)."'
+                                    AND `type` = ".intval($type)."
+                                    AND `semestre` = '".mysql_real_escape_string($semestre)."'");
     if($sql->is_success() && $sql->lines > 0){
       $row = $sql->get_row();
       return $row['id_groupe'];
@@ -531,7 +528,7 @@ class uv extends stdentity
   public function get_nb_students_group($id_group){
     $sql = new requete($this->db, "SELECT COUNT(*) as `nb`
                                     FROM `pedag_groupe_utl`
-                                    WHERE `id_groupe` = ".$id_group);
+                                    WHERE `id_groupe` = ".intval($id_group));
     if($sql->is_success()){
       $row = $sql->get_row;
       return $row['nb'];
@@ -562,7 +559,7 @@ class uv extends stdentity
     if(in_array($dept, $this->dept))
       throw new Exception($uv->code." déjà présente dans ".$dept);
 
-    $sql = new insert($this->dbrw, "pedag_uv_dept", array("id_uv" => $this->id, "departement" => $dept));
+    $sql = new insert($this->dbrw, "pedag_uv_dept", array("id_uv" => $this->id, "departement" => mysql_real_escape_string($dept)));
     return $sql->is_success();
   }
 
@@ -627,7 +624,7 @@ class uv extends stdentity
    * Recuperation en static d'un code d UV a partir d un id
    */
   public static function get_code(&$db, $id_uv){
-    $sql = new requete($db, "SELECT `code` FROM `pedag_uv` WHERE `id_uv` = ".$id_uv);
+    $sql = new requete($db, "SELECT `code` FROM `pedag_uv` WHERE `id_uv` = ".intval($id_uv));
     if($sql->is_success()){
       $row = $sql->get_row;
       return $row['code'];
@@ -640,9 +637,9 @@ class uv extends stdentity
    */
   public static function exists(&$db, $uv){
     if(check_uv_format($uv))
-      $sql = new requete($db, "SELECT 1 FROM `pedag_uv` WHERE `code` = '".$uv."'");
+      $sql = new requete($db, "SELECT 1 FROM `pedag_uv` WHERE `code` = '".mysql_real_escape_string($uv)."'");
     else
-      $sql = new requete($db, "SELECT 1 FROM `pedag_uv` WHERE `id_uv` = ".$uv);
+      $sql = new requete($db, "SELECT 1 FROM `pedag_uv` WHERE `id_uv` = ".intval($uv));
     return $sql->lines;
   }
 
@@ -658,7 +655,7 @@ class uv extends stdentity
     global $_DPT;
     if(!is_null($dept) && array_key_exists($dept, $_DPT)){
       $req .= " NATURAL JOIN `pedag_uv_dept`
-                WHERE `pedag_uv_dept`.`departement` = ".$dept;
+                WHERE `pedag_uv_dept`.`departement` = ".intval($dept);
       $where = true;
     }
     if(is_null($dept))
@@ -669,11 +666,12 @@ class uv extends stdentity
       $where = true;
     }
     if(!is_null($type) && array_key_exists($type, $_TYPE)){
-      if($where)
+      if($where) {
         $req .= " AND";
-      else
+      } else {
         $req .= " WHERE";
-      $req .= " `pedag_uv`.`type` = ".$type;
+      }
+      $req .= " `pedag_uv`.`type` = ".intval($type);
     }
     $req .= " ORDER BY `code` ASC";
 

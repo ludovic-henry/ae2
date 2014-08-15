@@ -82,7 +82,7 @@ class fsearchcache
     {
         if ($request[0] == '_')
             $request = substr($request, 1);
-        return strtolower ($request);
+        return strtolower (htmlentities($request));
     }
 }
 

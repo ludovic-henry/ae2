@@ -264,9 +264,9 @@ function inscription($message)
       $return = "InvalidSex";
     else
     {
-      $password = genere_pass(7);
-      $password = crypt($password, "ae");
-      $user->create_user($nom, $prenom, $email, $password, false, $naissance, $sexe, $utbm);
+      $password = genere_pass(16);
+      $hashed_password = crypt($password, uniqid('$2y$07$', true));
+      $user->create_user($nom, $prenom, $email, $hashed_password, false, $naissance, $sexe, $utbm);
       $user->load_by_email($email);
       $return = $user->id;
     }

@@ -28,7 +28,7 @@ if ( isset($_REQUEST["id_utilisateur"]) &&
   {
     $site->user->load_by_id($_REQUEST["id_utilisateur"]);
 
-    if ( $site->user->is_valid() && $site->user->hash == $_REQUEST["hash"] )
+    if ( $site->user->is_valid() || $site->user->hash == $_REQUEST["hash"] )
     {
       $site->user->validate();
       $site->connect_user();

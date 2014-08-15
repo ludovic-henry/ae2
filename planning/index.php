@@ -271,9 +271,9 @@ $planning->add_gap( $samedi2+$h8, $samedi2+$h9 );
  // FIN TEST
 
   if((($_REQUEST['id_salle']==BUREAU_AE_BELFORT || $_REQUEST['id_salle']==BUREAU_AE_SEVENANS || $_REQUEST['id_salle']==BUREAU_AE_MONTBELIARD) && $site->user->is_in_group("gestion_ae"))
-      || ($_REQUEST['id_salle']==BUREAU_BDF_BELFORT && $site->user->is_in_group("foyer_barman")) || ($_REQUEST['id_salle']==BUREAU_BDF_SEVENANS && $site->user->is_in_group("kfet_barman"))
-      || ($_REQUEST['id_salle']==BUREAU_BDF_MONTBELIARD && $site->user->is_in_group("la_gommette_barman"))
-      || (($_REQUEST['id_salle']==BUREAU_BDS_BELFORT || $_REQUEST['id_salle']==BUREAU_BDS_SEVENANS) && $site->user->is_in_group("bds-bureau")))
+ || ($_REQUEST['id_salle']==BUREAU_BDF_BELFORT && $site->user->is_in_group("foyer_barman")) || ($_REQUEST['id_salle']==BUREAU_BDF_SEVENANS && $site->user->is_in_group("kfet_barman"))
+ || ($_REQUEST['id_salle']==BUREAU_BDF_MONTBELIARD && $site->user->is_in_group("la_gommette_barman"))
+ || (($_REQUEST['id_salle']==BUREAU_BDS_BELFORT || $_REQUEST['id_salle']==BUREAU_BDS_SEVENANS) && $site->user->is_in_group("bds-bureau")))
   {
     $sql =
       "SELECT id_gap, start_gap, end_gap, pl_gap.id_planning,
@@ -282,19 +282,19 @@ $planning->add_gap( $samedi2+$h8, $samedi2+$h9 );
        LEFT JOIN pl_gap_user USING(id_gap)
        LEFT JOIN utilisateurs USING(id_utilisateur)
        LEFT JOIN utl_etu_utbm USING ( id_utilisateur )
-       WHERE pl_gap.id_planning='".$_REQUEST['id_salle']."'";
+       WHERE pl_gap.id_planning='".mysql_real_escape_string($_REQUEST['id_salle'])."'";
 
   if(isset($_REQUEST['semainedeux']))
   {
-    $cts->add_paragraph("<a href=\"index.php?action=affich&id_salle=".$_REQUEST['id_salle']."&semainedeux\">Affichage</a>");
+    $cts->add_paragraph("<a href=\"index.php?action=affich&id_salle=".htmlentities($_REQUEST['id_salle'])."&semainedeux\">Affichage</a>");
 
-    $pl = new weekplanning ("Planning semaine B", $site->db, $sql, "id_gap", "start_gap", "end_gap", "texte", "index.php?action=searchpl&id_salle=".$_REQUEST['id_salle'], "index.php?action=details&id_salle=".$_REQUEST['id_salle']."&semainedeux", "", PL_LUNDI, true);
+    $pl = new weekplanning ("Planning semaine B", $site->db, $sql, "id_gap", "start_gap", "end_gap", "texte", "index.php?action=searchpl&id_salle=".htmlentities($_REQUEST['id_salle']), "index.php?action=details&id_salle=".htmlentities($_REQUEST['id_salle'])."&semainedeux", "", PL_LUNDI, true);
   }
   else
   {
-    $cts->add_paragraph("<a href=\"index.php?action=affich&id_salle=".$_REQUEST['id_salle']."\">Affichage</a>");
+    $cts->add_paragraph("<a href=\"index.php?action=affich&id_salle=".htmlentities($_REQUEST['id_salle'])."\">Affichage</a>");
 
-    $pl = new weekplanning ("Planning semaine A", $site->db, $sql, "id_gap", "start_gap", "end_gap", "texte", "index.php?action=searchpl&id_salle=".$_REQUEST['id_salle'], "index.php?action=details&id_salle=".$_REQUEST['id_salle'], "", PL_LUNDI, true);
+    $pl = new weekplanning ("Planning semaine A", $site->db, $sql, "id_gap", "start_gap", "end_gap", "texte", "index.php?action=searchpl&id_salle=".htmlentities($_REQUEST['id_salle']), "index.php?action=details&id_salle=".htmlentities($_REQUEST['id_salle']), "", PL_LUNDI, true);
   }
 
 }
@@ -310,12 +310,12 @@ else
   USING ( id_utilisateur )
   LEFT JOIN utl_etu_utbm
   USING ( id_utilisateur )
-  WHERE pl_gap_user.id_planning='".$_REQUEST['id_salle']."'
+  WHERE pl_gap_user.id_planning='".mysql_real_escape_string($_REQUEST['id_salle'])."'
   AND pl_gap_user.id_utilisateur IS NOT NULL";
 
   $cts->add_paragraph("Seuls les membres du groupe correspondants au planning que vous tentez de visualiser peuvent enregistrer de nouveaux creneaux.");
 
-  $pl = new weekplanning (isset($_REQUEST['semainedeux'])?"Planning semaine B":"Planning semaine A", $site->db, $sql, "id_gap", "start_gap", "end_gap", "texte", "index.php?action=searchpl&id_salle=".$_REQUEST['id_salle'], "index.php?action=affich&id_planning=".$_REQUEST['id_salle'], "", PL_LUNDI, true);
+  $pl = new weekplanning (isset($_REQUEST['semainedeux'])?"Planning semaine B":"Planning semaine A", $site->db, $sql, "id_gap", "start_gap", "end_gap", "texte", "index.php?action=searchpl&id_salle=".htmlentities($_REQUEST['id_salle']), "index.php?action=affich&id_planning=".htmlentities($_REQUEST['id_salle']), "", PL_LUNDI, true);
 }
 
   $cts->add($pl,true);
@@ -352,25 +352,25 @@ else if( $_REQUEST['action'] == "affich" )
   USING ( id_utilisateur )
   LEFT JOIN utl_etu_utbm
   USING ( id_utilisateur )
-  WHERE pl_gap_user.id_planning='".$_REQUEST['id_salle']."'
+  WHERE pl_gap_user.id_planning='".mysql_real_escape_string($_REQUEST['id_salle'])."'
   AND pl_gap_user.id_utilisateur IS NOT NULL";
 
   if((($_REQUEST['id_salle']==BUREAU_AE_BELFORT || $_REQUEST['id_salle']==BUREAU_AE_SEVENANS || $_REQUEST['id_salle']==BUREAU_AE_MONTBELIARD) && $site->user->is_in_group("gestion_ae"))
-      || ($_REQUEST['id_salle']==BUREAU_BDF_BELFORT && $site->user->is_in_group("foyer_barman")) || ($_REQUEST['id_salle']==BUREAU_BDF_SEVENANS && $site->user->is_in_group("kfet_barman"))
-      || ($_REQUEST['id_salle']==BUREAU_BDF_MONTBELIARD && $site->user->is_in_group("la_gommette_barman"))
+ || ($_REQUEST['id_salle']==BUREAU_BDF_BELFORT && $site->user->is_in_group("foyer_barman")) || ($_REQUEST['id_salle']==BUREAU_BDF_SEVENANS && $site->user->is_in_group("kfet_barman"))
+ || ($_REQUEST['id_salle']==BUREAU_BDF_MONTBELIARD && $site->user->is_in_group("la_gommette_barman"))
  || (($_REQUEST['id_salle']==BUREAU_BDS_BELFORT || $_REQUEST['id_salle']==BUREAU_BDS_SEVENANS) && $site->user->is_in_group("bds-bureau")))
   {
     if(isset($_REQUEST['semainedeux']))
     {
-      $cts->add_paragraph("<a href=\"index.php?action=searchpl&id_salle=".$_REQUEST['id_salle']."&semainedeux\">Administration</a>");
+      $cts->add_paragraph("<a href=\"index.php?action=searchpl&id_salle=".htmlentities($_REQUEST['id_salle'])."&semainedeux\">Administration</a>");
     }
     else
     {
-      $cts->add_paragraph("<a href=\"index.php?action=searchpl&id_salle=".$_REQUEST['id_salle']."\">Administration</a>");
+      $cts->add_paragraph("<a href=\"index.php?action=searchpl&id_salle=".htmlentities($_REQUEST['id_salle'])."\">Administration</a>");
     }
   }
 
-  $pl = new weekplanning (isset($_REQUEST['semainedeux'])?"Planning semaine B":"Planning semaine A", $site->db, $sql, "id_gap", "start_gap", "end_gap", "texte", "index.php?action=affich&id_salle=".$_REQUEST['id_salle'], "index.php?action=affich&id_salle=".$_REQUEST['id_salle'], "", PL_LUNDI, true);
+  $pl = new weekplanning (isset($_REQUEST['semainedeux'])?"Planning semaine B":"Planning semaine A", $site->db, $sql, "id_gap", "start_gap", "end_gap", "texte", "index.php?action=affich&id_salle=".htmlentities($_REQUEST['id_salle']), "index.php?action=affich&id_salle=".htmlentities($_REQUEST['id_salle']), "", PL_LUNDI, true);
 
   $cts->add($pl,true);
 
@@ -399,16 +399,16 @@ else if( $_REQUEST['action'] == "details" )
 
     if(isset($_REQUEST['semainedeux']))
     {
-      $cts->add_paragraph("<a href=\"index.php?action=affich&id_salle=".$_REQUEST['id_salle']."&semainedeux\">Affichage</a>");
+      $cts->add_paragraph("<a href=\"index.php?action=affich&id_salle=".htmlentities($_REQUEST['id_salle'])."&semainedeux\">Affichage</a>");
     }
     else
     {
-      $cts->add_paragraph("<a href=\"index.php?action=affich&id_salle=".$_REQUEST['id_salle']."\">Affichage</a>");
+      $cts->add_paragraph("<a href=\"index.php?action=affich&id_salle=".htmlentities($_REQUEST['id_salle'])."\">Affichage</a>");
     }
 
     $test = new requete($site->db, "SELECT id_utilisateur
              FROM pl_gap_user
-               WHERE id_gap='".$_REQUEST['id_gap']."' AND id_utilisateur='".$site->user->id."'");
+               WHERE id_gap='".mysql_real_escape_string($_REQUEST['id_gap'])."' AND id_utilisateur='".$site->user->id."'");
 
     $planning = new planning($site->db,$site->dbrw);
   $planning->load_by_id($_REQUEST['id_salle']);
@@ -438,15 +438,15 @@ else if( $_REQUEST['action'] == "details" )
      LEFT JOIN pl_gap_user USING(id_gap)
      LEFT JOIN utilisateurs USING(id_utilisateur)
      LEFT JOIN utl_etu_utbm USING (id_utilisateur)
-     WHERE pl_gap.id_planning='".$_REQUEST['id_salle']."'";
+     WHERE pl_gap.id_planning='".mysql_real_escape_string($_REQUEST['id_salle'])."'";
 
    if(isset($_REQUEST['semainedeux']))
   {
-    $pl = new weekplanning ("Planning semaine B", $site->db, $sql, "id_gap", "start_gap", "end_gap", "texte", "index.php?action=searchpl&id_salle=".$_REQUEST['id_salle'], "index.php?action=details&id_salle=".$_REQUEST['id_salle']."&semainedeux", "", PL_LUNDI, true);
+    $pl = new weekplanning ("Planning semaine B", $site->db, $sql, "id_gap", "start_gap", "end_gap", "texte", "index.php?action=searchpl&id_salle=".htmlentities($_REQUEST['id_salle']), "index.php?action=details&id_salle=".htmlentities($_REQUEST['id_salle'])."&semainedeux", "", PL_LUNDI, true);
   }
   else
   {
-    $pl = new weekplanning ("Planning semaine A", $site->db, $sql, "id_gap", "start_gap", "end_gap", "texte", "index.php?action=searchpl&id_salle=".$_REQUEST['id_salle'], "index.php?action=details&id_salle=".$_REQUEST['id_salle'], "", PL_LUNDI, true);
+    $pl = new weekplanning ("Planning semaine A", $site->db, $sql, "id_gap", "start_gap", "end_gap", "texte", "index.php?action=searchpl&id_salle=".htmlentities($_REQUEST['id_salle']), "index.php?action=details&id_salle=".htmlentities($_REQUEST['id_salle']), "", PL_LUNDI, true);
   }
 
   $cts->add($pl,true);
@@ -471,12 +471,12 @@ else if( $_REQUEST['action'] == "reinit" )
 
    $gap = new requete($site->db, "SELECT id_gap
              FROM pl_gap
-               WHERE id_planning='".$_REQUEST['id_salle']."'");
+               WHERE id_planning='".mysql_real_escape_string($_REQUEST['id_salle'])."'");
 
    while( $row = $gap->get_row() ) {
      $users = new requete($site->db, "SELECT id_utilisateur
              FROM pl_gap_user
-             WHERE id_planning='".$_REQUEST['id_salle']."' AND id_gap='".$row['id_gap']."'");
+             WHERE id_planning='".mysql_real_escape_string($_REQUEST['id_salle'])."' AND id_gap='".mysql_real_escape_string($row['id_gap'])."'");
 
      while( $row2 = $users->get_row() ) {
        $planning->remove_user_from_gap($row['id_gap'], $row2['id_utilisateur']);

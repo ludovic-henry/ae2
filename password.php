@@ -37,12 +37,12 @@ if ( isset($_REQUEST["email"]) )
 
   if ( $user->is_valid() )
   {
-    $pass = genere_pass(10);
+    $pass = genere_pass(12);
 
     $user->invalidate();
     $user->change_password($pass);
 
-    $user->send_autopassword_email($_REQUEST["email"],$pass);
+    $user->send_autopassword_email($_REQUEST["email"], $pass);
 /*
   $body = "Bonjour,
 Votre mot de passe sur le site de l'Association des Étudiants de

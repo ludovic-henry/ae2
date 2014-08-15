@@ -197,7 +197,7 @@ elseif ( $_REQUEST["page"] == "viewreserv" )
 {
   $site->start_page("services","Laverie");
   $titre = "Créneaux réservés (".($_REQUEST["operation"] ==  1 ? 'lavage' : 'sechage').")";
-  $cts = new contents("<a href=\"index.php\">Laverie</a> / ".$salles[$_REQUEST["id_salle"]]." / ".$titre);
+  $cts = new contents("<a href=\"index.php\">Laverie</a> / ".htmlentities($salles[$_REQUEST["id_salle"]])." / ".$titre);
 
   $type = $_REQUEST["operation"] ==  1 ? 'laver' : 'secher';
 
@@ -214,7 +214,7 @@ elseif ( $_REQUEST["page"] == "viewreserv" )
      AND mc_machines.loc='".mysql_real_escape_string($_REQUEST["id_salle"])."'
      AND debut_creneau > NOW()";
 
-    $pl = new weekplanning ( "Selectionner un creneau", $site->db, $sql, "id_creneau", "debut_creneau", "fin_creneau", "texte", "index.php?action=searchmc&operation=".$_REQUEST["operation"]."&id_salle=".$_REQUEST["id_salle"], "index.php?page=reserver".$extraurl, "GROUP BY debut_creneau" );
+    $pl = new weekplanning ( "Selectionner un creneau", $site->db, $sql, "id_creneau", "debut_creneau", "fin_creneau", "texte", "index.php?action=searchmc&operation=".htmlentities($_REQUEST["operation"])."&id_salle=".htmlentities($_REQUEST["id_salle"]), "index.php?page=reserver".$extraurl, "GROUP BY debut_creneau" );
     $cts->add($pl,true);
 
 
@@ -230,8 +230,8 @@ elseif ( $_REQUEST["page"] == "viewreserv" )
   if ( $is_admin )
   {
     $cts->add_paragraph("<a href=\"admin.php\">Administration</a>");
-    $cts->add_paragraph("<a href=\"index.php?page=viewreserv&amp;operation=1&amp;id_salle=".$_REQUEST["id_salle"]."\">Afficher les réservations pour les lavages</a>");
-    $cts->add_paragraph("<a href=\"index.php?page=viewreserv&amp;operation=2&amp;id_salle=".$_REQUEST["id_salle"]."\">Afficher les réservations pour les sechages</a>");
+    $cts->add_paragraph("<a href=\"index.php?page=viewreserv&amp;operation=1&amp;id_salle=".htmlentities($_REQUEST["id_salle"])."\">Afficher les réservations pour les lavages</a>");
+    $cts->add_paragraph("<a href=\"index.php?page=viewreserv&amp;operation=2&amp;id_salle=".htmlentities($_REQUEST["id_salle"])."\">Afficher les réservations pour les sechages</a>");
   }
 
   $cts->add_paragraph("<a href=\"index.php\">Créneaux déjà réservés</a>");

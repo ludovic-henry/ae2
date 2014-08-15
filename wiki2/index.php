@@ -66,9 +66,9 @@ function build_htmlpath ( $fullpath )
 function build_asso_htmlpath ( $fullpath )
 {
   $tokens = explode(":",$fullpath);
-  $pole = $tokens[0];
+  $pole = htmlentities($tokens[0]);
   unset($tokens[0]);
-  $asso = $tokens[1];
+  $asso = htmlentities($tokens[1]);
   unset($tokens[1]);
 
   $buffer = "<a href=\"./?name=".$pole.":".$asso."\">Wiki</a>";
@@ -228,7 +228,9 @@ if ( !$wiki->is_valid() )
 
   $req = new requete($site->db,"SELECT asso.id_asso FROM asso
                                 LEFT JOIN asso AS asso_parent ON asso.id_asso_parent=asso_parent.id_asso
-                                WHERE CONCAT(asso_parent.nom_unix_asso,':',asso.nom_unix_asso)='".$castor[0].":".$castor[1]."'
+                                WHERE CONCAT(asso_parent.nom_unix_asso,':',asso.nom_unix_asso)='".
+                                mysql_real_escape_string($castor[0]).":".
+                                mysql_real_escape_string($castor[1])."'
                                 AND asso.id_asso_parent <> '1'");
 
   if ( $req->lines == 1 )
@@ -347,7 +349,7 @@ $side->add($lst);*/
 $tools = array();
 $tools[$wwwtopdir."wiki2/?name=".$pagepath]="Voir la page";
 if ( $can_edit )
-  $tools[$wwwtopdir."wiki2/?name=".$pagepath."&view=edit".(isset($_REQUEST["rev"])?"&rev=".$_REQUEST["rev"]:"")]="Editer";
+  $tools[$wwwtopdir."wiki2/?name=".$pagepath."&view=edit".(isset($_REQUEST["rev"])?"&rev=".htmlentities($_REQUEST["rev"]):"")]="Editer";
 else
   $tools[$wwwtopdir."wiki2/?name=".$pagepath."&view=srcs"]="Source";
 $tools[$wwwtopdir."wiki2/?name=".$pagepath."&view=refs"]="Références";
@@ -362,7 +364,9 @@ $castor = explode(":",$pagepath);
 
 $req = new requete($site->db,"SELECT asso.id_asso FROM asso
                               LEFT JOIN asso AS asso_parent ON asso.id_asso_parent=asso_parent.id_asso
-                              WHERE CONCAT(asso_parent.nom_unix_asso,':',asso.nom_unix_asso)='".$castor[0].":".$castor[1]."'
+                              WHERE CONCAT(asso_parent.nom_unix_asso,':',asso.nom_unix_asso)='".
+                              mysql_real_escape_string($castor[0]).":".
+                              mysql_real_escape_string($castor[1])."'
                               AND asso.id_asso_parent <> '1'");
 
 if ( $req->lines == 1 )

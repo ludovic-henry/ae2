@@ -118,7 +118,7 @@ class dokusyntax
     $this->firstpass($table,$text,"#(\b)($urls:[$any]+?)([$punc]*[^$any])#ie","\$this->linkformat('\\2')",'\1','\4');
 
     // url www version courte
-    $this->firstpass($table,$text,"#(\b)(www\.[$host]+?\.[$host]+?[$any]+?)([$punc]*[^$any])#ie","\$this->linkformat('http://\\2')",'\1','\3');
+    $this->firstpass($table,$text,"#(\b)(www\.[$host]+?\.[$host]+?[$any]+?)([$punc]*[^$any])#ie","\$this->linkformat('https://\\2')",'\1','\3');
 
     // windows shares
     $this->firstpass($table,$text,"#([$gunk$punc\s])(\\\\\\\\[$host]+?\\\\[$any]+?)([$punc]*[^$any])#ie","\$this->linkformat('\\2')",'\1','\3');
@@ -472,24 +472,24 @@ class dokusyntax
           return $file->get_html_link();
         }
         if ( !isset($match[2]) || $match[2] == "/download" )
-          $link = "http://ae.utbm.fr/d.php?action=download&amp;id_file=".$match[1];
+          $link = "https://ae.utbm.fr/d.php?action=download&amp;id_file=".$match[1];
         elseif ( $match[2] == "/preview" )
-          $link = "http://ae.utbm.fr/d.php?action=download&amp;download=preview&amp;id_file=".$match[1];
+          $link = "https://ae.utbm.fr/d.php?action=download&amp;download=preview&amp;id_file=".$match[1];
         elseif ( $match[2] == "/thumb" )
-          $link = "http://ae.utbm.fr/d.php?action=download&amp;download=thumb&amp;id_file=".$match[1];
+          $link = "https://ae.utbm.fr/d.php?action=download&amp;download=thumb&amp;id_file=".$match[1];
         elseif ( $match[2] == "/info" )
-          $link = "http://ae.utbm.fr/d.php?id_file=".$match[1];
+          $link = "https://ae.utbm.fr/d.php?id_file=".$match[1];
       }
       else
       {
         //les article://
-        $link = preg_replace("/article:\/\//i",'http://ae.utbm.fr/'.$GLOBALS["entitiescatalog"]["page"][3]."?name=",$link);
+        $link = preg_replace("/article:\/\//i",'https://ae.utbm.fr/'.$GLOBALS["entitiescatalog"]["page"][3]."?name=",$link);
         //les wiki://
-        $link = preg_replace("/wiki:\/\//i",'http://ae.utbm.fr/'.$GLOBALS["entitiescatalog"]["wiki"][3]."?name=",$link);
+        $link = preg_replace("/wiki:\/\//i",'https://ae.utbm.fr/'.$GLOBALS["entitiescatalog"]["wiki"][3]."?name=",$link);
         if( defined('CMS_ID_ASSO') )
           $link = preg_replace("/sas:\/\//i","images.php?/",$link);
         else
-          $link = preg_replace("/sas:\/\//i","http://ae.utbm.fr/sas2/images.php?/",$link);
+          $link = preg_replace("/sas:\/\//i","https://ae.utbm.fr/sas2/images.php?/",$link);
       }
     }
     elseif ( !strpos($link,'mailto:') && !preg_match("#(\.|/)#",$link) )
@@ -667,10 +667,10 @@ class dokusyntax
       'FIXME'=>'fixme.gif',
       'DELETEME'=>'delete.gif'
                      );
-    $smPath = $wwwtopdir."images/forum/smilies/";
+    $smPath = "images/forum/smilies/";
     foreach($smileys as $tag => $img)
     {
-      if ( file_exists($smPath . "/" . $img) )
+      if ( file_exists(__DIR__."/../../".$smPath . "/" . $img) )
       {
         $tag = preg_replace('!\]!i', '\]', $tag);
         $tag = preg_replace('!\[!i', '\[', $tag);
@@ -686,7 +686,7 @@ class dokusyntax
         $tag = preg_replace('!\*!i', '\*', $tag);
         $tag = preg_replace('!\.!i', '\.', $tag);
         $tag = preg_replace('!\|!i', '\|', $tag);
-        $text = preg_replace('!( |^|\n)'.$tag.'( |$|\n)!i', "$1<img src=\"".$smPath.$img."\" alt=\"\" />$2", $text);
+        $text = preg_replace('!( |^|\n)'.$tag.'( |$|\n)!i', "$1<img src=\"".$wwwtopdir.$smPath.$img."\" alt=\"$tag\" />$2", $text);
 
       }
     }
@@ -1039,13 +1039,13 @@ class dokusyntax
     list($width,$height) = split('x',$sizes,2);
     $name=trim($name);
     //les dfiles://
-    $img = preg_replace("/dfile:\/\/([0-9]*)\/preview/i","http://ae.utbm.fr/d.php?action=download&download=preview&id_file=$1",$img);
-    $img = preg_replace("/dfile:\/\/([0-9]*)\/thumb/i","http://ae.utbm.fr/d.php?action=download&download=thumb&id_file=$1",$img);
-    $img = preg_replace("/dfile:\/\//i","http://ae.utbm.fr/d.php?action=download&id_file=",$img);
+    $img = preg_replace("/dfile:\/\/([0-9]*)\/preview/i","https://ae.utbm.fr/d.php?action=download&download=preview&id_file=$1",$img);
+    $img = preg_replace("/dfile:\/\/([0-9]*)\/thumb/i","https://ae.utbm.fr/d.php?action=download&download=thumb&id_file=$1",$img);
+    $img = preg_replace("/dfile:\/\//i","https://ae.utbm.fr/d.php?action=download&id_file=",$img);
     if( defined('CMS_ID_ASSO') )
       $img = preg_replace("/sas:\/\//i","images.php?/",$img);
     else
-      $img = preg_replace("/sas:\/\//i","http://ae.utbm.fr/sas2/images.php?/",$img);
+      $img = preg_replace("/sas:\/\//i","https://ae.utbm.fr/sas2/images.php?/",$img);
 
     if ( preg_match("/\.flv$/i",$img) )
     {
@@ -1092,7 +1092,7 @@ class dokusyntax
     $sizes=trim($sizes);
     $params=trim($params);
     $url=trim($url);
-    if(!preg_match("/^(http:\/\/)?([^\/]+)/i",$url))
+    if(!preg_match("/^(https?:\/\/)?([^\/]+)/i",$url))
       return '';
     $sizes=trim($sizes);
     $x=0;
@@ -1162,18 +1162,18 @@ class dokusyntax
     if (empty($xml->html))
       return 'Fichier oEmbed non supporté.';
 
-    return $xml->html;
+    return preg_replace("/http\:\/\//","https://",$xml->html);
   }
 
   function get_oembed_url($url)
   {
     // Pour les plus courants on retourne direct l'url
-    if(preg_match('/http\:\/\/.*\.youtube\.[^.]*\//',$url))
-      return "http://www.youtube.com/oembed?format=xml&url=".$url;
-    elseif(preg_match('/http\:\/\/.*\.dailymotion.[^.]*\//',$url))
-      return "http://www.dailymotion.com/services/oembed?format=xml&url=".$url;
-    elseif(preg_match('/http\:\/\/.*\.vimeo.[^.]*\//',$url))
-      return "http://vimeo.com/api/oembed.xml?url=".$url;
+    if(preg_match('/https?\:\/\/.*\.youtube\.[^.]*\//',$url))
+      return "https://www.youtube.com/oembed?format=xml&url=".$url;
+    elseif(preg_match('/https?\:\/\/.*\.dailymotion.[^.]*\//',$url))
+      return "https://www.dailymotion.com/services/oembed?format=xml&url=".$url;
+    elseif(preg_match('/https?\:\/\/.*\.vimeo.[^.]*\//',$url))
+      return "https://vimeo.com/api/oembed.xml?url=".$url;
 
     // Mais ta gueule !
     libxml_use_internal_errors(true);

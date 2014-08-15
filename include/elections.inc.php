@@ -133,7 +133,7 @@ class election
 			     "UPDATE `vt_postes` SET
                                `votes_total` = `votes_total` + 1
                               WHERE
-                               `id_poste` = ".$poste."
+                               `id_poste` = ".mysql_real_escape_string($poste)."
                               AND
                                 `id_election` = ".$this->id);
 
@@ -142,7 +142,7 @@ class election
 			     "UPDATE `vt_postes` SET
                                `votes_blancs` = `votes_blancs` + 1
                               WHERE
-                               `id_poste` = ".$poste."
+                               `id_poste` = ".mysql_real_escape_string($poste)."
                               AND
                                 `id_election` = ".$this->id);
 	/* incr�mentation du nombre de poste du candidat concern� */
@@ -151,9 +151,9 @@ class election
 			     "UPDATE `vt_candidat` SET
                                `nombre_voix` = `nombre_voix` + 1
                               WHERE
-                               `id_poste` = ".$poste."
+                               `id_poste` = ".mysql_real_escape_string($poste)."
                               AND
-                                `id_utilisateur` = ".$candidat);
+                                `id_utilisateur` = ".mysql_real_escape_string($candidat));
       }
     return $req;
   }
@@ -166,7 +166,7 @@ class election
                                    WHERE
                                      `id_election` = ".$this->id."
                                    AND
-                                     `id_utilisateur` = ".$id_etudiant."");
+                                     `id_utilisateur` = ".intval($id_etudiant));
     $rs = $req->get_row();
     if ($rs['vote'] == 1)
       return true;

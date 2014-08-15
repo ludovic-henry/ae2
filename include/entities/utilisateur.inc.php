@@ -551,7 +551,7 @@ class utilisateur extends stdentity
                           array("id_utilisateur" => $this->id));
       }
     }
-    $this->hash = md5(genere_pass(20));
+    $this->hash = crypt(genere_pass(20), uniqid('$6$rounds=10000$', true));
     $this->tovalid = $reason;
     $req = new update($this->dbrw,
                       "utilisateurs",
@@ -566,10 +566,7 @@ class utilisateur extends stdentity
    */
   function is_password ( $password )
   {
-//    if ($this->pass == crypt($password, substr($this->pass,0,2)))
-    if ($this->pass == crypt($password, "ae"))
-      return true;
-    return false;
+    return ($this->pass === crypt($password, $this->pass));
   }
 
   /** Change le mot de passe de l'utilisateur
@@ -577,7 +574,7 @@ class utilisateur extends stdentity
    */
   function change_password ( $new_password )
   {
-    $this->pass = crypt($new_password, "ae");
+    $this->pass = crypt($new_password, uniqid('$6$rounds=10000$', true));
     $req = new update($this->dbrw,
                       "utilisateurs",
                       array("pass_utl"=>$this->pass),
@@ -1103,8 +1100,8 @@ class utilisateur extends stdentity
 
 
   /** Gnration de mot de passe
-   * Cette fonction va gnrer une chane alatoire de la longueur
-   * spcifie. C'est notamment utile pour gnrer des mots de passe.
+   * Cette fonction va gnrer une chaine aleatoire de la longueur
+   * specifie. C'est notamment utile pour generer des mots de passe.
    *
    * @param nameLength Longueur de la chane
    *
@@ -1112,25 +1109,13 @@ class utilisateur extends stdentity
    */
   function genere_pass ($nameLength=12)
   {
-    $NameChars = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKMNLOP';
-    $Vouel = 'aeiouAEIOU';
-    $Name = "";
+    $alphabet = 'abcdefghijklmnopqrstuvwxyz123456789ABCDEFGHIJKMNLOPQRSTUVWXYZ';
+    $pass = '';
 
-    for ($index = 1; $index <= $nameLength; $index++)
-    {
-      if ($index % 3 == 0)
-      {
-        $randomNumber = rand(1,strlen($Vouel));
-        $Name .= substr($Vouel,$randomNumber-1,1);
-      }
-      else
-      {
-        $randomNumber = rand(1,strlen($NameChars));
-        $Name .= substr($NameChars,$randomNumber-1,1);
-      }
-    }
+    for ($i = 1; $i <= $nameLength; $i++)
+        $pass .= $alphabet[mt_rand(0, strlen($alphabet) - 1)];
 
-  return $Name;
+  return $pass;
 
   }
 
@@ -1215,7 +1200,7 @@ class utilisateur extends stdentity
         $alias.=1;
     }
     $this->alias = $alias;
-    $this->pass = crypt($password, "ae");
+    $this->pass = crypt($password, uniqid('$6$rounds=10000$', true));
     $this->sexe = $sexe;
     $this->date_naissance = $date_naissance;
     $this->droit_image = $droit_image;

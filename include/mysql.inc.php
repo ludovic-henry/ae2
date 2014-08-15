@@ -231,7 +231,7 @@ class insert extends requete {
     elseif ( is_null($value) )
     $sql2 .= "NULL";
     else
-    $sql2 .= "'" . mysql_escape_string($value) . "'";
+    $sql2 .= "'" . mysql_real_escape_string($value) . "'";
 
     if($i != ($insert_array_count-1))
       {
@@ -315,7 +315,7 @@ class update extends requete {
     elseif ( $value === '')
       $sql .= "`" . $key . "` = ''";
     else
-       $sql .= "`" . $key . "`= '" . mysql_escape_string($value) . "'";
+       $sql .= "`" . $key . "`= '" . mysql_real_escape_string($value) . "'";
 
     if($i != ($update_array_count-1))
       {
@@ -341,7 +341,7 @@ class update extends requete {
         if ( is_null($value) )
           $sql .= "(`" . $key . "` is NULL)";
         else
-          $sql .= "(`" . $key . "`='" . mysql_escape_string($value) . "')";
+          $sql .= "(`" . $key . "`='" . mysql_real_escape_string($value) . "')";
 
         if($i != ($update_conds_count-1))
     {
@@ -413,7 +413,7 @@ class delete extends requete {
       if ( is_null($value) )
         $sql .= "(`" . $key . "` is NULL)";
       else
-        $sql .= "(`" . $key . "`='" . mysql_escape_string($value) . "')";
+        $sql .= "(`" . $key . "`='" . mysql_real_escape_string($value) . "')";
 
 
       if($i != ($delete_conds_count-1))

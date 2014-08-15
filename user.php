@@ -28,7 +28,7 @@
  */
 
 $topdir = "./";
-require_once($topdir. "include/site.inc.php");
+require_once($topdir . "include/site.inc.php");
 require_once($topdir . "include/cts/special.inc.php");
 require_once($topdir . "include/cts/sqltable.inc.php");
 require_once($topdir . "include/entities/asso.inc.php");
@@ -92,7 +92,7 @@ if ( $_REQUEST['action'] == "reinit" && $site->user->is_in_group("gestion_ae") )
       $email = $user->email_utbm;
     else
       $email = $user->email;
-    $pass = genere_pass(10);
+    $pass = genere_pass(12);
     $user->invalidate();
     $user->change_password($pass);
 
@@ -184,7 +184,7 @@ elseif ( $_REQUEST["action"] == "saveinfos" && $can_edit )
       "FROM mmt_instru_musique ".
       "LEFT JOIN utl_joue_instru ".
         "ON (`utl_joue_instru`.`id_instru_musique`=`mmt_instru_musique`.`id_instru_musique`" .
-        " AND `utl_joue_instru`.`id_utilisateur`='".$user->id."' )".
+        " AND `utl_joue_instru`.`id_utilisateur`='".intval($user->id)."' )".
       "ORDER BY nom_instru_musique");
 
     while ( $row = $req->get_row() )
@@ -217,11 +217,11 @@ elseif ( $_REQUEST["action"] == "saveinfos" && $can_edit )
     if ( $user->utbm )
     {
       $user->surnom = $_REQUEST['surnom'];
-      $user->semestre = $_REQUEST['semestre'];
+      $user->semestre = intval($_REQUEST['semestre']);
       $user->role = $_REQUEST['role'];
       $user->departement = $_REQUEST['departement'];
       $user->filiere = $_REQUEST['filiere'];
-      $user->promo_utbm = $_REQUEST['promo'];
+      $user->promo_utbm = intval($_REQUEST['promo']);
 
       if ( $_REQUEST['date_diplome'] < time()
         && $_REQUEST['date_diplome'] != 0
@@ -233,7 +233,7 @@ elseif ( $_REQUEST["action"] == "saveinfos" && $can_edit )
     if ($user->saveinfos())
     {
       if ( $site->user->id != $user->id )
-        _log($site->dbrw,"Édition d'une fiche matmatronch par un tierce","Fiche matmatronch de <a href=\"../user.php?id_utilisateur=".$user->id."\" >".$user->nom." ".$user->prenom." (id : ".$user->id.")</a> modifiée","Fiche MMT",$site->user);
+        _log($site->dbrw,"Édition d'une fiche matmatronch par un tierce","Fiche matmatronch de <a href=\"../user.php?id_utilisateur=".intval($user->id)."\" >".$user->nom." ".$user->prenom." (id : ".intval($user->id).")</a> modifiée","Fiche MMT",$site->user);
       header("Location: ".$topdir."user.php?id_utilisateur=".$user->id);
       exit();
     }
@@ -286,7 +286,7 @@ elseif ( $_REQUEST["action"] == "setgroups" &&
                      "SELECT `groupe`.`id_groupe`, `groupe`.`nom_groupe`, `utl_groupe`.`id_utilisateur` ".
                      "FROM `groupe` " .
                      "LEFT JOIN `utl_groupe` ON (`groupe`.`id_groupe`=`utl_groupe`.`id_groupe` " .
-                     " AND `utl_groupe`.`id_utilisateur`='".$user->id."' ) " .
+                     " AND `utl_groupe`.`id_utilisateur`='".intval($user->id)."' ) " .
                      "ORDER BY `groupe`.`nom_groupe`");
 
   while ( $row=$req->get_row())
@@ -308,7 +308,7 @@ elseif ( $_REQUEST["action"] == "setgroups" &&
         if ( ($row["id_groupe"] != 7 && $row["id_groupe"] != 46 && $row["id_groupe"] != 47) || $site->user->is_in_group("root") )
         {
           $user->add_to_group($row["id_groupe"]);
-          _log($site->dbrw,"Ajout d'un utilisateur au groupe ". $row["nom_groupe"],"Ajout de l'utilisateur ".$user->nom." ".$user->prenom." (id : ".$user->id.") au groupe ". $row["nom_groupe"] ." (id : ".$row["id_groupe"].")","Groupes",$site->user);
+          _log($site->dbrw,"Ajout d'un utilisateur au groupe ". $row["nom_groupe"],"Ajout de l'utilisateur ".$user->nom." ".$user->prenom." (id : ".intval($user->id).") au groupe ". $row["nom_groupe"] ." (id : ".$row["id_groupe"].")","Groupes",$site->user);
         }
       }
       else
@@ -316,7 +316,7 @@ elseif ( $_REQUEST["action"] == "setgroups" &&
         if ( ($row["id_groupe"] != 7 && $row["id_groupe"] != 46 && $row["id_groupe"] != 47) || $site->user->is_in_group("root") )
         {
           $user->remove_from_group($row["id_groupe"]);
-          _log($site->dbrw,"Retrait d'un utilisateur du groupe ". $row["nom_groupe"],"Retrait de l'utilisateur ".$user->nom." ".$user->prenom." (id : ".$user->id.") du groupe ". $row["nom_groupe"] ." (id : ".$row["id_groupe"].")","Groupes",$site->user);
+          _log($site->dbrw,"Retrait d'un utilisateur du groupe ". $row["nom_groupe"],"Retrait de l'utilisateur ".$user->nom." ".$user->prenom." (id : ".intval($user->id).") du groupe ". $row["nom_groupe"] ." (id : ".$row["id_groupe"].")","Groupes",$site->user);
         }
       }
     }
@@ -403,7 +403,7 @@ elseif ( $_REQUEST["action"] == "changeemail" && $can_edit  )
 
       $cts->add_paragraph("Votre adresse e-mail principale a été modifiée");
 
-      $cts->add_paragraph("Vous allez recevoir un e-mail de vérification à l'adresse ".$_POST["email"].". Vous devrez cliquer sur le lien se trouvant dans cet e-mail piur pouvoir utiliser de nouveau le site.");
+      $cts->add_paragraph("Vous allez recevoir un e-mail de vérification à l'adresse ". htmlentities($_POST["email"]).". Vous devrez cliquer sur le lien se trouvant dans cet e-mail pour pouvoir utiliser de nouveau le site.");
 
       $cts->add_paragraph("Pour plus d'informations, ou si vous ne recevez pas l'email, consultez la documentation : <a href=\"article.php?name=docs:profil\">Documentation : Profil personnel : Questions et problèmes fréquents</a>");
 
@@ -443,9 +443,9 @@ elseif ( $_REQUEST["action"] == "changeemailutbm" && $can_edit  )
       $site->start_page("matmatronch",$user->prenom." ".$user->nom);
       $cts = new contents ($user->prenom . " " . $user->nom );
 
-      $cts->add_paragraph("Votre adresse e-mail utbm a été $lex");
+      $cts->add_paragraph("Votre adresse e-mail utbm a été " . htmlentities($lex));
 
-      $cts->add_paragraph("Vous allez recevoir un e-mail de vérification à l'adresse ".$_POST["email"].". Vous devrez cliquer sur le lien se trouvant dans cet e-mail piur pouvoir utiliser de nouveau le site.");
+      $cts->add_paragraph("Vous allez recevoir un e-mail de vérification à l'adresse ".htmlentities($_POST["email"]).". Vous devrez cliquer sur le lien se trouvant dans cet e-mail piur pouvoir utiliser de nouveau le site.");
 
       $cts->add_paragraph("Pour plus d'informations, ou si vous ne recevez pas l'email, consultez la documentation : <a href=\"article.php?name=docs:profil\">Documentation : Profil personnel : Questions et problèmes fréquents</a>");
 
@@ -482,7 +482,7 @@ elseif ( $_REQUEST["action"] == "serviceident" && $can_edit  )
 
 if ( $_REQUEST["action"] == "setphotos" && $can_edit && is_dir("/data/matmatronch/") )
 {
-  $dest_idt = "/data/matmatronch/".$user->id.".identity.jpg";
+  $dest_idt = "/data/matmatronch/".intval($user->id).".identity.jpg";
   if ( is_uploaded_file($_FILES['idtfile']['tmp_name'])  )
   {
     $src = $_FILES['idtfile']['tmp_name'];
@@ -490,20 +490,20 @@ if ( $_REQUEST["action"] == "setphotos" && $can_edit && is_dir("/data/matmatronc
          ($site->user->is_asso_role ( 27, 1 )) || // ou MMT
          ($site->user->is_in_group("gestion_ae"))) // ou gestion_ae
     {
-      exec(escapeshellcmd("/usr/share/php5/exec/convert $src -thumbnail 225x300 $dest_idt"));
+      exec("/usr/share/php5/exec/convert " . escapeshellcmd($src) . " -thumbnail 225x300 " . escapeshellcmd($dest_idt));
     }
   }
 
-  $dest_mmt = "/data/matmatronch/".$user->id.".jpg";
+  $dest_mmt = "/data/matmatronch/".intval($user->id).".jpg";
   if( isset($_REQUEST['delete_mmt']) && file_exists($dest_mmt))
     unlink($dest_mmt);
   if ( is_uploaded_file($_FILES['mmtfile']['tmp_name'])  )
   {
     $src = $_FILES['mmtfile']['tmp_name'];
-    exec(escapeshellcmd("/usr/share/php5/exec/convert $src -thumbnail 225x300 $dest_mmt"));
+    exec("/usr/share/php5/exec/convert " . escapeshellcmd($src) . " -thumbnail 225x300 " . escapeshellcmd($dest_mmt));
   }
 
-  $dest_idt = "/data/matmatronch/".$user->id.".identity.jpg";
+  $dest_idt = "/data/matmatronch/".intval($user->id).".identity.jpg";
   if(isset($_REQUEST['delete_idt']) && file_exists($dest_idt)
      && ($site->user->is_asso_role ( 27, 1 )
    || $site->user->is_in_group("gestion_ae")))
@@ -515,8 +515,8 @@ if ( $_REQUEST["action"] == "setphotos" && $can_edit && is_dir("/data/matmatronc
 
 if ( $_REQUEST["action"] == "setblouse" && $can_edit )
 {
-  $dest = "/data/matmatronch/".$user->id.".blouse.jpg";
-  $dest_mini = "/data/matmatronch/".$user->id.".blouse.mini.jpg";
+  $dest = "/data/matmatronch/".intval($user->id).".blouse.jpg";
+  $dest_mini = "/data/matmatronch/".intval($user->id).".blouse.mini.jpg";
   if( isset($_REQUEST['delete_blouse']) && file_exists($dest))
   {
     unlink($dest);
@@ -525,8 +525,8 @@ if ( $_REQUEST["action"] == "setblouse" && $can_edit )
   if ( is_uploaded_file($_FILES['blousefile']['tmp_name'])  )
   {
     $src = $_FILES['blousefile']['tmp_name'];
-    exec(escapeshellcmd("/usr/share/php5/exec/convert $src -thumbnail 1600x1600 -quality 80 $dest"));
-    exec(escapeshellcmd("/usr/share/php5/exec/convert $src -thumbnail 225x300 -quality 90 $dest_mini"));
+    exec("/usr/share/php5/exec/convert " . escapeshellcmd($src) . " -thumbnail 1600x1600 -quality 80 " . escapeshellcmd($dest));
+    exec("/usr/share/php5/exec/convert " . escapeshellcmd($src) . " -thumbnail 225x300 -quality 90 " . escapeshellcmd($dest_mini));
   }
   $_REQUEST["page"] = "edit";
   $_REQUEST["open"] = "blouse";
@@ -604,7 +604,7 @@ if ( $_REQUEST["page"] == "edit" && $can_edit )
       $frm->add_hidden("prenom", $user->prenom);
     }
 
-    $req = new requete($site->db,"SELECT `id_utilisateur` FROM `svn_member_depot` WHERE `id_utilisateur`='".$user->id."'");
+    $req = new requete($site->db,"SELECT `id_utilisateur` FROM `svn_member_depot` WHERE `id_utilisateur`='".intval($user->id)."'");
     if($req->lines != 0 && $site->user->is_in_group("root"))
       $can_edit_alias = false;
     else
@@ -646,7 +646,7 @@ if ( $_REQUEST["page"] == "edit" && $can_edit )
       "FROM mmt_instru_musique ".
       "LEFT JOIN utl_joue_instru ".
         "ON (`utl_joue_instru`.`id_instru_musique`=`mmt_instru_musique`.`id_instru_musique`" .
-        " AND `utl_joue_instru`.`id_utilisateur`='".$user->id."' )".
+        " AND `utl_joue_instru`.`id_utilisateur`='".intval($user->id)."' )".
       "ORDER BY nom_instru_musique");
 
     while ( $row = $req->get_row() )
@@ -722,9 +722,9 @@ if ( $_REQUEST["page"] == "edit" && $can_edit )
     $cts->add_paragraph("&nbsp;");
 
     $cts->add(new itemlist("Modification des autres informations",false,array(
-    "<a href=\"user.php?see=email&amp;page=edit&amp;id_utilisateur=".$user->id."\">Adresses e-mail (personelle et utbm)</a>",
-    "<a href=\"user.php?see=passwd&amp;page=edit&amp;id_utilisateur=".$user->id."\">Mot de passe</a>",
-    "<a href=\"user.php?see=photos&amp;page=edit&amp;id_utilisateur=".$user->id."\">Photo d'identité, avatar et blouse</a>"
+    "<a href=\"user.php?see=email&amp;page=edit&amp;id_utilisateur=".intval($user->id)."\">Adresses e-mail (personelle et utbm)</a>",
+    "<a href=\"user.php?see=passwd&amp;page=edit&amp;id_utilisateur=".intval($user->id)."\">Mot de passe</a>",
+    "<a href=\"user.php?see=photos&amp;page=edit&amp;id_utilisateur=".intval($user->id)."\">Photo d'identité, avatar et blouse</a>"
     )),true);
 
   }
@@ -757,11 +757,23 @@ if ( $_REQUEST["page"] == "edit" && $can_edit )
   }
   elseif ( $_REQUEST["see"] == "passwd" )
   {
+    $site->add_js("js/zxcvbn.js");
 
     $frm = new form("changepassword","user.php?id_utilisateur=".$user->id,true,"POST","Changer de mot de passe");
     $frm->add_hidden("action","changepassword");
-    $frm->add_password_field("ae2_password","Mot de passe","",true);
+    // This is hackish, but simpler than creating a custom method for the "form" class
+    $frm->puts('<div class="formrow">' .
+        '<div class="formlabel" >Mot de passe *</div>' .
+            '<div class="formfield">' .
+                '<input id="ae2_password" name="ae2_password"' .
+                     'onchange="checkPassword(document.getElementById(\'ae2_password\').value); return true;"' .
+                     'onkeypress="checkPassword(document.getElementById(\'ae2_password\').value); return true;"' .
+                     'onpaste="this.onkeypress();"' .
+                     'oninput="this.onkeypress();" type="password">' .
+            '</div>' .
+        '</div>');
     $frm->add_password_field("ae2_password2","Repetez le mot de passe","",true);
+    $frm->puts("<div class='formrow'><div class='formlabel'>Qualité du mot de passe</div><div class='formfield' id='pmeter'>Champ vide</div></div>");
     $frm->add_submit("save","Enregistrer");
     $cts->add($frm,true);
 
@@ -769,13 +781,13 @@ if ( $_REQUEST["page"] == "edit" && $can_edit )
   elseif ( $_REQUEST["see"] == "photos" )
   {
 
-    $frm = new form("setphotos","user.php?id_utilisateur=".$user->id."#setphotos",true,"POST","Changer mes photos persos");
+    $frm = new form("setphotos","user.php?id_utilisateur=".intval($user->id)."#setphotos",true,"POST","Changer mes photos persos");
     $frm->add_hidden("action","setphotos");
 
     $subfrm = new form("mmt",null,null,null,"Avatar");
-    if ( file_exists( $topdir."data/matmatronch/".$user->id.".jpg") )
+    if ( file_exists( $topdir."data/matmatronch/".intval($user->id).".jpg") )
     {
-      $subfrm->add_info("<img src=\"".$topdir."data/matmatronch/".$user->id.".jpg?".filemtime($topdir."data/matmatronch/".$user->id.".jpg")."\" alt=\"\" width=\"100\" /><br/>");
+      $subfrm->add_info("<img src=\"".$topdir."data/matmatronch/".intval($user->id).".jpg?".filemtime($topdir."data/matmatronch/".intval($user->id).".jpg")."\" alt=\"\" width=\"100\" /><br/>");
     }
     $subfrm->add_file_field ( "mmtfile", "Fichier" );
     $subfrm->add_checkbox("delete_mmt","Supprimer mon avatar");
@@ -783,9 +795,9 @@ if ( $_REQUEST["page"] == "edit" && $can_edit )
 
     $subfrm = new form("idt",null,null,null,"Photo identit&eacute; (carte AE et matmatronch)");
 
-    if ( file_exists( $topdir."data/matmatronch/".$user->id.".identity.jpg") )
+    if ( file_exists( $topdir."data/matmatronch/".intval($user->id).".identity.jpg") )
     {
-      $subfrm->add_info("<img src=\"".$topdir."data/matmatronch/".$user->id.".identity.jpg?".filemtime($topdir."data/matmatronch/".$user->id.".identity.jpg")."\" alt=\"\" width=\"100\" /><br/>");
+      $subfrm->add_info("<img src=\"".$topdir."data/matmatronch/".intval($user->id).".identity.jpg?".filemtime($topdir."data/matmatronch/".intval($user->id).".identity.jpg")."\" alt=\"\" width=\"100\" /><br/>");
 
       if ($site->user->is_asso_role ( 27, 1 ) || $site->user->is_in_group("gestion_ae"))
       {
@@ -808,12 +820,12 @@ if ( $_REQUEST["page"] == "edit" && $can_edit )
 
     $cts->add($frm,true);
 
-    $frm = new form("setblouse","user.php?id_utilisateur=".$user->id."#setblouse",true,"POST","Changer la photo de ma blouse");
+    $frm = new form("setblouse","user.php?id_utilisateur=".intval($user->id)."#setblouse",true,"POST","Changer la photo de ma blouse");
     $frm->add_hidden("action","setblouse");
     $subfrm = new form("blouse",null,null,null,"Photo de la blouse");
 
-    if ( file_exists( $topdir."data/matmatronch/".$user->id.".blouse.mini.jpg") )
-      $subfrm->add_info("<img src=\"".$topdir."data/matmatronch/".$user->id.".blouse.mini.jpg\" alt=\"\" width=\"100\" /><br/>");
+    if ( file_exists( $topdir."data/matmatronch/".intval($user->id).".blouse.mini.jpg") )
+      $subfrm->add_info("<img src=\"".$topdir."data/matmatronch/".intval($user->id).".blouse.mini.jpg\" alt=\"\" width=\"100\" /><br/>");
 
     $subfrm->add_file_field ( "blousefile", "Fichier" );
     $subfrm->add_checkbox("delete_blouse","Supprimer la photo de ma blouse");
@@ -860,7 +872,7 @@ $cts->add(new tabshead($tabs,$_REQUEST["view"]));
 
 if ( $_REQUEST["view"]=="parrain" )
 {
-  $cts->add_paragraph("<a href=\"family.php?id_utilisateur=".$user->id."\">".
+  $cts->add_paragraph("<a href=\"family.php?id_utilisateur=".intval($user->id)."\">".
                       "Arbre g&eacute;n&eacute;alogique parrains/fillots</a>");
 
   $req = new requete($site->db,
@@ -869,7 +881,7 @@ if ( $_REQUEST["view"]=="parrain" )
     "FROM `parrains` " .
     "INNER JOIN `utilisateurs` ON `utilisateurs`.`id_utilisateur`=`parrains`.`id_utilisateur` " .
     "LEFT JOIN `utl_etu_utbm` ON `utl_etu_utbm`.`id_utilisateur`=`utilisateurs`.`id_utilisateur` ".
-    "WHERE `parrains`.`id_utilisateur_fillot`='".$user->id."'");
+    "WHERE `parrains`.`id_utilisateur_fillot`='".intval($user->id)."'");
 
   $tbl = new sqltable(
     "listasso",
@@ -886,7 +898,7 @@ if ( $_REQUEST["view"]=="parrain" )
     "FROM `parrains` " .
     "INNER JOIN `utilisateurs` ON `utilisateurs`.`id_utilisateur`=`parrains`.`id_utilisateur_fillot` " .
     "LEFT JOIN `utl_etu_utbm` ON `utl_etu_utbm`.`id_utilisateur`=`utilisateurs`.`id_utilisateur` ".
-    "WHERE `parrains`.`id_utilisateur`='".$user->id."'");
+    "WHERE `parrains`.`id_utilisateur`='".intval($user->id)."'");
 
   $tbl = new sqltable(
     "listasso",
@@ -1016,7 +1028,7 @@ elseif ( $_REQUEST["view"]=="assos" )
     "CONCAT(`asso`.`id_asso`,',',`asso_membre`.`date_debut`) as `id_membership` " .
     "FROM `asso_membre` " .
     "INNER JOIN `asso` ON `asso`.`id_asso`=`asso_membre`.`id_asso` " .
-    "WHERE `asso_membre`.`id_utilisateur`='".$user->id."' " .
+    "WHERE `asso_membre`.`id_utilisateur`='".intval($user->id)."' " .
     "AND `asso_membre`.`date_fin` is NULL " .
     "AND `asso_membre`.`role` > '".ROLEASSO_MEMBRE."' " .
     "ORDER BY `asso`.`nom_asso`");
@@ -1039,7 +1051,7 @@ elseif ( $_REQUEST["view"]=="assos" )
     "CONCAT(`asso`.`id_asso`,',',`asso_membre`.`date_debut`) as `id_membership` " .
     "FROM `asso_membre` " .
     "INNER JOIN `asso` ON `asso`.`id_asso`=`asso_membre`.`id_asso` " .
-    "WHERE `asso_membre`.`id_utilisateur`='".$user->id."' " .
+    "WHERE `asso_membre`.`id_utilisateur`='".intval($user->id)."' " .
     "AND `asso_membre`.`date_fin` is NULL " .
     "AND `asso_membre`.`role` = '".ROLEASSO_MEMBRE."' " .
     "ORDER BY `asso`.`nom_asso`");
@@ -1078,7 +1090,7 @@ elseif ( $_REQUEST["view"]=="assos" )
     "CONCAT(`asso`.`id_asso`,',',`asso_membre`.`date_debut`) as `id_membership` " .
     "FROM `asso_membre` " .
     "INNER JOIN `asso` ON `asso`.`id_asso`=`asso_membre`.`id_asso` " .
-    "WHERE `asso_membre`.`id_utilisateur`='".$user->id."' " .
+    "WHERE `asso_membre`.`id_utilisateur`='".intval($user->id)."' " .
     "AND `asso_membre`.`date_fin` is NOT NULL " .
     "ORDER BY `asso`.`nom_asso`,`asso_membre`.`date_debut`");
   if ( $req->lines > 0 )
@@ -1136,7 +1148,7 @@ elseif ( ($_REQUEST["view"]=="groups") &&
                      "SELECT `groupe`.`id_groupe`, `groupe`.`type_groupe`, `groupe`.`nom_groupe`, `groupe`.`description_groupe`, `utl_groupe`.`id_utilisateur` ".
                      "FROM `groupe` " .
                      "LEFT JOIN `utl_groupe` ON (`groupe`.`id_groupe`=`utl_groupe`.`id_groupe`" .
-                     " AND `utl_groupe`.`id_utilisateur`='".$user->id."' ) " .
+                     " AND `utl_groupe`.`id_utilisateur`='".intval($user->id)."' ) " .
                      "ORDER BY `groupe`.`type_groupe` DESC, `groupe`.`nom_groupe`");
 
   $frm = new form("setgroups","user.php?view=groups&id_utilisateur=".$user->id,true,"POST","Groupes");
@@ -1180,7 +1192,7 @@ elseif ( ($_REQUEST["view"]=="stats") && $_REQUEST["graph"]=="stat_comptoir_jour
 {	
 	require_once($topdir . "include/graph.inc.php");
 	$req = new requete($site->db, "SELECT SUM(montant_facture/100) as somme, HOUR(TIME(date_facture)) as heure 
-			FROM `cpt_debitfacture` WHERE id_utilisateur_client = $user->id AND mode_paiement = 'AE' GROUP BY heure");
+			FROM `cpt_debitfacture` WHERE id_utilisateur_client = ".intval($user->id)." AND mode_paiement = 'AE' GROUP BY heure");
 	$datas = array("Consommation" => "Consommation");
       	while ($row = $req->get_row())
         	$datas[$row['heure']] = $row['somme'];
@@ -1196,7 +1208,7 @@ elseif ( ($_REQUEST["view"]=="stats") && $_REQUEST["graph"]=="stat_comptoir_sema
 {	
 	require_once($topdir . "include/graph.inc.php");
 	$req = new requete($site->db, "SELECT SUM(montant_facture/100) as somme, DAYOFWEEK(DATE(date_facture)) as jour 
-			FROM `cpt_debitfacture` WHERE id_utilisateur_client = $user->id AND mode_paiement = 'AE' GROUP BY jour");
+			FROM `cpt_debitfacture` WHERE id_utilisateur_client = ".intval($user->id)." AND mode_paiement = 'AE' GROUP BY jour");
 	$datas = array("Consommation" => "Consommation");
 	$jour = array( 1 => "Dim", 2 => "Lun", 3 => "Mar", 4 => "Mer", 5 => "Jeu", 6 => "Ven", 7 => "Sam" );
       	while ($row = $req->get_row())
@@ -1214,7 +1226,7 @@ elseif ( ($_REQUEST["view"]=="stats") && $_REQUEST["graph"]=="stat_comptoir_mois
 	require_once($topdir . "include/graph.inc.php");
 	$req = new requete($site->db, "SELECT SUM(montant_facture/100) as somme, DATE_FORMAT(date_facture,'%m/%y') as mois, 
 			date_facture as date
-			FROM `cpt_debitfacture` WHERE id_utilisateur_client = $user->id AND mode_paiement = 'AE' GROUP BY mois ORDER BY date");
+			FROM `cpt_debitfacture` WHERE id_utilisateur_client = ".intval($user->id)." AND mode_paiement = 'AE' GROUP BY mois ORDER BY date");
 	$datas = array("Consommation" => "Consommation");
       	while ($row = $req->get_row())
         	$datas[$row['mois']] = $row['somme'];
@@ -1245,7 +1257,7 @@ elseif ( ($_REQUEST["view"]=="stats") && ($user->etudiant || $user->ancien_etudi
 					FROM cpt_produits
 					JOIN cpt_vendu ON cpt_vendu.id_produit = cpt_produits.id_produit
 					JOIN cpt_debitfacture ON cpt_debitfacture.id_facture = cpt_vendu.id_facture
-					WHERE cpt_debitfacture.id_utilisateur_client = $user->id
+					WHERE cpt_debitfacture.id_utilisateur_client = ".intval($user->id)."
 					AND (cpt_produits.id_typeprod < 10 OR cpt_produits.id_typeprod = 27)
 					GROUP BY id ORDER BY nombre DESC LIMIT 10");
 		
@@ -1300,7 +1312,7 @@ else
   $info = new userinfov2($user,"full",$site->user->is_in_group("gestion_ae"), "user.php", $same_promo);
 
   if ( $can_edit )
-    $info->set_toolbox(new toolbox(array("user.php?id_utilisateur=".$user->id."&page=edit"=>"Modifier")));
+    $info->set_toolbox(new toolbox(array("user.php?id_utilisateur=".intval($user->id)."&page=edit"=>"Modifier")));
 
   $cts->add($info);
 
@@ -1337,7 +1349,7 @@ else
     "INNER JOIN `asso` ON `asso`.`id_asso` =`cpt_vendu`.`id_assocpt` " .
     "INNER JOIN `cpt_produits` ON `cpt_produits`.`id_produit` =`cpt_vendu`.`id_produit` " .
     "INNER JOIN `cpt_debitfacture` ON `cpt_debitfacture`.`id_facture` =`cpt_vendu`.`id_facture` " .
-    "WHERE `id_utilisateur_client`='".$user->id."' ".
+    "WHERE `id_utilisateur_client`='".intval($user->id)."' ".
     "AND (`cpt_vendu`.`a_retirer_vente`='1' OR `cpt_vendu`.`a_expedier_vente`='1') " .
     "ORDER BY `cpt_debitfacture`.`date_facture` DESC");
 
@@ -1385,11 +1397,11 @@ else
 
     if ($can_edit && !file_exists("/data/matmatronch/" . $user->id .".identity.jpg"))
       $cts->add_paragraph("<img src=\"".$topdir."images/actions/delete.png\"><b>ATTENTION</b>: " .
-                          "<a href=\"user.php?see=photos&amp;page=edit&amp;id_utilisateur=".$user->id.
+                          "<a href=\"user.php?see=photos&amp;page=edit&amp;id_utilisateur=".intval($user->id).
                           "\">Photo d'identit&eacute; non pr&eacute;sente !</a>");
 
     $req = new requete($site->db, "SELECT `date_fin_cotis` FROM `ae_cotisations`
-                                      WHERE `id_utilisateur`='".$user->id."'
+                                      WHERE `id_utilisateur`='".intval($user->id)."'
                                       AND `date_fin_cotis` >= '" . date("Y-m-d") . "'
                                       ORDER BY `date_fin_cotis` DESC LIMIT 1");
     if ($req->lines > 1)
@@ -1422,7 +1434,7 @@ else
 
       if ( $can_edit )
       {
-        $req = new requete($site->db,"SELECT `id_carte_ae`, `etat_vie_carte_ae`, `cle_carteae`, `a_pris_cadeau` FROM `ae_carte` INNER JOIN `ae_cotisations` ON `ae_cotisations`.`id_cotisation`=`ae_carte`.`id_cotisation` WHERE `ae_cotisations`.`id_utilisateur`='".$user->id."' AND `ae_carte`.`etat_vie_carte_ae`<".CETAT_EXPIRE."");
+        $req = new requete($site->db,"SELECT `id_carte_ae`, `etat_vie_carte_ae`, `cle_carteae`, `a_pris_cadeau` FROM `ae_carte` INNER JOIN `ae_cotisations` ON `ae_cotisations`.`id_cotisation`=`ae_carte`.`id_cotisation` WHERE `ae_cotisations`.`id_utilisateur`='".intval($user->id)."' AND `ae_carte`.`etat_vie_carte_ae`<".CETAT_EXPIRE."");
 
         $item = $req->get_row();
 
@@ -1454,11 +1466,11 @@ else
   if ( $can_edit )
   {
     $cts->add(new itemlist("Modification du profil",false,array(
-    "<a href=\"user.php?page=edit&amp;id_utilisateur=".$user->id."\">Informations personelles</a>",
-    "<a href=\"user.php?see=email&amp;page=edit&amp;id_utilisateur=".$user->id."\">Adresses e-mail (personelle et utbm)</a>",
-    "<a href=\"user.php?see=passwd&amp;page=edit&amp;id_utilisateur=".$user->id."\">Mot de passe</a>",
-    "<a href=\"user.php?see=photos&amp;page=edit&amp;id_utilisateur=".$user->id."\">Photo d'identité, avatar et blouse</a>",
-    "<a href=\"user.php?action=serviceident&amp;id_utilisateur=".$user->id."\">Générer un identifiant de service (Utilisable pour les flux RSS par exemple)</a>"
+    "<a href=\"user.php?page=edit&amp;id_utilisateur=".intval($user->id)."\">Informations personelles</a>",
+    "<a href=\"user.php?see=email&amp;page=edit&amp;id_utilisateur=".intval($user->id)."\">Adresses e-mail (personelle et utbm)</a>",
+    "<a href=\"user.php?see=passwd&amp;page=edit&amp;id_utilisateur=".intval($user->id)."\">Mot de passe</a>",
+    "<a href=\"user.php?see=photos&amp;page=edit&amp;id_utilisateur=".intval($user->id)."\">Photo d'identité, avatar et blouse</a>",
+    "<a href=\"user.php?action=serviceident&amp;id_utilisateur=".intval($user->id)."\">Générer un identifiant de service (Utilisable pour les flux RSS par exemple)</a>"
     )),true);
   }
 
